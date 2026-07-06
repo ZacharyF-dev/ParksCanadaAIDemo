@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: jiralite_db
+    environment:
+      POSTGRES_DB: jiralite
+      POSTGRES_USER: jiralite_user
+      POSTGRES_PASSWORD: change_me
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: jiralite_app
+    depends_on:
+      - db
+    environment:
+      APP_NAME: JiraLite
+      APP_ENV: development
+      APP_HOST: 0.0.0.0
+      APP_PORT: 8000
+      DATABASE_URL: postgresql+psycopg://jiralite_user:change_me@db:5432/jiralite
+      DEFAULT_PROJECT_KEY: TEST
+      LOG_LEVEL: INFO
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:
