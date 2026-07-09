@@ -1,3 +1,15 @@
+Metadata-Version: 2.4
+Name: mini-jira-mcp
+Version: 0.1.0
+Summary: Simple Jira-like MCP server with FastMCP and a tiny polling web UI
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.115.0
+Requires-Dist: uvicorn>=0.30.0
+Requires-Dist: jinja2>=3.1.4
+Requires-Dist: pydantic>=2.8.0
+Requires-Dist: fastmcp>=0.2.0
+
 Mini Jira MCP
 A very small Jira-like app for local AI testing.
 

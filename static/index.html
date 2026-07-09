@@ -1,0 +1,868 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Mini Jira Board</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f5f7f8;
+      --panel: #ffffff;
+      --panel-soft: #f8fafb;
+      --border: #e6eaee;
+      --text: #18212b;
+      --muted: #6b7280;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+
+      --todo: #94a3b8;
+      --todo-bg: #f8fafc;
+
+      --progress: #3b82f6;
+      --progress-bg: #eff6ff;
+
+      --blocked: #ef4444;
+      --blocked-bg: #fef2f2;
+
+      --done: #10b981;
+      --done-bg: #ecfdf5;
+
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      padding: 28px;
+    }
+
+    .app {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 6px 0;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .small {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .toolbar,
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .toolbar {
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .toolbar-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .panel {
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .panel h2 {
+      margin: 0 0 14px 0;
+      font-size: 1.05rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(120px, 1fr));
+      gap: 12px;
+    }
+
+    .stat {
+      background: var(--panel-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    input,
+    select,
+    button,
+    textarea {
+      font: inherit;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 12px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #cbd5e1;
+      box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.12);
+    }
+
+    textarea {
+      min-height: 84px;
+      resize: vertical;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      background: #111827;
+      color: white;
+      transition: transform 0.12s ease, opacity 0.2s ease, background 0.2s ease;
+    }
+
+    button:hover {
+      opacity: 0.94;
+    }
+
+    .btn-secondary {
+      background: #eef2f7;
+      color: #1f2937;
+      border: 1px solid var(--border);
+    }
+
+    .create-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 180px;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(280px, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+
+    .column {
+      background: rgba(255,255,255,0.68);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 12px;
+      min-height: 320px;
+    }
+
+    .column-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding: 4px 2px 8px 2px;
+    }
+
+    .column-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .column-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      flex: 0 0 auto;
+    }
+
+    .column-count {
+      min-width: 28px;
+      height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: #fff;
+      border: 1px solid var(--border);
+    }
+
+    .tickets-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ticket {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+    }
+
+    .ticket.todo {
+      border-top: 4px solid #94a3b8;
+      background: linear-gradient(to bottom, #f8fafc, #fff 26%);
+    }
+
+    .ticket.in_progress {
+      border-top: 4px solid #3b82f6;
+      background: linear-gradient(to bottom, #eff6ff, #fff 26%);
+    }
+
+    .ticket.blocked {
+      border-top: 4px solid #ef4444;
+      background: linear-gradient(to bottom, #fef2f2, #fff 26%);
+    }
+
+    .ticket.done {
+      border-top: 4px solid #10b981;
+      background: linear-gradient(to bottom, #ecfdf5, #fff 26%);
+    }
+
+    .ticket-key {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .ticket-title {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.35;
+      margin: 0 0 8px 0;
+    }
+
+    .ticket-desc {
+      color: #374151;
+      font-size: 0.92rem;
+      line-height: 1.45;
+      margin: 10px 0 12px 0;
+      white-space: pre-wrap;
+    }
+
+    .badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: #334155;
+    }
+
+    .ticket-meta {
+      display: grid;
+      gap: 4px;
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .ticket-actions,
+    .assign-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .comments {
+      margin-top: 10px;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+
+    .comments h3 {
+      margin: 0 0 8px 0;
+      font-size: 0.9rem;
+    }
+
+    .comment {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+
+    .comment-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+
+    .comment-body {
+      color: #334155;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      white-space: pre-wrap;
+    }
+
+    .empty {
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      color: var(--muted);
+      text-align: center;
+      padding: 24px 14px;
+      background: rgba(255,255,255,0.5);
+      font-size: 0.92rem;
+    }
+
+    .status-note {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    code {
+      background: #eef2f7;
+      border-radius: 6px;
+      padding: 2px 6px;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 1200px) {
+      .board {
+        grid-template-columns: repeat(2, minmax(280px, 1fr));
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(3, minmax(120px, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 16px;
+      }
+
+      .board,
+      .stats-grid,
+      .create-grid,
+      .ticket-actions,
+      .assign-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="page-header">
+      <div class="title-wrap">
+        <h1>Mini Jira Board</h1>
+        <div class="subtitle">
+          Clean Kanban view grouped by process. Polling every 5 seconds.
+          Backend expected at <code>http://0.0.0.0:8000</code>.
+        </div>
+      </div>
+      <div>
+        <button onclick="loadData(true)">Refresh now</button>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="toolbar-row">
+        <input id="search" placeholder="Search tickets..." style="flex: 1; min-width: 220px;" />
+        <select id="statusFilter" style="max-width: 200px;">
+          <option value="">All statuses</option>
+          <option value="todo">todo</option>
+          <option value="in_progress">in_progress</option>
+          <option value="blocked">blocked</option>
+          <option value="done">done</option>
+        </select>
+        <button class="btn-secondary" onclick="loadData(true)">Apply filter</button>
+        <div id="refreshState" class="status-note">Auto-refresh on</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Create Ticket</h2>
+      <div class="create-grid">
+        <input id="newTitle" placeholder="Title" />
+        <input id="newAssignee" placeholder="Assignee" />
+        <select id="newPriority">
+          <option value="low">low</option>
+          <option value="medium" selected>medium</option>
+          <option value="high">high</option>
+        </select>
+      </div>
+      <div class="row">
+        <textarea id="newDescription" placeholder="Description"></textarea>
+      </div>
+      <button onclick="createTicket()">Create Ticket</button>
+    </div>
+
+    <div id="stats" class="panel">Loading stats...</div>
+    <div id="tickets" class="board"></div>
+  </div>
+
+  <script>
+    const API_BASE = `${window.location.protocol}//${window.location.hostname}:8000/api`;
+    const STATUSES = [
+      { key: "todo", label: "To Do" },
+      { key: "in_progress", label: "In Progress" },
+      { key: "blocked", label: "Blocked" },
+      { key: "done", label: "Done" }
+    ];
+
+    let isRefreshing = false;
+    let lastRenderHash = "";
+    let pollHandle = null;
+    let userInteractingUntil = 0;
+
+    function markUserInteracting() {
+      userInteractingUntil = Date.now() + 100000;
+      updateRefreshState();
+    }
+
+    function isUserInteracting() {
+      return Date.now() < userInteractingUntil ||
+        document.activeElement.matches("input, textarea, select");
+    }
+
+    function updateRefreshState() {
+      const el = document.getElementById("refreshState");
+      if (!el) return;
+      el.textContent = isUserInteracting() ? "Paused while editing" : "Auto-refresh on";
+    }
+
+    function stableStringify(value) {
+      if (value === null || typeof value !== "object") {
+        return JSON.stringify(value);
+      }
+
+      if (Array.isArray(value)) {
+        return `[${value.map(stableStringify).join(",")}]`;
+      }
+
+      const keys = Object.keys(value).sort();
+      return `{${keys.map(k => `${JSON.stringify(k)}:${stableStringify(value[k])}`).join(",")}}`;
+    }
+
+    async function fetchJson(url) {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error(`Request failed: ${url}`);
+      }
+      return res.json();
+    }
+
+    async function loadData(force = false) {
+      if (isRefreshing) return;
+      if (!force && isUserInteracting()) return;
+
+      isRefreshing = true;
+
+      const scrollY = window.scrollY;
+
+      try {
+        const status = document.getElementById("statusFilter").value;
+        const q = document.getElementById("search").value.trim();
+
+        let ticketsUrl = `${API_BASE}/tickets`;
+        const params = new URLSearchParams();
+        if (status) params.append("status", status);
+        if (q) params.append("q", q);
+        if ([...params.keys()].length > 0) ticketsUrl += `?${params.toString()}`;
+
+        const [tickets, stats] = await Promise.all([
+          fetchJson(ticketsUrl),
+          fetchJson(`${API_BASE}/stats`)
+        ]);
+
+        const detailedTickets = await Promise.all(
+          tickets.map(async (ticket) => {
+            const detail = await fetchJson(`${API_BASE}/tickets/${ticket.id}`);
+            return { ...ticket, comments: detail.comments || [] };
+          })
+        );
+
+        const grouped = {
+          todo: [],
+          in_progress: [],
+          blocked: [],
+          done: []
+        };
+
+        for (const ticket of detailedTickets) {
+          if (!grouped[ticket.status]) grouped[ticket.status] = [];
+          grouped[ticket.status].push(ticket);
+        }
+
+        const snapshot = {
+          stats,
+          grouped,
+          filters: { status, q }
+        };
+
+        const nextHash = stableStringify(snapshot);
+
+        if (nextHash !== lastRenderHash || force) {
+          renderStats(stats);
+          renderBoard(grouped);
+          lastRenderHash = nextHash;
+
+          requestAnimationFrame(() => {
+            window.scrollTo({ top: scrollY, behavior: "auto" });
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        isRefreshing = false;
+        updateRefreshState();
+      }
+    }
+
+    function renderStats(stats) {
+      const byStatus = stats.by_status || {};
+      document.getElementById("stats").innerHTML = `
+        <h2>Overview</h2>
+        <div class="stats-grid">
+          <div class="stat">
+            <div class="stat-label">Total Tickets</div>
+            <div class="stat-value">${stats.total_tickets ?? 0}</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Comments</div>
+            <div class="stat-value">${stats.total_comments ?? 0}</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">To Do</div>
+            <div class="stat-value">${byStatus.todo ?? 0}</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">In Progress</div>
+            <div class="stat-value">${byStatus.in_progress ?? 0}</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Blocked</div>
+            <div class="stat-value">${byStatus.blocked ?? 0}</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Done</div>
+            <div class="stat-value">${byStatus.done ?? 0}</div>
+          </div>
+        </div>
+        <div class="small" style="margin-top: 12px;">Generated at: ${escapeHtml(stats.generated_at || "-")}</div>
+      `;
+    }
+
+    function renderBoard(grouped) {
+      const root = document.getElementById("tickets");
+      root.innerHTML = "";
+
+      for (const status of STATUSES) {
+        const items = grouped[status.key] || [];
+        const column = document.createElement("section");
+        column.className = "column";
+        column.innerHTML = `
+          <div class="column-header">
+            <div class="column-title">
+              <span class="column-dot" style="background:${statusColor(status.key)}"></span>
+              <span>${status.label}</span>
+            </div>
+            <div class="column-count">${items.length}</div>
+          </div>
+          <div class="tickets-stack">
+            ${items.length ? items.map(renderTicketCard).join("") : `<div class="empty">No tickets in ${status.label.toLowerCase()}.</div>`}
+          </div>
+        `;
+        root.appendChild(column);
+      }
+    }
+
+    function renderTicketCard(ticket) {
+      const commentsHtml = (ticket.comments || []).map(c => `
+        <div class="comment">
+          <div class="comment-top">
+            <strong>${escapeHtml(c.author)}</strong>
+            <span class="small">${escapeHtml(c.created_at)}</span>
+          </div>
+          <div class="comment-body">${escapeHtml(c.body)}</div>
+        </div>
+      `).join("");
+
+      return `
+        <article class="ticket ${escapeHtml(ticket.status)}">
+          <div class="ticket-key">${escapeHtml(ticket.key)}</div>
+          <h3 class="ticket-title">${escapeHtml(ticket.title)}</h3>
+
+          <div class="badges">
+            <span class="badge">${formatStatus(ticket.status)}</span>
+            <span class="badge">Priority: ${escapeHtml(ticket.priority)}</span>
+            <span class="badge">Assignee: ${escapeHtml(ticket.assignee || "Unassigned")}</span>
+          </div>
+
+          <div class="ticket-desc">${escapeHtml(ticket.description || "No description")}</div>
+
+          <div class="ticket-meta">
+            <div>Created: ${escapeHtml(ticket.created_at)}</div>
+            <div>Updated: ${escapeHtml(ticket.updated_at)}</div>
+          </div>
+
+          <div class="ticket-actions">
+            <select id="status-${ticket.id}">
+              <option value="todo" ${ticket.status === "todo" ? "selected" : ""}>todo</option>
+              <option value="in_progress" ${ticket.status === "in_progress" ? "selected" : ""}>in_progress</option>
+              <option value="blocked" ${ticket.status === "blocked" ? "selected" : ""}>blocked</option>
+              <option value="done" ${ticket.status === "done" ? "selected" : ""}>done</option>
+            </select>
+            <button onclick="updateStatus(${ticket.id})">Move</button>
+          </div>
+
+          <div class="assign-row">
+            <input id="assign-${ticket.id}" placeholder="Assignee" value="${escapeAttr(ticket.assignee || "")}" />
+            <button class="btn-secondary" onclick="assignTicket(${ticket.id})">Assign</button>
+          </div>
+
+          <div class="comments">
+            <h3>Comments</h3>
+            <div>${commentsHtml || "<div class='small'>No comments yet.</div>"}</div>
+
+            <div class="row">
+              <input id="author-${ticket.id}" placeholder="Author" />
+            </div>
+            <div class="row">
+              <textarea id="comment-${ticket.id}" placeholder="Write comment..."></textarea>
+            </div>
+            <button class="btn-secondary" onclick="addComment(${ticket.id})">Add Comment</button>
+          </div>
+        </article>
+      `;
+    }
+
+    function formatStatus(status) {
+      if (status === "todo") return "To Do";
+      if (status === "in_progress") return "In Progress";
+      if (status === "blocked") return "Blocked";
+      if (status === "done") return "Done";
+      return status;
+    }
+
+    function statusColor(status) {
+      if (status === "todo") return "#94a3b8";
+      if (status === "in_progress") return "#3b82f6";
+      if (status === "blocked") return "#ef4444";
+      if (status === "done") return "#10b981";
+      return "#cbd5e1";
+    }
+
+    async function createTicket() {
+      try {
+        const title = document.getElementById("newTitle").value.trim();
+        const description = document.getElementById("newDescription").value.trim();
+        const assignee = document.getElementById("newAssignee").value.trim();
+        const priority = document.getElementById("newPriority").value;
+
+        if (!title) {
+          alert("Title is required");
+          return;
+        }
+
+        const res = await fetch(`${API_BASE}/tickets`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title,
+            description,
+            priority,
+            assignee: assignee || null
+          })
+        });
+
+        if (!res.ok) throw new Error("Failed to create ticket");
+
+        document.getElementById("newTitle").value = "";
+        document.getElementById("newDescription").value = "";
+        document.getElementById("newAssignee").value = "";
+        document.getElementById("newPriority").value = "medium";
+
+        await loadData(true);
+      } catch (error) {
+        console.error(error);
+        alert("Could not create ticket.");
+      }
+    }
+
+    async function updateStatus(ticketId) {
+      try {
+        const status = document.getElementById(`status-${ticketId}`).value;
+        const res = await fetch(`${API_BASE}/tickets/${ticketId}/status`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status })
+        });
+
+        if (!res.ok) throw new Error("Failed to update status");
+        await loadData(true);
+      } catch (error) {
+        console.error(error);
+        alert("Could not update ticket status.");
+      }
+    }
+
+    async function assignTicket(ticketId) {
+      try {
+        const assignee = document.getElementById(`assign-${ticketId}`).value.trim();
+        const res = await fetch(`${API_BASE}/tickets/${ticketId}/assign`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ assignee: assignee || null })
+        });
+
+        if (!res.ok) throw new Error("Failed to assign ticket");
+        await loadData(true);
+      } catch (error) {
+        console.error(error);
+        alert("Could not assign ticket.");
+      }
+    }
+
+    async function addComment(ticketId) {
+      try {
+        const author = document.getElementById(`author-${ticketId}`).value.trim();
+        const body = document.getElementById(`comment-${ticketId}`).value.trim();
+
+        if (!author || !body) {
+          alert("Author and comment are required");
+          return;
+        }
+
+        const res = await fetch(`${API_BASE}/tickets/${ticketId}/comments`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ author, body })
+        });
+
+        if (!res.ok) throw new Error("Failed to add comment");
+
+        await loadData(true);
+      } catch (error) {
+        console.error(error);
+        alert("Could not add comment.");
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value);
+    }
+
+    document.addEventListener("input", (event) => {
+      if (event.target.matches("input, textarea, select")) {
+        markUserInteracting();
+      }
+    });
+
+    document.addEventListener("focusin", (event) => {
+      if (event.target.matches("input, textarea, select")) {
+        markUserInteracting();
+      }
+    });
+
+    document.getElementById("search").addEventListener("keydown", (event) => {
+      markUserInteracting();
+      if (event.key === "Enter") {
+        loadData(true);
+      }
+    });
+
+    document.getElementById("statusFilter").addEventListener("change", () => {
+      loadData(true);
+    });
+
+    updateRefreshState();
+    loadData(true);
+    pollHandle = setInterval(() => loadData(false), 30000);
+  </script>
+</body>
+</html>
