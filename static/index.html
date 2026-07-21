@@ -26,6 +26,9 @@
       --done: #10b981;
       --done-bg: #ecfdf5;
 
+      --overdue: #dc2626;
+      --overdue-bg: #fef2f2;
+
       --radius: 14px;
     }
 
@@ -108,7 +111,7 @@
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(6, minmax(120px, 1fr));
+      grid-template-columns: repeat(7, minmax(120px, 1fr));
       gap: 12px;
     }
 
@@ -117,6 +120,15 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 14px;
+    }
+
+    .stat.warn {
+      background: var(--overdue-bg);
+      border-color: #fecaca;
+    }
+
+    .stat.warn .stat-value {
+      color: var(--overdue);
     }
 
     .stat-label {
@@ -190,9 +202,15 @@
       border: 1px solid var(--border);
     }
 
+    .btn-warn {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
     .create-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 180px;
+      grid-template-columns: 2fr 1fr 1fr 140px 1fr 190px;
       gap: 10px;
       margin-bottom: 10px;
     }
@@ -284,6 +302,10 @@
       background: linear-gradient(to bottom, #ecfdf5, #fff 26%);
     }
 
+    .ticket.overdue {
+      box-shadow: 0 0 0 2px var(--overdue) inset, 0 6px 18px rgba(15, 23, 42, 0.05);
+    }
+
     .ticket-key {
       font-size: 0.78rem;
       color: var(--muted);
@@ -291,6 +313,22 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
       margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .overdue-flag {
+      color: var(--overdue);
+      background: var(--overdue-bg);
+      border: 1px solid #fecaca;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: 0;
     }
 
     .ticket-title {
@@ -335,21 +373,37 @@
       font-size: 0.8rem;
     }
 
+    .ticket-meta .due.overdue-text {
+      color: var(--overdue);
+      font-weight: 700;
+    }
+
     .ticket-actions,
-    .assign-row {
+    .assign-row,
+    .category-row {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 8px;
       margin-bottom: 10px;
     }
 
-    .comments {
+    .escalate-row {
+      margin-bottom: 10px;
+    }
+
+    .escalate-row button {
+      width: 100%;
+    }
+
+    .comments,
+    .activity {
       margin-top: 10px;
       border-top: 1px solid var(--border);
       padding-top: 12px;
     }
 
-    .comments h3 {
+    .comments h3,
+    .activity h3 {
       margin: 0 0 8px 0;
       font-size: 0.9rem;
     }
@@ -375,6 +429,30 @@
       font-size: 0.9rem;
       line-height: 1.4;
       white-space: pre-wrap;
+    }
+
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .activity-entry {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: #475569;
+      background: #f8fafc;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 6px 10px;
+      flex-wrap: wrap;
+    }
+
+    .activity-entry .event-type {
+      font-weight: 700;
+      color: #1f2937;
     }
 
     .empty {
@@ -419,7 +497,8 @@
       .stats-grid,
       .create-grid,
       .ticket-actions,
-      .assign-row {
+      .assign-row,
+      .category-row {
         grid-template-columns: 1fr;
       }
     }
@@ -450,6 +529,14 @@
           <option value="blocked">blocked</option>
           <option value="done">done</option>
         </select>
+        <select id="categoryFilter" style="max-width: 200px;">
+          <option value="">All categories</option>
+          <option value="hardware">hardware</option>
+          <option value="software">software</option>
+          <option value="network">network</option>
+          <option value="access">access</option>
+          <option value="other">other</option>
+        </select>
         <button class="btn-secondary" onclick="loadData(true)">Apply filter</button>
         <div id="refreshState" class="status-note">Auto-refresh on</div>
       </div>
@@ -459,12 +546,21 @@
       <h2>Create Ticket</h2>
       <div class="create-grid">
         <input id="newTitle" placeholder="Title" />
+        <input id="newRequester" placeholder="Requester" />
         <input id="newAssignee" placeholder="Assignee" />
         <select id="newPriority">
           <option value="low">low</option>
           <option value="medium" selected>medium</option>
           <option value="high">high</option>
         </select>
+        <select id="newCategory">
+          <option value="hardware">hardware</option>
+          <option value="software" selected>software</option>
+          <option value="network">network</option>
+          <option value="access">access</option>
+          <option value="other">other</option>
+        </select>
+        <input id="newDueAt" type="datetime-local" />
       </div>
       <div class="row">
         <textarea id="newDescription" placeholder="Description"></textarea>
@@ -537,6 +633,7 @@
 
       try {
         const status = document.getElementById("statusFilter").value;
+        const category = document.getElementById("categoryFilter").value;
         const q = document.getElementById("search").value.trim();
 
         let ticketsUrl = `${API_BASE}/tickets`;
@@ -550,10 +647,12 @@
           fetchJson(`${API_BASE}/stats`)
         ]);
 
+        const filteredTickets = category ? tickets.filter(t => t.category === category) : tickets;
+
         const detailedTickets = await Promise.all(
-          tickets.map(async (ticket) => {
+          filteredTickets.map(async (ticket) => {
             const detail = await fetchJson(`${API_BASE}/tickets/${ticket.id}`);
-            return { ...ticket, comments: detail.comments || [] };
+            return { ...ticket, comments: detail.comments || [], activity: detail.activity || [] };
           })
         );
 
@@ -572,7 +671,7 @@
         const snapshot = {
           stats,
           grouped,
-          filters: { status, q }
+          filters: { status, category, q }
         };
 
         const nextHash = stableStringify(snapshot);
@@ -596,6 +695,11 @@
 
     function renderStats(stats) {
       const byStatus = stats.by_status || {};
+      const byCategory = stats.by_category || {};
+      const categorySummary = Object.entries(byCategory)
+        .map(([cat, count]) => `${cat}: ${count}`)
+        .join(" · ");
+
       document.getElementById("stats").innerHTML = `
         <h2>Overview</h2>
         <div class="stats-grid">
@@ -606,6 +710,10 @@
           <div class="stat">
             <div class="stat-label">Comments</div>
             <div class="stat-value">${stats.total_comments ?? 0}</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Activity Events</div>
+            <div class="stat-value">${stats.total_activity_events ?? 0}</div>
           </div>
           <div class="stat">
             <div class="stat-label">To Do</div>
@@ -619,12 +727,13 @@
             <div class="stat-label">Blocked</div>
             <div class="stat-value">${byStatus.blocked ?? 0}</div>
           </div>
-          <div class="stat">
-            <div class="stat-label">Done</div>
-            <div class="stat-value">${byStatus.done ?? 0}</div>
+          <div class="stat warn">
+            <div class="stat-label">Overdue</div>
+            <div class="stat-value">${stats.overdue_count ?? 0}</div>
           </div>
         </div>
-        <div class="small" style="margin-top: 12px;">Generated at: ${escapeHtml(stats.generated_at || "-")}</div>
+        <div class="small" style="margin-top: 12px;">By category: ${escapeHtml(categorySummary || "-")}</div>
+        <div class="small" style="margin-top: 4px;">Generated at: ${escapeHtml(stats.generated_at || "-")}</div>
       `;
     }
 
@@ -663,14 +772,31 @@
         </div>
       `).join("");
 
+      const activityHtml = (ticket.activity || []).map(a => `
+        <div class="activity-entry">
+          <span><span class="event-type">${escapeHtml(formatEventType(a.event_type))}</span> — ${escapeHtml(a.detail)}</span>
+          <span class="small">${escapeHtml(a.actor)} · ${escapeHtml(a.created_at)}</span>
+        </div>
+      `).join("");
+
+      const overdue = Boolean(ticket.is_overdue);
+      const dueLine = ticket.due_at
+        ? `<div class="due ${overdue ? "overdue-text" : ""}">Due: ${escapeHtml(ticket.due_at)}${overdue ? " (overdue)" : ""}</div>`
+        : "";
+
       return `
-        <article class="ticket ${escapeHtml(ticket.status)}">
-          <div class="ticket-key">${escapeHtml(ticket.key)}</div>
+        <article class="ticket ${escapeHtml(ticket.status)} ${overdue ? "overdue" : ""}">
+          <div class="ticket-key">
+            <span>${escapeHtml(ticket.key)}</span>
+            ${overdue ? '<span class="overdue-flag">OVERDUE</span>' : ""}
+          </div>
           <h3 class="ticket-title">${escapeHtml(ticket.title)}</h3>
 
           <div class="badges">
             <span class="badge">${formatStatus(ticket.status)}</span>
             <span class="badge">Priority: ${escapeHtml(ticket.priority)}</span>
+            <span class="badge">Category: ${escapeHtml(ticket.category || "other")}</span>
+            <span class="badge">Requester: ${escapeHtml(ticket.requester || "Unknown")}</span>
             <span class="badge">Assignee: ${escapeHtml(ticket.assignee || "Unassigned")}</span>
           </div>
 
@@ -679,6 +805,7 @@
           <div class="ticket-meta">
             <div>Created: ${escapeHtml(ticket.created_at)}</div>
             <div>Updated: ${escapeHtml(ticket.updated_at)}</div>
+            ${dueLine}
           </div>
 
           <div class="ticket-actions">
@@ -691,9 +818,24 @@
             <button onclick="updateStatus(${ticket.id})">Move</button>
           </div>
 
+          <div class="category-row">
+            <select id="category-${ticket.id}">
+              <option value="hardware" ${ticket.category === "hardware" ? "selected" : ""}>hardware</option>
+              <option value="software" ${ticket.category === "software" ? "selected" : ""}>software</option>
+              <option value="network" ${ticket.category === "network" ? "selected" : ""}>network</option>
+              <option value="access" ${ticket.category === "access" ? "selected" : ""}>access</option>
+              <option value="other" ${ticket.category === "other" ? "selected" : ""}>other</option>
+            </select>
+            <button class="btn-secondary" onclick="updateCategory(${ticket.id})">Recategorize</button>
+          </div>
+
           <div class="assign-row">
             <input id="assign-${ticket.id}" placeholder="Assignee" value="${escapeAttr(ticket.assignee || "")}" />
             <button class="btn-secondary" onclick="assignTicket(${ticket.id})">Assign</button>
+          </div>
+
+          <div class="escalate-row">
+            <button class="btn-warn" onclick="escalateTicket(${ticket.id})">Escalate priority</button>
           </div>
 
           <div class="comments">
@@ -708,6 +850,11 @@
             </div>
             <button class="btn-secondary" onclick="addComment(${ticket.id})">Add Comment</button>
           </div>
+
+          <div class="activity">
+            <h3>Activity</h3>
+            <div class="activity-list">${activityHtml || "<div class='small'>No activity yet.</div>"}</div>
+          </div>
         </article>
       `;
     }
@@ -718,6 +865,10 @@
       if (status === "blocked") return "Blocked";
       if (status === "done") return "Done";
       return status;
+    }
+
+    function formatEventType(eventType) {
+      return String(eventType || "").replaceAll("_", " ");
     }
 
     function statusColor(status) {
@@ -732,8 +883,11 @@
       try {
         const title = document.getElementById("newTitle").value.trim();
         const description = document.getElementById("newDescription").value.trim();
+        const requester = document.getElementById("newRequester").value.trim();
         const assignee = document.getElementById("newAssignee").value.trim();
         const priority = document.getElementById("newPriority").value;
+        const category = document.getElementById("newCategory").value;
+        const dueAtRaw = document.getElementById("newDueAt").value;
 
         if (!title) {
           alert("Title is required");
@@ -747,7 +901,10 @@
             title,
             description,
             priority,
-            assignee: assignee || null
+            category,
+            assignee: assignee || null,
+            requester: requester || null,
+            due_at: dueAtRaw ? new Date(dueAtRaw).toISOString() : null
           })
         });
 
@@ -755,8 +912,11 @@
 
         document.getElementById("newTitle").value = "";
         document.getElementById("newDescription").value = "";
+        document.getElementById("newRequester").value = "";
         document.getElementById("newAssignee").value = "";
         document.getElementById("newPriority").value = "medium";
+        document.getElementById("newCategory").value = "software";
+        document.getElementById("newDueAt").value = "";
 
         await loadData(true);
       } catch (error) {
@@ -771,7 +931,7 @@
         const res = await fetch(`${API_BASE}/tickets/${ticketId}/status`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ status })
+          body: JSON.stringify({ status, actor: "dashboard" })
         });
 
         if (!res.ok) throw new Error("Failed to update status");
@@ -788,7 +948,7 @@
         const res = await fetch(`${API_BASE}/tickets/${ticketId}/assign`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ assignee: assignee || null })
+          body: JSON.stringify({ assignee: assignee || null, actor: "dashboard" })
         });
 
         if (!res.ok) throw new Error("Failed to assign ticket");
@@ -796,6 +956,40 @@
       } catch (error) {
         console.error(error);
         alert("Could not assign ticket.");
+      }
+    }
+
+    async function updateCategory(ticketId) {
+      try {
+        const category = document.getElementById(`category-${ticketId}`).value;
+        const res = await fetch(`${API_BASE}/tickets/${ticketId}/category`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ category, actor: "dashboard" })
+        });
+
+        if (!res.ok) throw new Error("Failed to update category");
+        await loadData(true);
+      } catch (error) {
+        console.error(error);
+        alert("Could not update ticket category.");
+      }
+    }
+
+    async function escalateTicket(ticketId) {
+      try {
+        const reason = prompt("Reason for escalating? (optional)") || "";
+        const res = await fetch(`${API_BASE}/tickets/${ticketId}/escalate`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ reason, actor: "dashboard" })
+        });
+
+        if (!res.ok) throw new Error("Failed to escalate ticket");
+        await loadData(true);
+      } catch (error) {
+        console.error(error);
+        alert("Could not escalate ticket.");
       }
     }
 
@@ -857,6 +1051,10 @@
     });
 
     document.getElementById("statusFilter").addEventListener("change", () => {
+      loadData(true);
+    });
+
+    document.getElementById("categoryFilter").addEventListener("change", () => {
       loadData(true);
     });
 
