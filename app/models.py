@@ -15,9 +15,21 @@ class TicketCreate(BaseModel):
     description: str = Field(default="", max_length=5000)
     priority: Literal["low", "medium", "high"] = "medium"
     category: TicketCategory = "other"
+    labels: list[str] = Field(default_factory=list)
     assignee: str | None = None
     requester: str | None = None
     due_at: str | None = None
+
+
+class TicketEdit(BaseModel):
+    title: str = Field(min_length=1, max_length=200)
+    description: str = Field(default="", max_length=5000)
+    priority: Literal["low", "medium", "high"] = "medium"
+    category: TicketCategory = "other"
+    assignee: str | None = Field(default=None, max_length=200)
+    requester: str | None = Field(default=None, max_length=200)
+    due_at: str | None = None
+    actor: str = Field(default="dashboard", max_length=100)
 
 
 class TicketUpdateStatus(BaseModel):
@@ -43,6 +55,43 @@ class TicketEscalate(BaseModel):
 class CommentCreate(BaseModel):
     author: str = Field(min_length=1, max_length=200)
     body: str = Field(min_length=1, max_length=5000)
+
+
+class LabelUpdate(BaseModel):
+    labels: list[str] = Field(default_factory=list)
+    actor: str = Field(default="dashboard", max_length=100)
+
+
+class WatcherUpdate(BaseModel):
+    watcher: str = Field(min_length=1, max_length=200)
+    actor: str = Field(default="dashboard", max_length=100)
+
+
+class AttachmentCreate(BaseModel):
+    filename: str = Field(min_length=1, max_length=255)
+    content_type: str = Field(default="application/octet-stream", max_length=200)
+    content_base64: str = Field(min_length=1)
+    uploaded_by: str = Field(min_length=1, max_length=200)
+
+
+class SavedFilterCreate(BaseModel):
+    name: str = Field(min_length=1, max_length=100)
+    status: str | None = None
+    category: str | None = None
+    query: str | None = None
+    labels: list[str] = Field(default_factory=list)
+
+
+class BulkStatusUpdate(BaseModel):
+    ticket_ids: list[int] = Field(min_length=1)
+    status: TicketStatus
+    actor: str = Field(default="dashboard", max_length=100)
+
+
+class BulkAssignUpdate(BaseModel):
+    ticket_ids: list[int] = Field(min_length=1)
+    assignee: str | None = Field(default=None, max_length=200)
+    actor: str = Field(default="dashboard", max_length=100)
 
 
 class Ticket(BaseModel):

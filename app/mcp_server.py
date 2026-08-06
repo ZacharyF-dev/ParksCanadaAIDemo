@@ -9,12 +9,19 @@ from fastmcp import FastMCP
 from app.api import router as api_router, PRIORITY_ORDER
 from app.config import settings
 from app.db import (
+    create_notification,
     db_cursor,
+    get_ticket_attachments,
+    get_ticket_labels,
+    get_ticket_watchers,
+    hydrate_ticket,
     row_to_dict,
     utc_now_iso,
     next_ticket_key,
     log_activity,
     is_overdue,
+    serialize_filter_definition,
+    set_ticket_labels,
 )
 from app.models import TicketCreate, CommentCreate
 
@@ -28,6 +35,7 @@ def create_ticket(
     description: str = "",
     priority: str = "medium",
     category: str = "other",
+    labels: list[str] | None = None,
     assignee: str | None = None,
     requester: str | None = None,
     due_at: str | None = None,
@@ -51,21 +59,24 @@ def create_ticket(
             """,
             (key, title, description, "todo", priority, category, assignee, requester, due_at, now, now),
         )
-        ticket_id = int(cur.lastrowid)
+        ticket_id = int(cur.lastrowid or 0)
+        set_ticket_labels(cur, ticket_id, labels or [])
         log_activity(cur, ticket_id, "created", f"Ticket {key} created", actor=actor)
+        create_notification(cur, f"New ticket created: {key} - {title}", ticket_id)
         cur.execute("SELECT * FROM tickets WHERE id = ?", (ticket_id,))
-        ticket = row_to_dict(cur.fetchone())
-        ticket["is_overdue"] = is_overdue(ticket)
-        return ticket
+        return hydrate_ticket(cur, cur.fetchone())
 
 
 @mcp.tool()
-def list_tickets(status: str | None = None, query: str | None = None, category: str | None = None) -> list[dict[str, Any]]:
+def list_tickets(status: str | None = None, query: str | None = None, category: str | None = None, include_archived: bool = False) -> list[dict[str, Any]]:
     """
     List tickets, optionally filtered by status, category, or a text query.
     """
     sql = "SELECT * FROM tickets WHERE 1=1"
     params: list[str] = []
+
+    if not include_archived:
+        sql += " AND is_archived = 0"
 
     if status:
         sql += " AND status = ?"
@@ -84,10 +95,7 @@ def list_tickets(status: str | None = None, query: str | None = None, category: 
 
     with db_cursor() as cur:
         cur.execute(sql, params)
-        tickets = [row_to_dict(row) for row in cur.fetchall()]
-        for ticket in tickets:
-            ticket["is_overdue"] = is_overdue(ticket)
-        return tickets
+        return [hydrate_ticket(cur, row) for row in cur.fetchall()]
 
 
 @mcp.tool()
@@ -113,8 +121,226 @@ def get_ticket(ticket_id: int) -> dict[str, Any]:
             (ticket_id,),
         )
         ticket["activity"] = [row_to_dict(entry) for entry in cur.fetchall()]
+        ticket["labels"] = get_ticket_labels(cur, ticket_id)
+        ticket["watchers"] = get_ticket_watchers(cur, ticket_id)
+        ticket["attachments"] = get_ticket_attachments(cur, ticket_id)
         ticket["is_overdue"] = is_overdue(ticket)
         return ticket
+
+
+@mcp.tool()
+def edit_ticket(
+    ticket_id: int,
+    title: str,
+    description: str = "",
+    priority: str = "medium",
+    category: str = "other",
+    assignee: str | None = None,
+    requester: str | None = None,
+    due_at: str | None = None,
+    actor: str = "agent",
+) -> dict[str, Any]:
+    """Edit core ticket fields in one call."""
+    with db_cursor() as cur:
+        cur.execute("SELECT key FROM tickets WHERE id = ?", (ticket_id,))
+        existing = cur.fetchone()
+        if existing is None:
+            raise ValueError(f"Ticket {ticket_id} not found")
+        cur.execute(
+            """
+            UPDATE tickets
+            SET title = ?, description = ?, priority = ?, category = ?, assignee = ?, requester = ?, due_at = ?, updated_at = ?
+            WHERE id = ?
+            """,
+            (title, description, priority, category, assignee, requester, due_at, utc_now_iso(), ticket_id),
+        )
+        log_activity(cur, ticket_id, "edited", "Ticket fields updated", actor=actor)
+        create_notification(cur, f"Ticket {existing['key']} was updated", ticket_id)
+        cur.execute("SELECT * FROM tickets WHERE id = ?", (ticket_id,))
+        return hydrate_ticket(cur, cur.fetchone())
+
+
+@mcp.tool()
+def archive_ticket(ticket_id: int, actor: str = "agent") -> dict[str, Any]:
+    """Toggle ticket archived state for soft-delete/restore workflows."""
+    with db_cursor() as cur:
+        cur.execute("SELECT key, is_archived FROM tickets WHERE id = ?", (ticket_id,))
+        existing = cur.fetchone()
+        if existing is None:
+            raise ValueError(f"Ticket {ticket_id} not found")
+        next_value = 0 if existing["is_archived"] else 1
+        cur.execute("UPDATE tickets SET is_archived = ?, updated_at = ? WHERE id = ?", (next_value, utc_now_iso(), ticket_id))
+        state = "archived" if next_value else "restored"
+        log_activity(cur, ticket_id, state, f"Ticket {existing['key']} {state}", actor=actor)
+        create_notification(cur, f"Ticket {existing['key']} was {state}", ticket_id)
+        cur.execute("SELECT * FROM tickets WHERE id = ?", (ticket_id,))
+        return hydrate_ticket(cur, cur.fetchone())
+
+
+@mcp.tool()
+def update_labels(ticket_id: int, labels: list[str], actor: str = "agent") -> dict[str, Any]:
+    """Replace the set of labels attached to a ticket."""
+    with db_cursor() as cur:
+        cur.execute("SELECT id FROM tickets WHERE id = ?", (ticket_id,))
+        if cur.fetchone() is None:
+            raise ValueError(f"Ticket {ticket_id} not found")
+        set_ticket_labels(cur, ticket_id, labels)
+        log_activity(cur, ticket_id, "labels_updated", ", ".join(labels) or "labels cleared", actor=actor)
+        cur.execute("SELECT * FROM tickets WHERE id = ?", (ticket_id,))
+        return hydrate_ticket(cur, cur.fetchone())
+
+
+@mcp.tool()
+def add_watcher(ticket_id: int, watcher: str, actor: str = "agent") -> list[dict[str, Any]]:
+    """Add a watcher to a ticket so they can follow updates."""
+    with db_cursor() as cur:
+        cur.execute("SELECT id FROM tickets WHERE id = ?", (ticket_id,))
+        if cur.fetchone() is None:
+            raise ValueError(f"Ticket {ticket_id} not found")
+        cur.execute(
+            "INSERT OR IGNORE INTO watchers (ticket_id, watcher, created_at) VALUES (?, ?, ?)",
+            (ticket_id, watcher.strip(), utc_now_iso()),
+        )
+        log_activity(cur, ticket_id, "watcher_added", watcher.strip(), actor=actor)
+        return get_ticket_watchers(cur, ticket_id)
+
+
+@mcp.tool()
+def remove_watcher(ticket_id: int, watcher: str, actor: str = "agent") -> list[dict[str, Any]]:
+    """Remove a watcher from a ticket."""
+    with db_cursor() as cur:
+        cur.execute("SELECT id FROM tickets WHERE id = ?", (ticket_id,))
+        if cur.fetchone() is None:
+            raise ValueError(f"Ticket {ticket_id} not found")
+        cur.execute("DELETE FROM watchers WHERE ticket_id = ? AND watcher = ?", (ticket_id, watcher))
+        log_activity(cur, ticket_id, "watcher_removed", watcher, actor=actor)
+        return get_ticket_watchers(cur, ticket_id)
+
+
+@mcp.tool()
+def add_attachment(ticket_id: int, filename: str, content_base64: str, uploaded_by: str, content_type: str = "application/octet-stream") -> list[dict[str, Any]]:
+    """Attach a file to a ticket using base64 payload content."""
+    with db_cursor() as cur:
+        cur.execute("SELECT id FROM tickets WHERE id = ?", (ticket_id,))
+        if cur.fetchone() is None:
+            raise ValueError(f"Ticket {ticket_id} not found")
+        cur.execute(
+            """
+            INSERT INTO attachments (ticket_id, filename, content_type, content_base64, uploaded_by, created_at)
+            VALUES (?, ?, ?, ?, ?, ?)
+            """,
+            (ticket_id, filename, content_type, content_base64, uploaded_by, utc_now_iso()),
+        )
+        log_activity(cur, ticket_id, "attachment_added", filename, actor=uploaded_by)
+        return get_ticket_attachments(cur, ticket_id)
+
+
+@mcp.tool()
+def list_notifications(include_read: bool = False) -> list[dict[str, Any]]:
+    """List recent in-app notifications."""
+    with db_cursor() as cur:
+        sql = "SELECT * FROM notifications"
+        if not include_read:
+            sql += " WHERE is_read = 0"
+        sql += " ORDER BY id DESC LIMIT 50"
+        cur.execute(sql)
+        return [row_to_dict(row) for row in cur.fetchall()]
+
+
+@mcp.tool()
+def save_filter(name: str, status: str | None = None, category: str | None = None, query: str | None = None, labels: list[str] | None = None) -> dict[str, Any]:
+    """Save a named ticket filter preset for later use."""
+    with db_cursor() as cur:
+        cur.execute(
+            "INSERT INTO saved_filters (name, definition, created_at) VALUES (?, ?, ?)",
+            (
+                name,
+                serialize_filter_definition({"status": status, "category": category, "query": query, "labels": labels or []}),
+                utc_now_iso(),
+            ),
+        )
+        saved_id = int(cur.lastrowid or 0)
+        cur.execute("SELECT * FROM saved_filters WHERE id = ?", (saved_id,))
+        return row_to_dict(cur.fetchone())
+
+
+@mcp.tool()
+def list_filters() -> list[dict[str, Any]]:
+    """List saved filter presets."""
+    with db_cursor() as cur:
+        cur.execute("SELECT * FROM saved_filters ORDER BY name ASC")
+        return [row_to_dict(row) for row in cur.fetchall()]
+
+
+@mcp.tool()
+def bulk_update_status(ticket_ids: list[int], status: str, actor: str = "agent") -> dict[str, Any]:
+    """Apply one status to many tickets at once."""
+    updated: list[int] = []
+    with db_cursor() as cur:
+        for ticket_id in ticket_ids:
+            cur.execute("SELECT id FROM tickets WHERE id = ?", (ticket_id,))
+            if cur.fetchone() is None:
+                continue
+            cur.execute("UPDATE tickets SET status = ?, updated_at = ? WHERE id = ?", (status, utc_now_iso(), ticket_id))
+            log_activity(cur, ticket_id, "bulk_status_changed", status, actor=actor)
+            updated.append(ticket_id)
+        return {"updated_ticket_ids": updated, "status": status}
+
+
+@mcp.tool()
+def bulk_assign(ticket_ids: list[int], assignee: str | None, actor: str = "agent") -> dict[str, Any]:
+    """Assign or unassign many tickets at once."""
+    updated: list[int] = []
+    with db_cursor() as cur:
+        for ticket_id in ticket_ids:
+            cur.execute("SELECT id FROM tickets WHERE id = ?", (ticket_id,))
+            if cur.fetchone() is None:
+                continue
+            cur.execute("UPDATE tickets SET assignee = ?, updated_at = ? WHERE id = ?", (assignee, utc_now_iso(), ticket_id))
+            log_activity(cur, ticket_id, "bulk_assigned", assignee or "unassigned", actor=actor)
+            updated.append(ticket_id)
+        return {"updated_ticket_ids": updated, "assignee": assignee}
+
+
+@mcp.tool()
+def suggest_ticket_response(ticket_id: int) -> dict[str, Any]:
+    """Generate a lightweight triage suggestion and comment draft for a ticket."""
+    with db_cursor() as cur:
+        cur.execute("SELECT * FROM tickets WHERE id = ?", (ticket_id,))
+        row = cur.fetchone()
+        if row is None:
+            raise ValueError(f"Ticket {ticket_id} not found")
+        ticket = hydrate_ticket(cur, row)
+        return {
+            "summary": f"{ticket['title']} ({ticket['category']}, {ticket['priority']})",
+            "suggested_comment": f"Investigate {ticket['category']} impact, confirm issue with {ticket['requester'] or 'the requester'}, and update the ticket with findings.",
+            "suggested_status": "in_progress" if ticket["status"] == "todo" else ticket["status"],
+            "suggested_labels": ticket["labels"] or [ticket["category"], ticket["priority"]],
+        }
+
+
+@mcp.tool()
+def summarize_ticket_handoff(ticket_id: int) -> dict[str, Any]:
+    """Summarize the latest ticket state, comments, and audit trail for handoff."""
+    with db_cursor() as cur:
+        cur.execute("SELECT * FROM tickets WHERE id = ?", (ticket_id,))
+        row = cur.fetchone()
+        if row is None:
+            raise ValueError(f"Ticket {ticket_id} not found")
+        ticket = hydrate_ticket(cur, row)
+        cur.execute("SELECT author, body FROM comments WHERE ticket_id = ? ORDER BY id DESC LIMIT 1", (ticket_id,))
+        last_comment = cur.fetchone()
+        cur.execute("SELECT event_type, detail, actor FROM activity_log WHERE ticket_id = ? ORDER BY id DESC LIMIT 1", (ticket_id,))
+        last_activity = cur.fetchone()
+        parts = [
+            f"{ticket['key']}: {ticket['title']}",
+            f"status={ticket['status']}, priority={ticket['priority']}, assignee={ticket['assignee'] or 'unassigned'}",
+        ]
+        if last_comment:
+            parts.append(f"last comment by {last_comment['author']}: {last_comment['body']}")
+        if last_activity:
+            parts.append(f"last activity {last_activity['event_type']} by {last_activity['actor']}: {last_activity['detail']}")
+        return {"ticket_id": ticket_id, "handoff_summary": " | ".join(parts)}
 
 
 @mcp.tool()
@@ -150,7 +376,7 @@ def add_comment(ticket_id: int, author: str, body: str) -> dict[str, Any]:
             """,
             (ticket_id, author, body, utc_now_iso()),
         )
-        comment_id = int(cur.lastrowid)
+        comment_id = int(cur.lastrowid or 0)
         cur.execute("SELECT * FROM comments WHERE id = ?", (comment_id,))
         return row_to_dict(cur.fetchone())
 
@@ -383,12 +609,25 @@ def create_backend_app() -> FastAPI:
                 "create_ticket",
                 "list_tickets",
                 "get_ticket",
+                "edit_ticket",
+                "archive_ticket",
                 "list_activity",
                 "add_comment",
                 "list_comments",
                 "update_status",
                 "assign_ticket",
                 "update_category",
+                "update_labels",
+                "add_watcher",
+                "remove_watcher",
+                "add_attachment",
+                "list_notifications",
+                "save_filter",
+                "list_filters",
+                "bulk_update_status",
+                "bulk_assign",
+                "suggest_ticket_response",
+                "summarize_ticket_handoff",
                 "escalate_ticket",
                 "get_stats",
             ],

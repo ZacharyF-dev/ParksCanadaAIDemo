@@ -13,495 +13,74 @@
       --text: #18212b;
       --muted: #6b7280;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-
       --todo: #94a3b8;
-      --todo-bg: #f8fafc;
-
       --progress: #3b82f6;
-      --progress-bg: #eff6ff;
-
       --blocked: #ef4444;
-      --blocked-bg: #fef2f2;
-
       --done: #10b981;
-      --done-bg: #ecfdf5;
-
       --overdue: #dc2626;
-      --overdue-bg: #fef2f2;
-
       --radius: 14px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    body {
-      padding: 28px;
-    }
-
-    .app {
-      max-width: 1600px;
-      margin: 0 auto;
-    }
-
-    .page-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
-    .title-wrap h1 {
-      margin: 0 0 6px 0;
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .small {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .toolbar,
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .toolbar {
-      padding: 14px;
-      margin-bottom: 16px;
-    }
-
-    .toolbar-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .panel {
-      padding: 18px;
-      margin-bottom: 16px;
-    }
-
-    .panel h2 {
-      margin: 0 0 14px 0;
-      font-size: 1.05rem;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(120px, 1fr));
-      gap: 12px;
-    }
-
-    .stat {
-      background: var(--panel-soft);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-    }
-
-    .stat.warn {
-      background: var(--overdue-bg);
-      border-color: #fecaca;
-    }
-
-    .stat.warn .stat-value {
-      color: var(--overdue);
-    }
-
-    .stat-label {
-      color: var(--muted);
-      font-size: 0.82rem;
-      margin-bottom: 6px;
-    }
-
-    .stat-value {
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
-    }
-
-    input,
-    select,
-    button,
-    textarea {
-      font: inherit;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      border: 1px solid var(--border);
-      background: #fff;
-      color: var(--text);
-      border-radius: 10px;
-      padding: 10px 12px;
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: #cbd5e1;
-      box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.12);
-    }
-
-    textarea {
-      min-height: 84px;
-      resize: vertical;
-    }
-
-    button {
-      border: 0;
-      border-radius: 10px;
-      padding: 10px 14px;
-      cursor: pointer;
-      background: #111827;
-      color: white;
-      transition: transform 0.12s ease, opacity 0.2s ease, background 0.2s ease;
-    }
-
-    button:hover {
-      opacity: 0.94;
-    }
-
-    .btn-secondary {
-      background: #eef2f7;
-      color: #1f2937;
-      border: 1px solid var(--border);
-    }
-
-    .btn-warn {
-      background: #fef2f2;
-      color: #b91c1c;
-      border: 1px solid #fecaca;
-    }
-
-    .create-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 140px 1fr 190px;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .board {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(280px, 1fr));
-      gap: 16px;
-      align-items: start;
-    }
-
-    .column {
-      background: rgba(255,255,255,0.68);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 12px;
-      min-height: 320px;
-    }
-
-    .column-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 12px;
-      padding: 4px 2px 8px 2px;
-    }
-
-    .column-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-
-    .column-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      flex: 0 0 auto;
-    }
-
-    .column-count {
-      min-width: 28px;
-      height: 28px;
-      padding: 0 10px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      color: var(--muted);
-      background: #fff;
-      border: 1px solid var(--border);
-    }
-
-    .tickets-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .ticket {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px;
-      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
-    }
-
-    .ticket.todo {
-      border-top: 4px solid #94a3b8;
-      background: linear-gradient(to bottom, #f8fafc, #fff 26%);
-    }
-
-    .ticket.in_progress {
-      border-top: 4px solid #3b82f6;
-      background: linear-gradient(to bottom, #eff6ff, #fff 26%);
-    }
-
-    .ticket.blocked {
-      border-top: 4px solid #ef4444;
-      background: linear-gradient(to bottom, #fef2f2, #fff 26%);
-    }
-
-    .ticket.done {
-      border-top: 4px solid #10b981;
-      background: linear-gradient(to bottom, #ecfdf5, #fff 26%);
-    }
-
-    .ticket.overdue {
-      box-shadow: 0 0 0 2px var(--overdue) inset, 0 6px 18px rgba(15, 23, 42, 0.05);
-    }
-
-    .ticket-key {
-      font-size: 0.78rem;
-      color: var(--muted);
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .overdue-flag {
-      color: var(--overdue);
-      background: var(--overdue-bg);
-      border: 1px solid #fecaca;
-      border-radius: 999px;
-      padding: 2px 8px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: none;
-      letter-spacing: 0;
-    }
-
-    .ticket-title {
-      font-size: 1rem;
-      font-weight: 700;
-      line-height: 1.35;
-      margin: 0 0 8px 0;
-    }
-
-    .ticket-desc {
-      color: #374151;
-      font-size: 0.92rem;
-      line-height: 1.45;
-      margin: 10px 0 12px 0;
-      white-space: pre-wrap;
-    }
-
-    .badges {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 5px 10px;
-      font-size: 0.76rem;
-      font-weight: 600;
-      border: 1px solid var(--border);
-      background: #fff;
-      color: #334155;
-    }
-
-    .ticket-meta {
-      display: grid;
-      gap: 4px;
-      margin-bottom: 12px;
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
-
-    .ticket-meta .due.overdue-text {
-      color: var(--overdue);
-      font-weight: 700;
-    }
-
-    .ticket-actions,
-    .assign-row,
-    .category-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-
-    .escalate-row {
-      margin-bottom: 10px;
-    }
-
-    .escalate-row button {
-      width: 100%;
-    }
-
-    .comments,
-    .activity {
-      margin-top: 10px;
-      border-top: 1px solid var(--border);
-      padding-top: 12px;
-    }
-
-    .comments h3,
-    .activity h3 {
-      margin: 0 0 8px 0;
-      font-size: 0.9rem;
-    }
-
-    .comment {
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px;
-      margin-bottom: 8px;
-    }
-
-    .comment-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 4px;
-      flex-wrap: wrap;
-    }
-
-    .comment-body {
-      color: #334155;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      white-space: pre-wrap;
-    }
-
-    .activity-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .activity-entry {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      font-size: 0.82rem;
-      color: #475569;
-      background: #f8fafc;
-      border: 1px dashed var(--border);
-      border-radius: 8px;
-      padding: 6px 10px;
-      flex-wrap: wrap;
-    }
-
-    .activity-entry .event-type {
-      font-weight: 700;
-      color: #1f2937;
-    }
-
-    .empty {
-      border: 1px dashed var(--border);
-      border-radius: 12px;
-      color: var(--muted);
-      text-align: center;
-      padding: 24px 14px;
-      background: rgba(255,255,255,0.5);
-      font-size: 0.92rem;
-    }
-
-    .status-note {
-      margin-left: auto;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    code {
-      background: #eef2f7;
-      border-radius: 6px;
-      padding: 2px 6px;
-      font-size: 0.9em;
-    }
-
-    @media (max-width: 1200px) {
-      .board {
-        grid-template-columns: repeat(2, minmax(280px, 1fr));
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(3, minmax(120px, 1fr));
-      }
-    }
-
-    @media (max-width: 760px) {
-      body {
-        padding: 16px;
-      }
-
-      .board,
-      .stats-grid,
-      .create-grid,
-      .ticket-actions,
-      .assign-row,
-      .category-row {
-        grid-template-columns: 1fr;
-      }
-    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+    body { padding: 24px; }
+    .app { max-width: 1680px; margin: 0 auto; }
+    .page-header, .toolbar-row, .row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .page-header { justify-content: space-between; align-items: flex-start; margin-bottom: 18px; }
+    .title-wrap h1 { margin: 0 0 6px; font-size: 2rem; }
+    .subtitle, .small, .muted { color: var(--muted); }
+    .small { font-size: 12px; }
+    .toolbar, .panel, .ticket { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .toolbar, .panel { padding: 14px; margin-bottom: 16px; }
+    .panel h2, .panel h3 { margin-top: 0; }
+    .grid-2 { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(10, minmax(100px, 1fr)); gap: 12px; }
+    .stat { background: var(--panel-soft); border: 1px solid var(--border); border-radius: 12px; padding: 12px; }
+    .stat.warn { background: #fef2f2; border-color: #fecaca; }
+    .stat-label { color: var(--muted); font-size: 0.8rem; margin-bottom: 6px; }
+    .stat-value { font-size: 1.2rem; font-weight: 700; }
+    input, select, textarea, button { font: inherit; }
+    input, select, textarea { width: 100%; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; background: #fff; }
+    textarea { min-height: 84px; resize: vertical; }
+    button { border: 0; border-radius: 10px; padding: 10px 14px; cursor: pointer; background: #111827; color: #fff; }
+    .btn-secondary { background: #eef2f7; color: #1f2937; border: 1px solid var(--border); }
+    .btn-warn { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+    .btn-danger { background: #7f1d1d; }
+    .create-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 120px 1fr 180px; gap: 10px; margin-bottom: 10px; }
+    .support-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .board { display: grid; grid-template-columns: repeat(4, minmax(300px, 1fr)); gap: 16px; align-items: start; }
+    .column { background: rgba(255,255,255,0.7); border: 1px solid var(--border); border-radius: 18px; padding: 12px; min-height: 320px; }
+    .column-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .column-title { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .column-dot { width: 10px; height: 10px; border-radius: 999px; }
+    .column-count { min-width: 28px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--border); background: #fff; color: var(--muted); }
+    .tickets-stack { display: flex; flex-direction: column; gap: 12px; }
+    .ticket { padding: 14px; border-top: 4px solid transparent; }
+    .ticket.todo { border-top-color: var(--todo); }
+    .ticket.in_progress { border-top-color: var(--progress); }
+    .ticket.blocked { border-top-color: var(--blocked); }
+    .ticket.done { border-top-color: var(--done); }
+    .ticket.archived { opacity: 0.72; }
+    .ticket.overdue { box-shadow: 0 0 0 2px var(--overdue) inset, 0 6px 18px rgba(15,23,42,0.05); }
+    .ticket-key { font-size: 0.78rem; color: var(--muted); font-weight: 700; display: flex; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+    .overdue-flag, .archived-flag { border-radius: 999px; padding: 2px 8px; font-size: 0.7rem; font-weight: 700; }
+    .overdue-flag { color: #b91c1c; background: #fef2f2; border: 1px solid #fecaca; }
+    .archived-flag { color: #475569; background: #f1f5f9; border: 1px solid #cbd5e1; }
+    .ticket-title { margin: 0 0 8px; font-size: 1rem; }
+    .ticket-desc { color: #374151; font-size: 0.92rem; line-height: 1.45; margin: 10px 0 12px; white-space: pre-wrap; }
+    .badges, .label-list, .watcher-list, .attachment-list { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+    .badge, .chip { display: inline-flex; align-items: center; border-radius: 999px; padding: 5px 10px; font-size: 0.76rem; font-weight: 600; border: 1px solid var(--border); background: #fff; color: #334155; }
+    .chip button { margin-left: 6px; padding: 0; background: transparent; color: #475569; border: 0; }
+    .ticket-meta { display: grid; gap: 4px; margin-bottom: 12px; color: var(--muted); font-size: 0.8rem; }
+    .section-block { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 12px; }
+    .ticket-actions, .assign-row, .category-row, .bulk-row, .edit-grid { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-bottom: 10px; }
+    .edit-grid { grid-template-columns: 1fr 1fr; }
+    .attachment-item, .notification, .filter-item, .activity-entry, .comment { background: #f8fafc; border: 1px solid var(--border); border-radius: 10px; padding: 10px; }
+    .activity-entry { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 0.82rem; }
+    .empty { border: 1px dashed var(--border); border-radius: 12px; color: var(--muted); text-align: center; padding: 24px 14px; background: rgba(255,255,255,0.5); }
+    code { background: #eef2f7; border-radius: 6px; padding: 2px 6px; }
+    @media (max-width: 1400px) { .board { grid-template-columns: repeat(2, minmax(300px, 1fr)); } .stats-grid { grid-template-columns: repeat(5, minmax(100px, 1fr)); } .support-grid, .grid-2 { grid-template-columns: 1fr; } }
+    @media (max-width: 760px) { body { padding: 16px; } .board, .stats-grid, .create-grid, .edit-grid, .ticket-actions, .assign-row, .category-row, .bulk-row { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -509,12 +88,9 @@
     <div class="page-header">
       <div class="title-wrap">
         <h1>Mini Jira Board</h1>
-        <div class="subtitle">
-          Clean Kanban view grouped by process. Polling every 5 seconds.
-          Backend expected at <code>http://0.0.0.0:8000</code>.
-        </div>
+        <div class="subtitle">Expanded local helpdesk board with MCP, collaboration, bulk actions, and agent helpers.</div>
       </div>
-      <div>
+      <div class="row">
         <button onclick="loadData(true)">Refresh now</button>
       </div>
     </div>
@@ -522,14 +98,14 @@
     <div class="toolbar">
       <div class="toolbar-row">
         <input id="search" placeholder="Search tickets..." style="flex: 1; min-width: 220px;" />
-        <select id="statusFilter" style="max-width: 200px;">
+        <select id="statusFilter" style="max-width: 180px;">
           <option value="">All statuses</option>
           <option value="todo">todo</option>
           <option value="in_progress">in_progress</option>
           <option value="blocked">blocked</option>
           <option value="done">done</option>
         </select>
-        <select id="categoryFilter" style="max-width: 200px;">
+        <select id="categoryFilter" style="max-width: 180px;">
           <option value="">All categories</option>
           <option value="hardware">hardware</option>
           <option value="software">software</option>
@@ -537,8 +113,12 @@
           <option value="access">access</option>
           <option value="other">other</option>
         </select>
+        <input id="labelFilter" placeholder="Filter by label" style="max-width: 180px;" />
+        <label class="small" style="display:flex; align-items:center; gap:6px;">
+          <input id="includeArchived" type="checkbox" style="width:auto;" /> Include archived
+        </label>
         <button class="btn-secondary" onclick="loadData(true)">Apply filter</button>
-        <div id="refreshState" class="status-note">Auto-refresh on</div>
+        <div id="refreshState" class="small">Auto-refresh on</div>
       </div>
     </div>
 
@@ -562,13 +142,46 @@
         </select>
         <input id="newDueAt" type="datetime-local" />
       </div>
-      <div class="row">
-        <textarea id="newDescription" placeholder="Description"></textarea>
-      </div>
+      <div class="row"><input id="newLabels" placeholder="Labels (comma separated)" /></div>
+      <div class="row"><textarea id="newDescription" placeholder="Description"></textarea></div>
       <button onclick="createTicket()">Create Ticket</button>
     </div>
 
     <div id="stats" class="panel">Loading stats...</div>
+
+    <div class="support-grid">
+      <div class="panel">
+        <h2>Saved Filters</h2>
+        <div class="row"><input id="filterName" placeholder="Filter name" /></div>
+        <div class="row"><button class="btn-secondary" onclick="saveCurrentFilter()">Save current filter</button></div>
+        <div id="savedFilters" class="row"></div>
+      </div>
+      <div class="panel">
+        <h2>Notifications</h2>
+        <div id="notifications"></div>
+      </div>
+      <div class="panel">
+        <h2>Bulk Actions</h2>
+        <div class="bulk-row">
+          <input id="bulkTicketIds" placeholder="Ticket IDs, comma separated" />
+          <button class="btn-secondary" onclick="fillVisibleTicketIds()">Use visible</button>
+        </div>
+        <div class="bulk-row">
+          <select id="bulkStatus">
+            <option value="todo">todo</option>
+            <option value="in_progress">in_progress</option>
+            <option value="blocked">blocked</option>
+            <option value="done">done</option>
+          </select>
+          <button onclick="bulkUpdateStatus()">Bulk status</button>
+        </div>
+        <div class="bulk-row">
+          <input id="bulkAssignee" placeholder="Assignee or blank to unassign" />
+          <button onclick="bulkAssign()">Bulk assign</button>
+        </div>
+      </div>
+    </div>
+
     <div id="tickets" class="board"></div>
   </div>
 
@@ -583,8 +196,8 @@
 
     let isRefreshing = false;
     let lastRenderHash = "";
-    let pollHandle = null;
     let userInteractingUntil = 0;
+    let visibleTicketIds = [];
 
     function markUserInteracting() {
       userInteractingUntil = Date.now() + 100000;
@@ -592,98 +205,74 @@
     }
 
     function isUserInteracting() {
-      return Date.now() < userInteractingUntil ||
-        document.activeElement.matches("input, textarea, select");
+      return Date.now() < userInteractingUntil || (document.activeElement && document.activeElement.matches("input, textarea, select"));
     }
 
     function updateRefreshState() {
       const el = document.getElementById("refreshState");
-      if (!el) return;
-      el.textContent = isUserInteracting() ? "Paused while editing" : "Auto-refresh on";
+      if (el) el.textContent = isUserInteracting() ? "Paused while editing" : "Auto-refresh on";
     }
 
     function stableStringify(value) {
-      if (value === null || typeof value !== "object") {
-        return JSON.stringify(value);
-      }
-
-      if (Array.isArray(value)) {
-        return `[${value.map(stableStringify).join(",")}]`;
-      }
-
+      if (value === null || typeof value !== "object") return JSON.stringify(value);
+      if (Array.isArray(value)) return `[${value.map(stableStringify).join(",")}]`;
       const keys = Object.keys(value).sort();
       return `{${keys.map(k => `${JSON.stringify(k)}:${stableStringify(value[k])}`).join(",")}}`;
     }
 
-    async function fetchJson(url) {
-      const res = await fetch(url);
+    async function fetchJson(url, options) {
+      const res = await fetch(url, options);
       if (!res.ok) {
-        throw new Error(`Request failed: ${url}`);
+        const text = await res.text();
+        throw new Error(text || `Request failed: ${url}`);
       }
       return res.json();
+    }
+
+    function currentFilters() {
+      return {
+        status: document.getElementById("statusFilter").value,
+        category: document.getElementById("categoryFilter").value,
+        label: document.getElementById("labelFilter").value.trim().toLowerCase(),
+        q: document.getElementById("search").value.trim(),
+        includeArchived: document.getElementById("includeArchived").checked,
+      };
     }
 
     async function loadData(force = false) {
       if (isRefreshing) return;
       if (!force && isUserInteracting()) return;
-
       isRefreshing = true;
-
-      const scrollY = window.scrollY;
-
       try {
-        const status = document.getElementById("statusFilter").value;
-        const category = document.getElementById("categoryFilter").value;
-        const q = document.getElementById("search").value.trim();
-
-        let ticketsUrl = `${API_BASE}/tickets`;
+        const filters = currentFilters();
         const params = new URLSearchParams();
-        if (status) params.append("status", status);
-        if (q) params.append("q", q);
-        if ([...params.keys()].length > 0) ticketsUrl += `?${params.toString()}`;
+        if (filters.status) params.append("status", filters.status);
+        if (filters.q) params.append("q", filters.q);
+        if (filters.includeArchived) params.append("include_archived", "true");
+        let tickets = await fetchJson(`${API_BASE}/tickets${params.toString() ? `?${params.toString()}` : ""}`);
+        if (filters.category) tickets = tickets.filter(t => t.category === filters.category);
+        if (filters.label) tickets = tickets.filter(t => (t.labels || []).includes(filters.label));
 
-        const [tickets, stats] = await Promise.all([
-          fetchJson(ticketsUrl),
-          fetchJson(`${API_BASE}/stats`)
+        const [stats, notifications, savedFilters] = await Promise.all([
+          fetchJson(`${API_BASE}/stats`),
+          fetchJson(`${API_BASE}/notifications`),
+          fetchJson(`${API_BASE}/filters`),
         ]);
 
-        const filteredTickets = category ? tickets.filter(t => t.category === category) : tickets;
-
-        const detailedTickets = await Promise.all(
-          filteredTickets.map(async (ticket) => {
-            const detail = await fetchJson(`${API_BASE}/tickets/${ticket.id}`);
-            return { ...ticket, comments: detail.comments || [], activity: detail.activity || [] };
-          })
-        );
-
-        const grouped = {
-          todo: [],
-          in_progress: [],
-          blocked: [],
-          done: []
-        };
-
-        for (const ticket of detailedTickets) {
+        const grouped = { todo: [], in_progress: [], blocked: [], done: [] };
+        visibleTicketIds = tickets.map(t => t.id);
+        for (const ticket of tickets) {
           if (!grouped[ticket.status]) grouped[ticket.status] = [];
           grouped[ticket.status].push(ticket);
         }
 
-        const snapshot = {
-          stats,
-          grouped,
-          filters: { status, category, q }
-        };
-
-        const nextHash = stableStringify(snapshot);
-
-        if (nextHash !== lastRenderHash || force) {
+        const snapshot = stableStringify({ stats, notifications, savedFilters, grouped, filters });
+        if (snapshot !== lastRenderHash || force) {
           renderStats(stats);
+          renderNotifications(notifications);
+          renderSavedFilters(savedFilters);
           renderBoard(grouped);
-          lastRenderHash = nextHash;
-
-          requestAnimationFrame(() => {
-            window.scrollTo({ top: scrollY, behavior: "auto" });
-          });
+          lastRenderHash = snapshot;
         }
       } catch (error) {
         console.error(error);
@@ -696,66 +285,76 @@
     function renderStats(stats) {
       const byStatus = stats.by_status || {};
       const byCategory = stats.by_category || {};
-      const categorySummary = Object.entries(byCategory)
-        .map(([cat, count]) => `${cat}: ${count}`)
-        .join(" · ");
-
+      const byLabel = stats.by_label || {};
       document.getElementById("stats").innerHTML = `
         <h2>Overview</h2>
         <div class="stats-grid">
-          <div class="stat">
-            <div class="stat-label">Total Tickets</div>
-            <div class="stat-value">${stats.total_tickets ?? 0}</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Comments</div>
-            <div class="stat-value">${stats.total_comments ?? 0}</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Activity Events</div>
-            <div class="stat-value">${stats.total_activity_events ?? 0}</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">To Do</div>
-            <div class="stat-value">${byStatus.todo ?? 0}</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">In Progress</div>
-            <div class="stat-value">${byStatus.in_progress ?? 0}</div>
-          </div>
-          <div class="stat">
-            <div class="stat-label">Blocked</div>
-            <div class="stat-value">${byStatus.blocked ?? 0}</div>
-          </div>
-          <div class="stat warn">
-            <div class="stat-label">Overdue</div>
-            <div class="stat-value">${stats.overdue_count ?? 0}</div>
+          <div class="stat"><div class="stat-label">Tickets</div><div class="stat-value">${stats.total_tickets ?? 0}</div></div>
+          <div class="stat"><div class="stat-label">Comments</div><div class="stat-value">${stats.total_comments ?? 0}</div></div>
+          <div class="stat"><div class="stat-label">Activity</div><div class="stat-value">${stats.total_activity_events ?? 0}</div></div>
+          <div class="stat"><div class="stat-label">Unread alerts</div><div class="stat-value">${stats.unread_notifications ?? 0}</div></div>
+          <div class="stat"><div class="stat-label">Watchers</div><div class="stat-value">${stats.watcher_count ?? 0}</div></div>
+          <div class="stat"><div class="stat-label">Attachments</div><div class="stat-value">${stats.attachment_count ?? 0}</div></div>
+          <div class="stat"><div class="stat-label">Saved filters</div><div class="stat-value">${stats.saved_filter_count ?? 0}</div></div>
+          <div class="stat"><div class="stat-label">To Do</div><div class="stat-value">${byStatus.todo ?? 0}</div></div>
+          <div class="stat"><div class="stat-label">Blocked</div><div class="stat-value">${byStatus.blocked ?? 0}</div></div>
+          <div class="stat warn"><div class="stat-label">Overdue</div><div class="stat-value">${stats.overdue_count ?? 0}</div></div>
+        </div>
+        <div class="small" style="margin-top:12px;">Categories: ${escapeHtml(summaryString(byCategory))}</div>
+        <div class="small" style="margin-top:4px;">Labels: ${escapeHtml(summaryString(byLabel))}</div>
+      `;
+    }
+
+    function renderNotifications(items) {
+      const root = document.getElementById("notifications");
+      if (!items.length) {
+        root.innerHTML = `<div class="empty">No unread notifications.</div>`;
+        return;
+      }
+      root.innerHTML = items.map(item => `
+        <div class="notification" style="margin-bottom:8px;">
+          <div>${escapeHtml(item.message)}</div>
+          <div class="small" style="margin-top:6px; display:flex; justify-content:space-between; gap:8px;">
+            <span>${escapeHtml(item.created_at)}</span>
+            <button class="btn-secondary" onclick="markNotificationRead(${item.id})">Mark read</button>
           </div>
         </div>
-        <div class="small" style="margin-top: 12px;">By category: ${escapeHtml(categorySummary || "-")}</div>
-        <div class="small" style="margin-top: 4px;">Generated at: ${escapeHtml(stats.generated_at || "-")}</div>
-      `;
+      `).join("");
+    }
+
+    function renderSavedFilters(items) {
+      const root = document.getElementById("savedFilters");
+      if (!items.length) {
+        root.innerHTML = `<div class="empty" style="width:100%;">No saved filters yet.</div>`;
+        return;
+      }
+      root.innerHTML = items.map(item => `
+        <div class="filter-item" style="width:100%;">
+          <div style="display:flex; justify-content:space-between; gap:8px; align-items:center;">
+            <strong>${escapeHtml(item.name)}</strong>
+            <div class="row">
+              <button class="btn-secondary" onclick='applySavedFilter(${JSON.stringify(item.definition).replace(/'/g, "&apos;")})'>Apply</button>
+              <button class="btn-danger" onclick="deleteSavedFilter(${item.id})">Delete</button>
+            </div>
+          </div>
+          <div class="small" style="margin-top:6px;">${escapeHtml(item.definition)}</div>
+        </div>
+      `).join("");
     }
 
     function renderBoard(grouped) {
       const root = document.getElementById("tickets");
       root.innerHTML = "";
-
       for (const status of STATUSES) {
         const items = grouped[status.key] || [];
         const column = document.createElement("section");
         column.className = "column";
         column.innerHTML = `
           <div class="column-header">
-            <div class="column-title">
-              <span class="column-dot" style="background:${statusColor(status.key)}"></span>
-              <span>${status.label}</span>
-            </div>
+            <div class="column-title"><span class="column-dot" style="background:${statusColor(status.key)}"></span><span>${status.label}</span></div>
             <div class="column-count">${items.length}</div>
           </div>
-          <div class="tickets-stack">
-            ${items.length ? items.map(renderTicketCard).join("") : `<div class="empty">No tickets in ${status.label.toLowerCase()}.</div>`}
-          </div>
+          <div class="tickets-stack">${items.length ? items.map(renderTicketCard).join("") : `<div class="empty">No tickets in ${status.label.toLowerCase()}.</div>`}</div>
         `;
         root.appendChild(column);
       }
@@ -763,304 +362,316 @@
 
     function renderTicketCard(ticket) {
       const commentsHtml = (ticket.comments || []).map(c => `
-        <div class="comment">
-          <div class="comment-top">
-            <strong>${escapeHtml(c.author)}</strong>
-            <span class="small">${escapeHtml(c.created_at)}</span>
-          </div>
-          <div class="comment-body">${escapeHtml(c.body)}</div>
-        </div>
+        <div class="comment"><div class="small"><strong>${escapeHtml(c.author)}</strong> · ${escapeHtml(c.created_at)}</div><div>${escapeHtml(c.body)}</div></div>
       `).join("");
-
       const activityHtml = (ticket.activity || []).map(a => `
-        <div class="activity-entry">
-          <span><span class="event-type">${escapeHtml(formatEventType(a.event_type))}</span> — ${escapeHtml(a.detail)}</span>
-          <span class="small">${escapeHtml(a.actor)} · ${escapeHtml(a.created_at)}</span>
-        </div>
+        <div class="activity-entry"><span><strong>${escapeHtml(formatEventType(a.event_type))}</strong> — ${escapeHtml(a.detail)}</span><span class="small">${escapeHtml(a.actor)} · ${escapeHtml(a.created_at)}</span></div>
       `).join("");
-
+      const labels = (ticket.labels || []).map(label => `<span class="chip">${escapeHtml(label)}</span>`).join("");
+      const watchers = (ticket.watchers || []).map(w => `<span class="chip">${escapeHtml(w.watcher)}<button onclick="removeWatcher(${ticket.id}, '${escapeJs(w.watcher)}')">×</button></span>`).join("");
+      const attachments = (ticket.attachments || []).map(a => `<div class="attachment-item">${escapeHtml(a.filename)} <span class="small">(${escapeHtml(a.uploaded_by)} · ${escapeHtml(a.created_at)})</span></div>`).join("");
       const overdue = Boolean(ticket.is_overdue);
-      const dueLine = ticket.due_at
-        ? `<div class="due ${overdue ? "overdue-text" : ""}">Due: ${escapeHtml(ticket.due_at)}${overdue ? " (overdue)" : ""}</div>`
-        : "";
-
       return `
-        <article class="ticket ${escapeHtml(ticket.status)} ${overdue ? "overdue" : ""}">
+        <article class="ticket ${escapeHtml(ticket.status)} ${overdue ? 'overdue' : ''} ${ticket.is_archived ? 'archived' : ''}">
           <div class="ticket-key">
-            <span>${escapeHtml(ticket.key)}</span>
-            ${overdue ? '<span class="overdue-flag">OVERDUE</span>' : ""}
+            <span>${escapeHtml(ticket.key)} (#${ticket.id})</span>
+            <span>
+              ${overdue ? '<span class="overdue-flag">OVERDUE</span>' : ''}
+              ${ticket.is_archived ? '<span class="archived-flag">ARCHIVED</span>' : ''}
+            </span>
           </div>
           <h3 class="ticket-title">${escapeHtml(ticket.title)}</h3>
-
           <div class="badges">
             <span class="badge">${formatStatus(ticket.status)}</span>
             <span class="badge">Priority: ${escapeHtml(ticket.priority)}</span>
-            <span class="badge">Category: ${escapeHtml(ticket.category || "other")}</span>
-            <span class="badge">Requester: ${escapeHtml(ticket.requester || "Unknown")}</span>
-            <span class="badge">Assignee: ${escapeHtml(ticket.assignee || "Unassigned")}</span>
+            <span class="badge">Category: ${escapeHtml(ticket.category)}</span>
+            <span class="badge">Requester: ${escapeHtml(ticket.requester || 'Unknown')}</span>
+            <span class="badge">Assignee: ${escapeHtml(ticket.assignee || 'Unassigned')}</span>
           </div>
-
-          <div class="ticket-desc">${escapeHtml(ticket.description || "No description")}</div>
-
+          <div class="ticket-desc">${escapeHtml(ticket.description || 'No description')}</div>
           <div class="ticket-meta">
             <div>Created: ${escapeHtml(ticket.created_at)}</div>
             <div>Updated: ${escapeHtml(ticket.updated_at)}</div>
-            ${dueLine}
+            <div>Due: ${escapeHtml(ticket.due_at || '-')}</div>
+          </div>
+
+          <div class="section-block">
+            <h3>Edit</h3>
+            <div class="edit-grid">
+              <input id="edit-title-${ticket.id}" value="${escapeAttr(ticket.title)}" placeholder="Title" />
+              <input id="edit-requester-${ticket.id}" value="${escapeAttr(ticket.requester || '')}" placeholder="Requester" />
+              <input id="edit-assignee-${ticket.id}" value="${escapeAttr(ticket.assignee || '')}" placeholder="Assignee" />
+              <input id="edit-due-${ticket.id}" type="datetime-local" value="${toDatetimeLocal(ticket.due_at)}" />
+              <select id="edit-priority-${ticket.id}">
+                ${["low","medium","high"].map(v => `<option value="${v}" ${ticket.priority === v ? 'selected' : ''}>${v}</option>`).join('')}
+              </select>
+              <select id="edit-category-${ticket.id}">
+                ${["hardware","software","network","access","other"].map(v => `<option value="${v}" ${ticket.category === v ? 'selected' : ''}>${v}</option>`).join('')}
+              </select>
+            </div>
+            <div class="row"><textarea id="edit-description-${ticket.id}" placeholder="Description">${escapeHtml(ticket.description || '')}</textarea></div>
+            <div class="row">
+              <button onclick="saveTicket(${ticket.id})">Save changes</button>
+              <button class="btn-secondary" onclick="toggleArchive(${ticket.id})">${ticket.is_archived ? 'Restore' : 'Archive'}</button>
+            </div>
           </div>
 
           <div class="ticket-actions">
             <select id="status-${ticket.id}">
-              <option value="todo" ${ticket.status === "todo" ? "selected" : ""}>todo</option>
-              <option value="in_progress" ${ticket.status === "in_progress" ? "selected" : ""}>in_progress</option>
-              <option value="blocked" ${ticket.status === "blocked" ? "selected" : ""}>blocked</option>
-              <option value="done" ${ticket.status === "done" ? "selected" : ""}>done</option>
+              ${STATUSES.map(s => `<option value="${s.key}" ${ticket.status === s.key ? 'selected' : ''}>${s.key}</option>`).join('')}
             </select>
             <button onclick="updateStatus(${ticket.id})">Move</button>
           </div>
-
           <div class="category-row">
-            <select id="category-${ticket.id}">
-              <option value="hardware" ${ticket.category === "hardware" ? "selected" : ""}>hardware</option>
-              <option value="software" ${ticket.category === "software" ? "selected" : ""}>software</option>
-              <option value="network" ${ticket.category === "network" ? "selected" : ""}>network</option>
-              <option value="access" ${ticket.category === "access" ? "selected" : ""}>access</option>
-              <option value="other" ${ticket.category === "other" ? "selected" : ""}>other</option>
-            </select>
-            <button class="btn-secondary" onclick="updateCategory(${ticket.id})">Recategorize</button>
+            <input id="labels-${ticket.id}" value="${escapeAttr((ticket.labels || []).join(', '))}" placeholder="Labels" />
+            <button class="btn-secondary" onclick="updateLabels(${ticket.id})">Save labels</button>
           </div>
+          <div class="label-list">${labels || '<span class="small">No labels</span>'}</div>
 
           <div class="assign-row">
-            <input id="assign-${ticket.id}" placeholder="Assignee" value="${escapeAttr(ticket.assignee || "")}" />
-            <button class="btn-secondary" onclick="assignTicket(${ticket.id})">Assign</button>
+            <input id="watcher-${ticket.id}" placeholder="Add watcher" />
+            <button class="btn-secondary" onclick="addWatcher(${ticket.id})">Add watcher</button>
+          </div>
+          <div class="watcher-list">${watchers || '<span class="small">No watchers</span>'}</div>
+
+          <div class="section-block">
+            <h3>Attachments</h3>
+            <div class="row">
+              <input id="attachment-file-${ticket.id}" type="file" />
+              <input id="attachment-user-${ticket.id}" placeholder="Uploaded by" />
+            </div>
+            <div class="row"><button class="btn-secondary" onclick="uploadAttachment(${ticket.id})">Upload attachment</button></div>
+            <div class="attachment-list">${attachments || '<span class="small">No attachments</span>'}</div>
           </div>
 
-          <div class="escalate-row">
-            <button class="btn-warn" onclick="escalateTicket(${ticket.id})">Escalate priority</button>
+          <div class="section-block">
+            <h3>Agent Helpers</h3>
+            <div class="row">
+              <button class="btn-secondary" onclick="loadSuggestion(${ticket.id})">Get suggestion</button>
+              <button class="btn-secondary" onclick="loadHandoff(${ticket.id})">Get handoff</button>
+            </div>
+            <div id="agent-${ticket.id}" class="small"></div>
           </div>
 
-          <div class="comments">
+          <div class="section-block">
             <h3>Comments</h3>
-            <div>${commentsHtml || "<div class='small'>No comments yet.</div>"}</div>
-
-            <div class="row">
-              <input id="author-${ticket.id}" placeholder="Author" />
-            </div>
-            <div class="row">
-              <textarea id="comment-${ticket.id}" placeholder="Write comment..."></textarea>
-            </div>
-            <button class="btn-secondary" onclick="addComment(${ticket.id})">Add Comment</button>
+            <div>${commentsHtml || '<div class="small">No comments yet.</div>'}</div>
+            <div class="row"><input id="author-${ticket.id}" placeholder="Author" /></div>
+            <div class="row"><textarea id="comment-${ticket.id}" placeholder="Write comment..."></textarea></div>
+            <button class="btn-secondary" onclick="addComment(${ticket.id})">Add comment</button>
           </div>
 
-          <div class="activity">
+          <div class="section-block">
             <h3>Activity</h3>
-            <div class="activity-list">${activityHtml || "<div class='small'>No activity yet.</div>"}</div>
+            <div>${activityHtml || '<div class="small">No activity yet.</div>'}</div>
           </div>
         </article>
       `;
     }
 
-    function formatStatus(status) {
-      if (status === "todo") return "To Do";
-      if (status === "in_progress") return "In Progress";
-      if (status === "blocked") return "Blocked";
-      if (status === "done") return "Done";
-      return status;
+    function summaryString(map) {
+      return Object.entries(map || {}).map(([k,v]) => `${k}: ${v}`).join(" · ") || "-";
     }
-
-    function formatEventType(eventType) {
-      return String(eventType || "").replaceAll("_", " ");
-    }
-
-    function statusColor(status) {
-      if (status === "todo") return "#94a3b8";
-      if (status === "in_progress") return "#3b82f6";
-      if (status === "blocked") return "#ef4444";
-      if (status === "done") return "#10b981";
-      return "#cbd5e1";
-    }
+    function formatStatus(status) { return ({ todo: 'To Do', in_progress: 'In Progress', blocked: 'Blocked', done: 'Done' })[status] || status; }
+    function formatEventType(v) { return String(v || '').replaceAll('_', ' '); }
+    function statusColor(status) { return ({ todo:'#94a3b8', in_progress:'#3b82f6', blocked:'#ef4444', done:'#10b981' })[status] || '#cbd5e1'; }
+    function escapeHtml(value) { return String(value ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;'); }
+    function escapeAttr(value) { return escapeHtml(value); }
+    function escapeJs(value) { return String(value ?? '').replaceAll('\\', '\\\\').replaceAll("'", "\\'"); }
+    function toDatetimeLocal(value) { if (!value) return ''; const d = new Date(value); if (Number.isNaN(d.getTime())) return ''; return new Date(d.getTime() - d.getTimezoneOffset()*60000).toISOString().slice(0,16); }
+    function parseLabels(text) { return text.split(',').map(v => v.trim().toLowerCase()).filter(Boolean); }
+    function parseTicketIds() { return document.getElementById('bulkTicketIds').value.split(',').map(v => Number(v.trim())).filter(v => Number.isInteger(v) && v > 0); }
 
     async function createTicket() {
       try {
-        const title = document.getElementById("newTitle").value.trim();
-        const description = document.getElementById("newDescription").value.trim();
-        const requester = document.getElementById("newRequester").value.trim();
-        const assignee = document.getElementById("newAssignee").value.trim();
-        const priority = document.getElementById("newPriority").value;
-        const category = document.getElementById("newCategory").value;
-        const dueAtRaw = document.getElementById("newDueAt").value;
-
-        if (!title) {
-          alert("Title is required");
-          return;
-        }
-
-        const res = await fetch(`${API_BASE}/tickets`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            title,
-            description,
-            priority,
-            category,
-            assignee: assignee || null,
-            requester: requester || null,
-            due_at: dueAtRaw ? new Date(dueAtRaw).toISOString() : null
-          })
-        });
-
-        if (!res.ok) throw new Error("Failed to create ticket");
-
-        document.getElementById("newTitle").value = "";
-        document.getElementById("newDescription").value = "";
-        document.getElementById("newRequester").value = "";
-        document.getElementById("newAssignee").value = "";
-        document.getElementById("newPriority").value = "medium";
-        document.getElementById("newCategory").value = "software";
-        document.getElementById("newDueAt").value = "";
-
+        const payload = {
+          title: document.getElementById('newTitle').value.trim(),
+          description: document.getElementById('newDescription').value.trim(),
+          requester: document.getElementById('newRequester').value.trim() || null,
+          assignee: document.getElementById('newAssignee').value.trim() || null,
+          priority: document.getElementById('newPriority').value,
+          category: document.getElementById('newCategory').value,
+          due_at: document.getElementById('newDueAt').value ? new Date(document.getElementById('newDueAt').value).toISOString() : null,
+          labels: parseLabels(document.getElementById('newLabels').value),
+        };
+        if (!payload.title) return alert('Title is required');
+        await fetchJson(`${API_BASE}/tickets`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+        ['newTitle','newDescription','newRequester','newAssignee','newLabels','newDueAt'].forEach(id => document.getElementById(id).value='');
+        document.getElementById('newPriority').value='medium';
+        document.getElementById('newCategory').value='software';
         await loadData(true);
-      } catch (error) {
-        console.error(error);
-        alert("Could not create ticket.");
-      }
+      } catch (error) { console.error(error); alert('Could not create ticket.'); }
+    }
+
+    async function saveTicket(ticketId) {
+      try {
+        const payload = {
+          title: document.getElementById(`edit-title-${ticketId}`).value.trim(),
+          description: document.getElementById(`edit-description-${ticketId}`).value.trim(),
+          priority: document.getElementById(`edit-priority-${ticketId}`).value,
+          category: document.getElementById(`edit-category-${ticketId}`).value,
+          assignee: document.getElementById(`edit-assignee-${ticketId}`).value.trim() || null,
+          requester: document.getElementById(`edit-requester-${ticketId}`).value.trim() || null,
+          due_at: document.getElementById(`edit-due-${ticketId}`).value ? new Date(document.getElementById(`edit-due-${ticketId}`).value).toISOString() : null,
+          actor: 'dashboard'
+        };
+        await fetchJson(`${API_BASE}/tickets/${ticketId}`, { method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+        await loadData(true);
+      } catch (error) { console.error(error); alert('Could not save ticket.'); }
+    }
+
+    async function toggleArchive(ticketId) {
+      try { await fetchJson(`${API_BASE}/tickets/${ticketId}/archive`, { method:'PATCH' }); await loadData(true); }
+      catch (error) { console.error(error); alert('Could not change archive state.'); }
     }
 
     async function updateStatus(ticketId) {
       try {
         const status = document.getElementById(`status-${ticketId}`).value;
-        const res = await fetch(`${API_BASE}/tickets/${ticketId}/status`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ status, actor: "dashboard" })
-        });
-
-        if (!res.ok) throw new Error("Failed to update status");
+        await fetchJson(`${API_BASE}/tickets/${ticketId}/status`, { method:'PATCH', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ status, actor:'dashboard' }) });
         await loadData(true);
-      } catch (error) {
-        console.error(error);
-        alert("Could not update ticket status.");
-      }
+      } catch (error) { console.error(error); alert('Could not update status.'); }
     }
 
-    async function assignTicket(ticketId) {
+    async function updateLabels(ticketId) {
       try {
-        const assignee = document.getElementById(`assign-${ticketId}`).value.trim();
-        const res = await fetch(`${API_BASE}/tickets/${ticketId}/assign`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ assignee: assignee || null, actor: "dashboard" })
-        });
-
-        if (!res.ok) throw new Error("Failed to assign ticket");
+        const labels = parseLabels(document.getElementById(`labels-${ticketId}`).value);
+        await fetchJson(`${API_BASE}/tickets/${ticketId}/labels`, { method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ labels, actor:'dashboard' }) });
         await loadData(true);
-      } catch (error) {
-        console.error(error);
-        alert("Could not assign ticket.");
-      }
+      } catch (error) { console.error(error); alert('Could not update labels.'); }
     }
 
-    async function updateCategory(ticketId) {
+    async function addWatcher(ticketId) {
       try {
-        const category = document.getElementById(`category-${ticketId}`).value;
-        const res = await fetch(`${API_BASE}/tickets/${ticketId}/category`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ category, actor: "dashboard" })
-        });
-
-        if (!res.ok) throw new Error("Failed to update category");
+        const watcher = document.getElementById(`watcher-${ticketId}`).value.trim();
+        if (!watcher) return alert('Watcher is required');
+        await fetchJson(`${API_BASE}/tickets/${ticketId}/watchers`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ watcher, actor:'dashboard' }) });
+        document.getElementById(`watcher-${ticketId}`).value = '';
         await loadData(true);
-      } catch (error) {
-        console.error(error);
-        alert("Could not update ticket category.");
-      }
+      } catch (error) { console.error(error); alert('Could not add watcher.'); }
     }
 
-    async function escalateTicket(ticketId) {
-      try {
-        const reason = prompt("Reason for escalating? (optional)") || "";
-        const res = await fetch(`${API_BASE}/tickets/${ticketId}/escalate`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ reason, actor: "dashboard" })
-        });
+    async function removeWatcher(ticketId, watcher) {
+      try { await fetchJson(`${API_BASE}/tickets/${ticketId}/watchers/${encodeURIComponent(watcher)}`, { method:'DELETE' }); await loadData(true); }
+      catch (error) { console.error(error); alert('Could not remove watcher.'); }
+    }
 
-        if (!res.ok) throw new Error("Failed to escalate ticket");
+    async function uploadAttachment(ticketId) {
+      try {
+        const fileInput = document.getElementById(`attachment-file-${ticketId}`);
+        const uploadedBy = document.getElementById(`attachment-user-${ticketId}`).value.trim();
+        const file = fileInput.files[0];
+        if (!file || !uploadedBy) return alert('File and uploader are required');
+        const contentBase64 = await fileToBase64(file);
+        await fetchJson(`${API_BASE}/tickets/${ticketId}/attachments`, {
+          method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ filename:file.name, content_type:file.type || 'application/octet-stream', content_base64:contentBase64, uploaded_by:uploadedBy })
+        });
+        fileInput.value = '';
+        document.getElementById(`attachment-user-${ticketId}`).value = '';
         await loadData(true);
-      } catch (error) {
-        console.error(error);
-        alert("Could not escalate ticket.");
-      }
+      } catch (error) { console.error(error); alert('Could not upload attachment.'); }
+    }
+
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result).split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
     }
 
     async function addComment(ticketId) {
       try {
         const author = document.getElementById(`author-${ticketId}`).value.trim();
         const body = document.getElementById(`comment-${ticketId}`).value.trim();
-
-        if (!author || !body) {
-          alert("Author and comment are required");
-          return;
-        }
-
-        const res = await fetch(`${API_BASE}/tickets/${ticketId}/comments`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ author, body })
-        });
-
-        if (!res.ok) throw new Error("Failed to add comment");
-
+        if (!author || !body) return alert('Author and comment are required');
+        await fetchJson(`${API_BASE}/tickets/${ticketId}/comments`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ author, body }) });
+        document.getElementById(`author-${ticketId}`).value = '';
+        document.getElementById(`comment-${ticketId}`).value = '';
         await loadData(true);
-      } catch (error) {
-        console.error(error);
-        alert("Could not add comment.");
-      }
+      } catch (error) { console.error(error); alert('Could not add comment.'); }
     }
 
-    function escapeHtml(value) {
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+    async function loadSuggestion(ticketId) {
+      try {
+        const data = await fetchJson(`${API_BASE}/agent/suggestions/${ticketId}`);
+        document.getElementById(`agent-${ticketId}`).innerText = `${data.summary}\n${data.suggested_comment}\nSuggested labels: ${(data.triage?.suggested_labels || []).join(', ')}`;
+      } catch (error) { console.error(error); alert('Could not load suggestion.'); }
     }
 
-    function escapeAttr(value) {
-      return escapeHtml(value);
+    async function loadHandoff(ticketId) {
+      try {
+        const data = await fetchJson(`${API_BASE}/agent/handoff/${ticketId}`);
+        document.getElementById(`agent-${ticketId}`).innerText = data.handoff_summary;
+      } catch (error) { console.error(error); alert('Could not load handoff summary.'); }
     }
 
-    document.addEventListener("input", (event) => {
-      if (event.target.matches("input, textarea, select")) {
-        markUserInteracting();
-      }
-    });
+    async function markNotificationRead(notificationId) {
+      try { await fetchJson(`${API_BASE}/notifications/${notificationId}/read`, { method:'PATCH' }); await loadData(true); }
+      catch (error) { console.error(error); alert('Could not mark notification read.'); }
+    }
 
-    document.addEventListener("focusin", (event) => {
-      if (event.target.matches("input, textarea, select")) {
-        markUserInteracting();
-      }
-    });
+    async function saveCurrentFilter() {
+      try {
+        const name = document.getElementById('filterName').value.trim();
+        if (!name) return alert('Filter name is required');
+        const filters = currentFilters();
+        await fetchJson(`${API_BASE}/filters`, {
+          method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name, status: filters.status || null, category: filters.category || null, query: filters.q || null, labels: filters.label ? [filters.label] : [] })
+        });
+        document.getElementById('filterName').value = '';
+        await loadData(true);
+      } catch (error) { console.error(error); alert('Could not save filter.'); }
+    }
 
-    document.getElementById("search").addEventListener("keydown", (event) => {
-      markUserInteracting();
-      if (event.key === "Enter") {
+    function applySavedFilter(definitionRaw) {
+      try {
+        const definition = typeof definitionRaw === 'string' ? JSON.parse(definitionRaw) : definitionRaw;
+        document.getElementById('statusFilter').value = definition.status || '';
+        document.getElementById('categoryFilter').value = definition.category || '';
+        document.getElementById('search').value = definition.query || '';
+        document.getElementById('labelFilter').value = (definition.labels || [])[0] || '';
         loadData(true);
-      }
-    });
+      } catch (error) { console.error(error); }
+    }
 
-    document.getElementById("statusFilter").addEventListener("change", () => {
-      loadData(true);
-    });
+    async function deleteSavedFilter(filterId) {
+      try { await fetchJson(`${API_BASE}/filters/${filterId}`, { method:'DELETE' }); await loadData(true); }
+      catch (error) { console.error(error); alert('Could not delete saved filter.'); }
+    }
 
-    document.getElementById("categoryFilter").addEventListener("change", () => {
-      loadData(true);
-    });
+    function fillVisibleTicketIds() { document.getElementById('bulkTicketIds').value = visibleTicketIds.join(', '); }
+
+    async function bulkUpdateStatus() {
+      try {
+        const ticket_ids = parseTicketIds();
+        if (!ticket_ids.length) return alert('Enter at least one ticket id');
+        const status = document.getElementById('bulkStatus').value;
+        await fetchJson(`${API_BASE}/tickets/bulk/status`, { method:'PATCH', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ ticket_ids, status, actor:'dashboard' }) });
+        await loadData(true);
+      } catch (error) { console.error(error); alert('Could not bulk update status.'); }
+    }
+
+    async function bulkAssign() {
+      try {
+        const ticket_ids = parseTicketIds();
+        if (!ticket_ids.length) return alert('Enter at least one ticket id');
+        const assignee = document.getElementById('bulkAssignee').value.trim() || null;
+        await fetchJson(`${API_BASE}/tickets/bulk/assign`, { method:'PATCH', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ ticket_ids, assignee, actor:'dashboard' }) });
+        await loadData(true);
+      } catch (error) { console.error(error); alert('Could not bulk assign.'); }
+    }
+
+    document.addEventListener('input', event => { if (event.target.matches('input, textarea, select')) markUserInteracting(); });
+    document.addEventListener('focusin', event => { if (event.target.matches('input, textarea, select')) markUserInteracting(); });
+    document.getElementById('search').addEventListener('keydown', event => { markUserInteracting(); if (event.key === 'Enter') loadData(true); });
+    ['statusFilter','categoryFilter','includeArchived'].forEach(id => document.getElementById(id).addEventListener('change', () => loadData(true)));
+    document.getElementById('labelFilter').addEventListener('keydown', event => { if (event.key === 'Enter') loadData(true); });
 
     updateRefreshState();
     loadData(true);
-    pollHandle = setInterval(() => loadData(false), 30000);
+    setInterval(() => loadData(false), 30000);
   </script>
 </body>
 </html>

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import timedelta, datetime, UTC
 
-from app.db import db_cursor, init_db, next_ticket_key, utc_now_iso, log_activity
+from app.db import db_cursor, init_db, next_ticket_key, utc_now_iso, log_activity, set_ticket_labels, create_notification
 
 
 def seed_if_empty() -> None:
@@ -98,6 +98,23 @@ def seed_if_empty() -> None:
             log_activity(cur, ticket_id, "created", f"Ticket {key} created", actor="system")
             ticket_ids.append(ticket_id)
 
+        set_ticket_labels(cur, ticket_ids[0], ["bug", "login", "urgent"])
+        set_ticket_labels(cur, ticket_ids[1], ["feature", "ux"])
+        set_ticket_labels(cur, ticket_ids[3], ["vpn", "remote"])
+
+        cur.execute(
+            "INSERT OR IGNORE INTO watchers (ticket_id, watcher, created_at) VALUES (?, ?, ?)",
+            (ticket_ids[0], "alex", now),
+        )
+        cur.execute(
+            "INSERT OR IGNORE INTO watchers (ticket_id, watcher, created_at) VALUES (?, ?, ?)",
+            (ticket_ids[0], "priya", now),
+        )
+        cur.execute(
+            "INSERT OR IGNORE INTO watchers (ticket_id, watcher, created_at) VALUES (?, ?, ?)",
+            (ticket_ids[3], "morgan", now),
+        )
+
         sample_comments = [
             (ticket_ids[0], "alex", "I can reproduce this locally."),
             (ticket_ids[0], "jordan", "Please prioritize for this sprint."),
@@ -113,3 +130,6 @@ def seed_if_empty() -> None:
                 """,
                 (ticket_id, author, body, now),
             )
+
+            create_notification(cur, "Seed data loaded for Mini Jira MCP")
+            create_notification(cur, "Ticket TKT-1 is overdue and needs attention", ticket_ids[0])
