@@ -1,170 +1,334 @@
-Mini Jira MCP
-A very small Jira-like app for local AI testing.
+# Mini Jira MCP
+
+A lightweight Jira-like application designed for local AI and MCP experimentation.
 
 It includes:
 
-An MCP server built with FastMCP
-HTTP streamable MCP transport
-A simple REST API for the frontend
-A tiny SQLite database
-Seed/sample data
-A polling web UI that refreshes every 5 seconds
-One command to run both backend and frontend
-Features
-Basic ticket workflow:
+* 🧠 An MCP server built with FastMCP
+* 🌐 HTTP Streamable MCP transport
+* 🔌 A simple REST API
+* 🗄️ A lightweight SQLite database
+* 🌱 Seed/sample data
 
-Create tickets
-List tickets
-Get ticket details
-Update ticket status
-Assign/unassign tickets
-Add comments
-List comments
-Search tickets
-Status values
-Supported statuses:
+---
 
-todo
-in_progress
-blocked
-done
-Requirements
-Python 3.11+
-Install
-From the project folder:
+## Features
 
+### Ticket Management
+
+* Create tickets
+* List tickets
+* View ticket details
+* Update ticket status
+* Assign or unassign tickets
+* Add comments
+* List comments
+* Search tickets
+
+### Supported Statuses
+
+* `todo`
+* `in_progress`
+* `blocked`
+* `done`
+
+---
+
+# Requirements
+
+* Python 3.11+
+
+---
+
+# Installation
+
+Create a virtual environment:
+
+```bash
 python -m venv .venv
+```
 
-Activate it:
+Activate it.
 
-Windows PowerShell
+### Windows (PowerShell)
+
+```powershell
 .venv\Scripts\Activate.ps1
+```
 
-Bash
+### macOS / Linux
+
+```bash
 source .venv/bin/activate
+```
 
-Install dependencies:
+Install the project:
 
+```bash
 pip install -e .
+```
 
-Run
+---
+
+# Running the Application
+
+Start both the backend and frontend:
+
+```bash
 python run.py
+```
 
-This starts:
+This launches:
 
-Backend API + MCP: http://127.0.0.1:8000
-Frontend UI: http://127.0.0.1:8001
-Open the UI in your browser:
+| Service           | URL                   |
+| ----------------- | --------------------- |
+| Backend API + MCP | http://127.0.0.1:8000 |
+| Frontend UI       | http://127.0.0.1:8001 |
 
+Open the frontend in your browser:
+
+```
 http://127.0.0.1:8001
-Database
-The app uses a local SQLite database file:
+```
 
+---
+
+# Database
+
+Mini Jira MCP uses a local SQLite database:
+
+```
 mini_jira.db
-On first run, it seeds a few example tickets and comments automatically.
+```
 
-MCP endpoint
-The MCP server is mounted at:
+On first startup, the application automatically creates the database and seeds it with a small set of example tickets and comments.
 
+---
+
+# MCP Endpoint
+
+The Streamable HTTP MCP endpoint is available at:
+
+```
 http://127.0.0.1:8000/mcp
-This is intended to be the HTTP streamable MCP endpoint.
+```
 
-MCP tools
-Available tools:
+---
 
-create_ticket
-list_tickets
-get_ticket
-add_comment
-update_status
-assign_ticket
-list_comments
-Example MCP operations
-These depend on your MCP client, but conceptually you can call tools like:
+# Available MCP Tools
 
-Create a ticket
-{ "name": "create_ticket", "arguments": { "title": "Checkout page fails for guest users", "description": "Observed 500 error after clicking pay now", "priority": "high", "assignee": "alex" } }
+* `create_ticket`
+* `list_tickets`
+* `get_ticket`
+* `update_status`
+* `assign_ticket`
+* `add_comment`
+* `list_comments`
 
-Update status
-{ "name": "update_status", "arguments": { "ticket_id": 1, "status": "in_progress" } }
+---
 
-Add a comment
-{ "name": "add_comment", "arguments": { "ticket_id": 1, "author": "alex", "body": "Investigating now." } }
+# Example MCP Tool Calls
 
-REST API
-The web UI uses a simple REST API.
+## Create a Ticket
 
-List tickets
+```json
+{
+  "name": "create_ticket",
+  "arguments": {
+    "title": "Checkout page fails for guest users",
+    "description": "Observed 500 error after clicking Pay Now.",
+    "priority": "high",
+    "assignee": "alex"
+  }
+}
+```
+
+## Update Ticket Status
+
+```json
+{
+  "name": "update_status",
+  "arguments": {
+    "ticket_id": 1,
+    "status": "in_progress"
+  }
+}
+```
+
+## Add a Comment
+
+```json
+{
+  "name": "add_comment",
+  "arguments": {
+    "ticket_id": 1,
+    "author": "alex",
+    "body": "Investigating now."
+  }
+}
+```
+
+---
+
+# REST API
+
+The web UI communicates with the backend through a simple REST API.
+
+## List Tickets
+
+```
 GET /api/tickets
+```
 
-Optional query params:
+Optional query parameters:
 
-status
-q
+* `status`
+* `q`
+
 Example:
 
+```
 GET /api/tickets?status=todo&q=login
+```
 
-Get ticket details
+---
+
+## Get Ticket Details
+
+```
 GET /api/tickets/{ticket_id}
+```
 
-Create ticket
-POST /api/tickets Content-Type: application/json
+---
 
-Body:
+## Create a Ticket
 
-{ "title": "New issue", "description": "Details here", "priority": "medium", "assignee": "sam" }
+```
+POST /api/tickets
+Content-Type: application/json
+```
 
-Update status
-PATCH /api/tickets/{ticket_id}/status Content-Type: application/json
+Request body:
 
-Body:
+```json
+{
+  "title": "New issue",
+  "description": "Details here",
+  "priority": "medium",
+  "assignee": "sam"
+}
+```
 
-{ "status": "done" }
+---
 
-Assign ticket
-PATCH /api/tickets/{ticket_id}/assign Content-Type: application/json
+## Update Ticket Status
 
-Body:
+```
+PATCH /api/tickets/{ticket_id}/status
+Content-Type: application/json
+```
 
-{ "assignee": "alex" }
+Request body:
 
-Or clear assignment:
+```json
+{
+  "status": "done"
+}
+```
 
-{ "assignee": null }
+---
 
-Add comment
-POST /api/tickets/{ticket_id}/comments Content-Type: application/json
+## Assign a Ticket
 
-Body:
+```
+PATCH /api/tickets/{ticket_id}/assign
+Content-Type: application/json
+```
 
-{ "author": "sam", "body": "This is fixed in my branch." }
+Assign a user:
 
-Configuration
-Optional environment variables:
+```json
+{
+  "assignee": "alex"
+}
+```
 
-MINI_JIRA_DB_PATH
-MINI_JIRA_BACKEND_HOST
-MINI_JIRA_BACKEND_PORT
-MINI_JIRA_FRONTEND_HOST
-MINI_JIRA_FRONTEND_PORT
+Clear the assignment:
+
+```json
+{
+  "assignee": null
+}
+```
+
+---
+
+## Add a Comment
+
+```
+POST /api/tickets/{ticket_id}/comments
+Content-Type: application/json
+```
+
+Request body:
+
+```json
+{
+  "author": "sam",
+  "body": "This is fixed in my branch."
+}
+```
+
+---
+
+# Configuration
+
+The following environment variables are optional:
+
+| Variable                  | Description              |
+| ------------------------- | ------------------------ |
+| `MINI_JIRA_DB_PATH`       | SQLite database location |
+| `MINI_JIRA_BACKEND_HOST`  | Backend host             |
+| `MINI_JIRA_BACKEND_PORT`  | Backend port             |
+| `MINI_JIRA_FRONTEND_HOST` | Frontend host            |
+| `MINI_JIRA_FRONTEND_PORT` | Frontend port            |
+
 Example:
 
-export MINI_JIRA_BACKEND_PORT=9000 export MINI_JIRA_FRONTEND_PORT=9001 python run.py
+```bash
+export MINI_JIRA_BACKEND_PORT=9000
+export MINI_JIRA_FRONTEND_PORT=9001
 
-Notes
-This is intentionally simple and local-only.
-No authentication is included.
-No live push updates; the UI polls every 5 seconds.
-No Docker is required.
-If your installed fastmcp version differs, the exact mount method for streamable HTTP may vary slightly.
-If FastMCP mount differs in your version
-The code currently uses:
+python run.py
+```
 
+---
+
+# Notes
+
+This project is intentionally minimal and intended for local development and AI experimentation.
+
+Current limitations:
+
+* No authentication
+* Local-only deployment
+* No real-time push updates (the UI polls every 5 seconds)
+* No Docker setup required
+
+---
+
+# FastMCP Compatibility
+
+The application currently mounts the MCP endpoint using:
+
+```python
 app.mount("/mcp", mcp.streamable_http_app())
+```
 
-If your installed FastMCP version uses a different integration method, replace it with the equivalent for your version, commonly something like:
+Some FastMCP versions expose a different integration API, for example:
 
+```python
 mcp.mount_http(app, path="/mcp")
+```
 
-Check your installed FastMCP docs if needed.
+If the mount method differs in your installed FastMCP version, refer to the corresponding FastMCP documentation and update the integration accordingly.
