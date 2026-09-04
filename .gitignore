@@ -1,3 +1,31 @@
+# Local configuration and environments
 .env
-jiralite.egg-info/
-uv.lock
+.venv/
+venv/
+env/
+
+# Python bytecode and tooling caches
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Packaging and build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Local application data
+mini_jira.db
+*.sqlite3
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

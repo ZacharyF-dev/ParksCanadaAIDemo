@@ -12,6 +12,9 @@ dependencies = [
     "fastmcp>=0.2.0",
 ]
 
+[tool.setuptools]
+packages = ["app"]
+
 [build-system]
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"

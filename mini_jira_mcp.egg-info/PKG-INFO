@@ -10,173 +10,433 @@ Requires-Dist: jinja2>=3.1.4
 Requires-Dist: pydantic>=2.8.0
 Requires-Dist: fastmcp>=0.2.0
 
-Mini Jira MCP
-A very small Jira-like app for local AI testing.
+# Mini Jira MCP
+
+A lightweight Jira-like ticketing app for local AI and MCP experimentation.
 
 It includes:
 
-An MCP server built with FastMCP
-HTTP streamable MCP transport
-A simple REST API for the frontend
-A tiny SQLite database
-Seed/sample data
-A polling web UI that refreshes every 5 seconds
-One command to run both backend and frontend
-Features
-Basic ticket workflow:
+- 🧠 An MCP server built with FastMCP
+- 🌐 Streamable HTTP MCP transport
+- 🔌 A FastAPI REST backend
+- 🗄️ A local SQLite database
+- 🌱 Seed/sample data for quick testing
+- 🖥️ A single-page web dashboard
 
-Create tickets
-List tickets
-Get ticket details
-Update ticket status
-Assign/unassign tickets
-Add comments
-List comments
-Search tickets
-Status values
-Supported statuses:
+---
 
-todo
-in_progress
-blocked
-done
-Requirements
-Python 3.11+
-Install
-From the project folder:
+## Features
 
+### Core ticket management
+
+- Create tickets
+- List and search tickets
+- View ticket details
+- Edit ticket fields
+  - title
+  - description
+  - priority
+  - category
+  - requester
+  - assignee
+  - due date
+- Update ticket status
+- Assign or unassign tickets
+- Archive or restore tickets
+
+### Collaboration features
+
+- Add comments
+- View comments
+- Track system activity/audit history
+- Add and remove watchers
+- Add labels/tags
+- Upload attachments
+- View in-app notifications
+- Save and reuse filters
+
+### Productivity features
+
+- Bulk status updates
+- Bulk assignment updates
+- Ticket stats dashboard
+- Overdue ticket detection
+- Category and label summaries
+
+### Agent helper features
+
+- Ticket suggestion helper
+  - proposes a next-step comment
+  - suggests labels and triage direction
+- Ticket handoff summary helper
+  - compresses status, recent activity, and latest notes
+
+### Supported statuses
+
+- `todo`
+- `in_progress`
+- `blocked`
+- `done`
+
+### Supported categories
+
+- `hardware`
+- `software`
+- `network`
+- `access`
+- `other`
+
+---
+
+## Requirements
+
+- Python 3.11+
+
+---
+
+## Installation
+
+Create a virtual environment:
+
+```bash
 python -m venv .venv
+```
 
-Activate it:
+Activate it.
 
-Windows PowerShell
+### Windows (PowerShell)
+
+```powershell
 .venv\Scripts\Activate.ps1
+```
 
-Bash
+### macOS / Linux
+
+```bash
 source .venv/bin/activate
+```
 
-Install dependencies:
+Install the project:
 
+```bash
 pip install -e .
+```
 
-Run
+---
+
+## Running the application
+
+Start both the backend and frontend:
+
+```bash
 python run.py
+```
 
-This starts:
+This launches:
 
-Backend API + MCP: http://127.0.0.1:8000
-Frontend UI: http://127.0.0.1:8001
-Open the UI in your browser:
+| Service | URL |
+| --- | --- |
+| Backend API + MCP | http://127.0.0.1:8000 |
+| Frontend UI | http://127.0.0.1:8001 |
 
+Open the frontend in your browser:
+
+```text
 http://127.0.0.1:8001
-Database
-The app uses a local SQLite database file:
+```
 
+---
+
+## Database
+
+Mini Jira MCP uses a local SQLite database:
+
+```text
 mini_jira.db
-On first run, it seeds a few example tickets and comments automatically.
+```
 
-MCP endpoint
-The MCP server is mounted at:
+On first startup, the app automatically creates the database and seeds it with sample tickets, comments, labels, watchers, and notifications.
 
+### Main tables
+
+- `tickets`
+- `comments`
+- `activity_log`
+- `labels`
+- `ticket_labels`
+- `watchers`
+- `attachments`
+- `notifications`
+- `saved_filters`
+
+---
+
+## MCP endpoint
+
+The streamable HTTP MCP endpoint is available at:
+
+```text
 http://127.0.0.1:8000/mcp
-This is intended to be the HTTP streamable MCP endpoint.
+```
 
-MCP tools
-Available tools:
+---
 
-create_ticket
-list_tickets
-get_ticket
-add_comment
-update_status
-assign_ticket
-list_comments
-Example MCP operations
-These depend on your MCP client, but conceptually you can call tools like:
+## Available MCP tools
 
-Create a ticket
-{ "name": "create_ticket", "arguments": { "title": "Checkout page fails for guest users", "description": "Observed 500 error after clicking pay now", "priority": "high", "assignee": "alex" } }
+- `create_ticket`
+- `list_tickets`
+- `get_ticket`
+- `edit_ticket`
+- `archive_ticket`
+- `list_activity`
+- `add_comment`
+- `list_comments`
+- `update_status`
+- `assign_ticket`
+- `update_category`
+- `update_labels`
+- `add_watcher`
+- `remove_watcher`
+- `add_attachment`
+- `list_notifications`
+- `save_filter`
+- `list_filters`
+- `bulk_update_status`
+- `bulk_assign`
+- `suggest_ticket_response`
+- `summarize_ticket_handoff`
+- `escalate_ticket`
+- `get_stats`
 
-Update status
-{ "name": "update_status", "arguments": { "ticket_id": 1, "status": "in_progress" } }
+---
 
-Add a comment
-{ "name": "add_comment", "arguments": { "ticket_id": 1, "author": "alex", "body": "Investigating now." } }
+## Example MCP calls
 
-REST API
-The web UI uses a simple REST API.
+### Create a ticket
 
-List tickets
-GET /api/tickets
+```json
+{
+  "name": "create_ticket",
+  "arguments": {
+    "title": "Checkout page fails for guest users",
+    "description": "Observed 500 error after clicking Pay Now.",
+    "priority": "high",
+    "category": "software",
+    "labels": ["bug", "checkout"],
+    "assignee": "alex",
+    "requester": "priya"
+  }
+}
+```
 
-Optional query params:
+### Edit a ticket
 
-status
-q
+```json
+{
+  "name": "edit_ticket",
+  "arguments": {
+    "ticket_id": 1,
+    "title": "Checkout page fails for guest users",
+    "description": "Observed 500 error after clicking Pay Now for guest flow.",
+    "priority": "high",
+    "category": "software",
+    "assignee": "alex",
+    "requester": "priya"
+  }
+}
+```
+
+### Update labels
+
+```json
+{
+  "name": "update_labels",
+  "arguments": {
+    "ticket_id": 1,
+    "labels": ["bug", "urgent", "checkout"]
+  }
+}
+```
+
+### Get an agent suggestion
+
+```json
+{
+  "name": "suggest_ticket_response",
+  "arguments": {
+    "ticket_id": 1
+  }
+}
+```
+
+---
+
+## REST API
+
+The dashboard communicates with the backend through a FastAPI REST API.
+
+### Ticket endpoints
+
+- `GET /api/tickets`
+- `GET /api/tickets/{ticket_id}`
+- `GET /api/tickets/{ticket_id}/activity`
+- `GET /api/tickets/{ticket_id}/comments`
+- `POST /api/tickets`
+- `PUT /api/tickets/{ticket_id}`
+- `PATCH /api/tickets/{ticket_id}/archive`
+- `PATCH /api/tickets/{ticket_id}/status`
+- `PATCH /api/tickets/{ticket_id}/assign`
+- `PATCH /api/tickets/{ticket_id}/category`
+- `POST /api/tickets/{ticket_id}/escalate`
+- `POST /api/tickets/{ticket_id}/comments`
+- `PUT /api/tickets/{ticket_id}/labels`
+- `POST /api/tickets/{ticket_id}/watchers`
+- `DELETE /api/tickets/{ticket_id}/watchers/{watcher}`
+- `POST /api/tickets/{ticket_id}/attachments`
+
+### Notification endpoints
+
+- `GET /api/notifications`
+- `PATCH /api/notifications/{notification_id}/read`
+
+### Saved filter endpoints
+
+- `GET /api/filters`
+- `POST /api/filters`
+- `DELETE /api/filters/{filter_id}`
+
+### Bulk action endpoints
+
+- `PATCH /api/tickets/bulk/status`
+- `PATCH /api/tickets/bulk/assign`
+
+### Agent helper endpoints
+
+- `GET /api/agent/suggestions/{ticket_id}`
+- `GET /api/agent/handoff/{ticket_id}`
+
+### Stats endpoint
+
+- `GET /api/stats`
+
+---
+
+## Useful API examples
+
+### List tickets
+
+```text
+GET /api/tickets?status=todo&q=login&include_archived=true
+```
+
+### Create a ticket
+
+```http
+POST /api/tickets
+Content-Type: application/json
+```
+
+```json
+{
+  "title": "VPN fails from home Wi-Fi",
+  "description": "User cannot connect after laptop replacement.",
+  "priority": "high",
+  "category": "network",
+  "labels": ["vpn", "remote"],
+  "assignee": "sam",
+  "requester": "morgan"
+}
+```
+
+### Save labels
+
+```http
+PUT /api/tickets/1/labels
+Content-Type: application/json
+```
+
+```json
+{
+  "labels": ["urgent", "customer-impact"],
+  "actor": "dashboard"
+}
+```
+
+### Bulk assign
+
+```http
+PATCH /api/tickets/bulk/assign
+Content-Type: application/json
+```
+
+```json
+{
+  "ticket_ids": [1, 2, 4],
+  "assignee": "alex",
+  "actor": "dashboard"
+}
+```
+
+---
+
+## Frontend behavior
+
+The web UI currently provides:
+
+- ticket creation
+- inline ticket editing
+- label editing
+- watcher management
+- attachment upload
+- saved filter management
+- notification list
+- bulk actions panel
+- agent helper buttons
+- status-based board columns
+
+The UI polls the backend every **30 seconds**, and also supports manual refresh.
+
+---
+
+## Configuration
+
+The following environment variables are optional:
+
+| Variable | Description |
+| --- | --- |
+| `MINI_JIRA_DB_PATH` | SQLite database location |
+| `MINI_JIRA_BACKEND_HOST` | Backend host |
+| `MINI_JIRA_BACKEND_PORT` | Backend port |
+| `MINI_JIRA_FRONTEND_HOST` | Frontend host |
+| `MINI_JIRA_FRONTEND_PORT` | Frontend port |
+
 Example:
 
-GET /api/tickets?status=todo&q=login
+```bash
+export MINI_JIRA_BACKEND_PORT=9000
+export MINI_JIRA_FRONTEND_PORT=9001
 
-Get ticket details
-GET /api/tickets/{ticket_id}
+python run.py
+```
 
-Create ticket
-POST /api/tickets Content-Type: application/json
+---
 
-Body:
+## Notes
 
-{ "title": "New issue", "description": "Details here", "priority": "medium", "assignee": "sam" }
+This project is intentionally lightweight and intended for local development and AI experimentation.
 
-Update status
-PATCH /api/tickets/{ticket_id}/status Content-Type: application/json
+Current limitations:
 
-Body:
+- No authentication
+- Local-only deployment
+- No real-time push updates
+- Attachments are stored in SQLite as base64 text, which is fine for demos but not ideal for large files
+- No Docker setup required
 
-{ "status": "done" }
+---
 
-Assign ticket
-PATCH /api/tickets/{ticket_id}/assign Content-Type: application/json
+## FastMCP compatibility
 
-Body:
+The backend currently mounts the MCP app using the current FastMCP HTTP app integration.
 
-{ "assignee": "alex" }
-
-Or clear assignment:
-
-{ "assignee": null }
-
-Add comment
-POST /api/tickets/{ticket_id}/comments Content-Type: application/json
-
-Body:
-
-{ "author": "sam", "body": "This is fixed in my branch." }
-
-Configuration
-Optional environment variables:
-
-MINI_JIRA_DB_PATH
-MINI_JIRA_BACKEND_HOST
-MINI_JIRA_BACKEND_PORT
-MINI_JIRA_FRONTEND_HOST
-MINI_JIRA_FRONTEND_PORT
-Example:
-
-export MINI_JIRA_BACKEND_PORT=9000 export MINI_JIRA_FRONTEND_PORT=9001 python run.py
-
-Notes
-This is intentionally simple and local-only.
-No authentication is included.
-No live push updates; the UI polls every 5 seconds.
-No Docker is required.
-If your installed fastmcp version differs, the exact mount method for streamable HTTP may vary slightly.
-If FastMCP mount differs in your version
-The code currently uses:
-
-app.mount("/mcp", mcp.streamable_http_app())
-
-If your installed FastMCP version uses a different integration method, replace it with the equivalent for your version, commonly something like:
-
-mcp.mount_http(app, path="/mcp")
-
-Check your installed FastMCP docs if needed.
+If your installed FastMCP version exposes a different integration method, refer to the corresponding FastMCP documentation and adjust the mount logic in `app/mcp_server.py`.
