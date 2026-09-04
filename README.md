@@ -1,6 +1,6 @@
-# Mini Jira MCP
+# JiraLite Local MCP Demos
 
-A lightweight Jira-like ticketing app for local AI and MCP experimentation.
+A local-first workspace for MCP servers and Agent Framework demonstrations. The JiraLite service and database run on this machine; Azure AI Foundry supplies only LLM inference.
 
 It includes:
 
@@ -10,6 +10,86 @@ It includes:
 - 🗄️ A local SQLite database
 - 🌱 Seed/sample data for quick testing
 - 🖥️ A single-page web dashboard
+- 🤖 A Chainlit GUI for the Microsoft Agent Framework demo, including visible MCP tool calls
+
+## Local-first architecture
+
+```mermaid
+flowchart LR
+  Browser[Local browser] --> Agent[Local Agent Framework app :8002]
+  Agent -->|model inference| Foundry[Azure AI Foundry deployment]
+  Agent -->|MCP over localhost| MCP[Jira MCP server :8000]
+  MCP --> DB[(Local SQLite database)]
+  Browser --> Dashboard[Jira dashboard :8001]
+  Dashboard --> MCP
+```
+
+The Foundry model never calls `localhost`. The local agent receives tool calls from the model and invokes the local MCP server itself.
+
+## Workspace layout
+
+```text
+app/                         Existing JiraLite API, MCP server, database, and web application
+demos/jira_foundry_agent/    Local Agent Framework consumer of the Jira MCP server
+scripts/                     Development launchers
+data/                        Local SQLite data (Git-ignored)
+```
+
+Future MCP implementations should be added under `servers/` or `packages/`, while applications that consume them belong under `demos/`.
+
+## Markdown RAG MCP server
+
+`servers/markdown_rag_mcp/` is a standalone local RAG server. It is not connected to a demo yet. It stores vectors in a local persistent ChromaDB database and uses an Azure AI Foundry embedding deployment through `DefaultAzureCredential`.
+
+1. Create an embedding-model deployment in your Foundry resource.
+2. Set its deployment name as `AZURE_OPENAI_EMBEDDING_MODEL` in `.env`.
+3. Copy the Markdown knowledge-base files into `knowledge/` (subdirectories are supported).
+4. Index the files:
+
+  ```powershell
+  markdown-rag-index
+  ```
+
+5. Start the independent MCP server when a future demo needs it:
+
+  ```powershell
+  markdown-rag-mcp
+  ```
+
+The server binds to `http://127.0.0.1:8003/mcp` and exposes:
+
+- `search_markdown_knowledge` — semantic search with source/chunk citations.
+- `rag_index_status` — indexed chunk count.
+
+The vector-store files are written to `data/rag/` and are Git-ignored. Re-run the index command after modifying knowledge files.
+
+## Synthetic PC411 directory MCP server
+
+`servers/pc411_directory_mcp/` is a local clone of a team-directory search tool. It imports the hierarchy in `PC411_Structure.html` and generates **synthetic** personnel only. Names, titles, and `first.last@pc.gc.ca` email addresses are fabricated; this service contains no real employee records.
+
+Initialize the directory once:
+
+```powershell
+pc411-directory-import
+pc411-directory-seed
+```
+
+Run the local MCP server:
+
+```powershell
+pc411-directory-mcp
+```
+
+It listens at `http://127.0.0.1:8004/mcp/` and provides these tools:
+
+- `search_people`
+- `get_person`
+- `browse_organization`
+- `get_organization_contacts`
+- `find_reporting_chain`
+- `get_directory_stats`
+
+The synthetic data is deterministic for `PC411_DIRECTORY_SEED=411`; change that setting and rerun the seed command to generate a different sample directory. The local database is `data/pc411_directory.db` and is Git-ignored.
 
 ---
 
@@ -110,11 +190,21 @@ Install the project:
 pip install -e .
 ```
 
+### Azure AI Foundry configuration
+
+Copy `.env.example` to `.env`, then set the endpoint and the name of your Azure AI Foundry/Azure OpenAI model deployment. Authenticate locally with Azure CLI:
+
+```powershell
+az login
+```
+
+The agent uses `DefaultAzureCredential`, so no API key is stored in the project. The installed Agent Framework provider selects its supported Azure OpenAI Responses API version automatically; do not set a legacy `AZURE_OPENAI_API_VERSION` value in `.env`.
+
 ---
 
 ## Running the application
 
-Start both the backend and frontend:
+Start the Jira services and the Foundry-backed local agent:
 
 ```bash
 python run.py
@@ -126,12 +216,33 @@ This launches:
 | --- | --- |
 | Backend API + MCP | http://127.0.0.1:8000 |
 | Frontend UI | http://127.0.0.1:8001 |
+| Foundry agent Chainlit GUI | http://127.0.0.1:8002 |
+| Markdown RAG MCP | http://127.0.0.1:8003/mcp |
+| Synthetic PC411 Directory MCP | http://127.0.0.1:8004/mcp |
+| Workspace Agent Chainlit GUI | http://127.0.0.1:8005 |
+| MCP Workspace Dashboard | http://127.0.0.1:8006 |
 
 Open the frontend in your browser:
 
 ```text
 http://127.0.0.1:8001
 ```
+
+Open the Chainlit agent UI at `http://127.0.0.1:8002`. It connects to the local MCP endpoint at `http://127.0.0.1:8000/mcp` and uses the configured Foundry deployment for inference. Each MCP invocation appears as an expandable **MCP tool** step with its arguments and returned result, making the tool-use flow demonstrable.
+
+On Windows, the equivalent launcher is `scripts/start-local.ps1`.
+
+### MCP Workspace Dashboard
+
+Open `http://127.0.0.1:8006` for a local dashboard that reports service availability and opens each JiraLite interface, Chainlit demo, and MCP endpoint. The dashboard is local-only and does not expose services outside this machine.
+
+The **Workspace Agent** at `http://127.0.0.1:8005` can use all three local MCP services in one conversation:
+
+- JiraLite ticket operations;
+- Markdown RAG search; and
+- the synthetic PC411 directory.
+
+It shows every tool invocation in expandable Chainlit steps. Before launching the unified demo, ensure the Markdown RAG index and PC411 synthetic directory have been initialized using the commands in their sections below.
 
 ---
 
@@ -140,7 +251,7 @@ http://127.0.0.1:8001
 Mini Jira MCP uses a local SQLite database:
 
 ```text
-mini_jira.db
+data/mini_jira.db
 ```
 
 On first startup, the app automatically creates the database and seeds it with sample tickets, comments, labels, watchers, and notifications.

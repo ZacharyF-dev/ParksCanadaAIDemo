@@ -1,0 +1,23 @@
+[project]
+name = "markdown-rag-mcp"
+version = "0.1.0"
+description = "Local ChromaDB-backed Markdown retrieval MCP server"
+requires-python = ">=3.11"
+dependencies = [
+    "chromadb>=1.0.0",
+    "fastmcp>=0.2.0",
+    "openai>=2.0.0",
+    "azure-identity>=1.25.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+markdown-rag-index = "markdown_rag_mcp.indexer:main"
+markdown-rag-mcp = "markdown_rag_mcp.server:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

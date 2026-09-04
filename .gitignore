@@ -1,5 +1,7 @@
 # Local configuration and environments
 .env
+.env.*
+!.env.example
 .venv/
 venv/
 env/
@@ -13,16 +15,28 @@ __pycache__/
 .ruff_cache/
 .coverage
 htmlcov/
+.chainlit/
+.files/
 
 # Packaging and build artifacts
 build/
 dist/
 *.egg-info/
 *.egg
+uv.lock
 
 # Local application data
 mini_jira.db
+data/*.db
+data/rag/
+data/pc411_directory.db
 *.sqlite3
+*.sqlite
+
+# Private source content imported locally
+knowledge/*
+!knowledge/.gitkeep
+PC411_Structure.html
 
 # Editor and OS files
 .vscode/

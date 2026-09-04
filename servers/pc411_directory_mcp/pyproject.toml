@@ -1,0 +1,21 @@
+[project]
+name = "pc411-directory-mcp"
+version = "0.1.0"
+description = "Local synthetic PC411-style directory MCP server"
+requires-python = ">=3.11"
+dependencies = [
+    "fastmcp>=0.2.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+pc411-directory-import = "pc411_directory_mcp.import_structure:main"
+pc411-directory-seed = "pc411_directory_mcp.seed:main"
+pc411-directory-mcp = "pc411_directory_mcp.server:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
