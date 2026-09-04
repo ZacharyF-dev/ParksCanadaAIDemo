@@ -217,6 +217,7 @@ This launches:
 | Backend API + MCP | http://127.0.0.1:8000 |
 | Frontend UI | http://127.0.0.1:8001 |
 | Foundry agent Chainlit GUI | http://127.0.0.1:8002 |
+| Knowledge Base Agent Chainlit GUI | http://127.0.0.1:8007 |
 | Markdown RAG MCP | http://127.0.0.1:8003/mcp |
 | Synthetic PC411 Directory MCP | http://127.0.0.1:8004/mcp |
 | Workspace Agent Chainlit GUI | http://127.0.0.1:8005 |
@@ -243,6 +244,8 @@ The **Workspace Agent** at `http://127.0.0.1:8005` can use all three local MCP s
 - the synthetic PC411 directory.
 
 It shows every tool invocation in expandable Chainlit steps. Before launching the unified demo, ensure the Markdown RAG index and PC411 synthetic directory have been initialized using the commands in their sections below.
+
+The **Knowledge Base Agent** at `http://127.0.0.1:8007` uses only the local Markdown RAG MCP tool. It maintains active-chat context, searches the knowledge base before answering factual questions, and cites retrieved source paths.
 
 ---
 

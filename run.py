@@ -49,12 +49,14 @@ def main() -> None:
         subprocess.Popen([sys.executable, "-m", "chainlit", "run", "demos/jira_foundry_agent/src/jira_foundry_agent/chainlit_app.py", "--host", "127.0.0.1", "--port", "8002"]),
         subprocess.Popen([sys.executable, "-m", "markdown_rag_mcp.server"]),
         subprocess.Popen([sys.executable, "-m", "pc411_directory_mcp.server"]),
+        subprocess.Popen([sys.executable, "-m", "chainlit", "run", "demos/knowledge_agent/src/knowledge_agent/chainlit_app.py", "--host", "127.0.0.1", "--port", "8007"]),
         subprocess.Popen([sys.executable, "-m", "chainlit", "run", "demos/workspace_agent/src/workspace_agent/chainlit_app.py", "--host", "127.0.0.1", "--port", "8005"]),
     ]
 
     print(f"Backend API + MCP: http://{settings.backend_host}:{settings.backend_port}")
     print(f"Frontend UI:       http://{settings.frontend_host}:{settings.frontend_port}")
     print("Foundry agent UI:  http://127.0.0.1:8002")
+    print("Knowledge agent:   http://127.0.0.1:8007")
     print("Markdown RAG MCP:  http://127.0.0.1:8003/mcp")
     print("PC411 directory:   http://127.0.0.1:8004/mcp")
     print("Workspace agent:   http://127.0.0.1:8005")

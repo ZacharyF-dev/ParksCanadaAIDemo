@@ -12,6 +12,7 @@ DASHBOARD_DIR = PROJECT_ROOT / "dashboard_static"
 SERVICES = [
     {"name": "Jira Board", "description": "Local ticket-management dashboard", "url": "http://127.0.0.1:8001", "health": "http://127.0.0.1:8000/health"},
     {"name": "JiraLite Agent", "description": "Chainlit agent with Jira MCP tools", "url": "http://127.0.0.1:8002", "health": "http://127.0.0.1:8002"},
+    {"name": "Knowledge Base Agent", "description": "Chainlit agent using only the Markdown RAG MCP tool", "url": "http://127.0.0.1:8007", "health": "http://127.0.0.1:8007"},
     {"name": "Workspace Agent", "description": "Chainlit agent using Jira, RAG, and synthetic directory MCP tools", "url": "http://127.0.0.1:8005", "health": "http://127.0.0.1:8005"},
     {"name": "Markdown RAG MCP", "description": "Local vector search over Markdown knowledge", "url": "http://127.0.0.1:8003/mcp", "health": "http://127.0.0.1:8003/health"},
     {"name": "Synthetic PC411 Directory MCP", "description": "Fictional organization and people directory", "url": "http://127.0.0.1:8004/mcp", "health": "http://127.0.0.1:8004/health"},
