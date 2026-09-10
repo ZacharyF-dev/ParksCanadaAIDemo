@@ -37,6 +37,65 @@ data/                        Local SQLite data (Git-ignored)
 
 Future MCP implementations should be added under `servers/` or `packages/`, while applications that consume them belong under `demos/`.
 
+## Parks Canada booking MCP demo
+
+`servers/parks_canada_booking_mcp/` is a standalone, local-only booking demo based on a simplified Parks Canada reservation flow. It includes 49 seeded parks, 20 campgrounds, 98 campsites, and 15 roofed accommodations. It is demo data only; it has no connection to the real Parks Canada Reservation Service.
+
+The source data is stored in `data/parks_canada_seed_data.json`. Initialize or reset the local booking database with:
+
+```powershell
+parks-canada-booking-seed
+```
+
+Start the MCP server independently with:
+
+```powershell
+parks-canada-booking-mcp
+```
+
+It listens at `http://127.0.0.1:8008/mcp` and exposes:
+
+- `search_parks`
+- `search_availability`
+- `get_site_details`
+- `get_site_calendar`
+- `create_reservation`
+- `get_reservation`
+- `cancel_reservation`
+- `list_user_reservations`
+- `browse_availability` — lists each matching unit's open date ranges for a selected month.
+
+`python run.py` also starts the service. The SQLite database is written to `data/parks_canada_booking.db` and is Git-ignored.
+
+### Parks Canada booking chat demo
+
+`demos/parks_booking_agent/` is a Chainlit chat application connected to the local Parks Canada Booking MCP server. It uses the existing Azure AI Foundry chat deployment for inference and keeps the **same Agent Framework session for the life of each browser chat**. Follow-up messages therefore retain prior context, including selected parks, dates, and shortlisted options.
+
+Start the chat independently after the booking MCP server is running:
+
+```powershell
+parks-booking-agent
+```
+
+Open `http://127.0.0.1:8009`. Example flow:
+
+1. “Find a tent site in Banff for two people from 2026-06-10 to 2026-06-12.”
+2. “Show me details for the second option.”
+3. “Book it for Alex Example, alex@example.test.”
+4. Confirm the displayed reservation summary when prompted.
+
+The agent searches before recommending units and requests explicit confirmation before it creates or cancels a reservation.
+
+### Parks Canada booking dashboard
+
+`demos/parks_booking_dashboard/` is a presenter-friendly companion website for the booking chat. It is available at `http://127.0.0.1:8010` when running `python run.py`, and can be started independently with:
+
+```powershell
+parks-booking-dashboard
+```
+
+It provides a visual availability explorer that shows open date ranges by site/accommodation, along with a live reservation board that updates as bookings are created in the agent chat. This makes the search and booking state easy to demonstrate to a non-technical audience.
+
 ## Markdown RAG MCP server
 
 `servers/markdown_rag_mcp/` is a standalone local RAG server. It is not connected to a demo yet. It stores vectors in a local persistent ChromaDB database and uses an Azure AI Foundry embedding deployment through `DefaultAzureCredential`.
@@ -220,6 +279,9 @@ This launches:
 | Knowledge Base Agent Chainlit GUI | http://127.0.0.1:8007 |
 | Markdown RAG MCP | http://127.0.0.1:8003/mcp |
 | Synthetic PC411 Directory MCP | http://127.0.0.1:8004/mcp |
+| Parks Canada Booking MCP | http://127.0.0.1:8008/mcp |
+| Parks Canada Booking Chat | http://127.0.0.1:8009 |
+| Parks Canada Booking Dashboard | http://127.0.0.1:8010 |
 | Workspace Agent Chainlit GUI | http://127.0.0.1:8005 |
 | MCP Workspace Dashboard | http://127.0.0.1:8006 |
 

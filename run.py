@@ -36,19 +36,29 @@ def run_dashboard() -> None:
     uvicorn.run(create_dashboard_app(), host="127.0.0.1", port=8006, log_level="info")
 
 
+def run_parks_booking_dashboard() -> None:
+    from parks_booking_dashboard.app import create_app
+
+    uvicorn.run(create_app(), host="127.0.0.1", port=8010, log_level="info")
+
+
 def main() -> None:
     seed_if_empty()
 
     backend_thread = threading.Thread(target=run_backend, daemon=True)
     frontend_thread = threading.Thread(target=run_frontend, daemon=True)
     dashboard_thread = threading.Thread(target=run_dashboard, daemon=True)
+    parks_dashboard_thread = threading.Thread(target=run_parks_booking_dashboard, daemon=True)
     backend_thread.start()
     frontend_thread.start()
     dashboard_thread.start()
+    parks_dashboard_thread.start()
     processes = [
         subprocess.Popen([sys.executable, "-m", "chainlit", "run", "demos/jira_foundry_agent/src/jira_foundry_agent/chainlit_app.py", "--host", "127.0.0.1", "--port", "8002"]),
         subprocess.Popen([sys.executable, "-m", "markdown_rag_mcp.server"]),
         subprocess.Popen([sys.executable, "-m", "pc411_directory_mcp.server"]),
+        subprocess.Popen([sys.executable, "-m", "parks_canada_booking_mcp.server"]),
+        subprocess.Popen([sys.executable, "-m", "chainlit", "run", "demos/parks_booking_agent/src/parks_booking_agent/chainlit_app.py", "--host", "127.0.0.1", "--port", "8009"]),
         subprocess.Popen([sys.executable, "-m", "chainlit", "run", "demos/knowledge_agent/src/knowledge_agent/chainlit_app.py", "--host", "127.0.0.1", "--port", "8007"]),
         subprocess.Popen([sys.executable, "-m", "chainlit", "run", "demos/workspace_agent/src/workspace_agent/chainlit_app.py", "--host", "127.0.0.1", "--port", "8005"]),
     ]
@@ -59,6 +69,9 @@ def main() -> None:
     print("Knowledge agent:   http://127.0.0.1:8007")
     print("Markdown RAG MCP:  http://127.0.0.1:8003/mcp")
     print("PC411 directory:   http://127.0.0.1:8004/mcp")
+    print("Parks Canada MCP:  http://127.0.0.1:8008/mcp")
+    print("Parks booking UI:  http://127.0.0.1:8009")
+    print("Parks dashboard:   http://127.0.0.1:8010")
     print("Workspace agent:   http://127.0.0.1:8005")
     print("MCP dashboard:     http://127.0.0.1:8006")
 

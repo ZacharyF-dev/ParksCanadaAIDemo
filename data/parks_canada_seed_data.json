@@ -1,0 +1,2819 @@
+{
+  "parks": [
+    {
+      "id": "akami-uapishku-kakkasuak-mealy-mountains",
+      "name": "Akami-Uapishk\u1d58-KakKasuak-Mealy Mountains",
+      "province": "Newfoundland and Labrador",
+      "park_type": "reserve",
+      "established": 2015,
+      "area_km2": 10700,
+      "natural_region": "East coast boreal",
+      "description": "Glacially rounded highlands and coastal beaches along the Labrador Sea."
+    },
+    {
+      "id": "aulavik",
+      "name": "Aulavik",
+      "province": "Northwest Territories",
+      "park_type": "national_park",
+      "established": 1992,
+      "area_km2": 12200,
+      "natural_region": "Western arctic lowlands",
+      "description": "Treeless polar desert on Banks Island, home to large muskox herds."
+    },
+    {
+      "id": "auyuittuq",
+      "name": "Auyuittuq",
+      "province": "Nunavut",
+      "park_type": "national_park",
+      "established": 2001,
+      "area_km2": 19089,
+      "natural_region": "Northern Davis region",
+      "description": "Rugged Arctic peaks on Baffin Island, mostly within the Arctic Circle."
+    },
+    {
+      "id": "banff",
+      "name": "Banff",
+      "province": "Alberta",
+      "park_type": "national_park",
+      "established": 1885,
+      "area_km2": 6641,
+      "natural_region": "Rocky Mountains",
+      "description": "Canada's first national park, home to Lake Louise and the Icefields Parkway."
+    },
+    {
+      "id": "bruce-peninsula",
+      "name": "Bruce Peninsula",
+      "province": "Ontario",
+      "park_type": "national_park",
+      "established": 1987,
+      "area_km2": 125,
+      "natural_region": "St. Lawrence lowlands",
+      "description": "Niagara Escarpment shoreline with turquoise waters and the Bruce Trail."
+    },
+    {
+      "id": "cape-breton-highlands",
+      "name": "Cape Breton Highlands",
+      "province": "Nova Scotia",
+      "park_type": "national_park",
+      "established": 1936,
+      "area_km2": 948,
+      "natural_region": "Maritime Acadian highlands",
+      "description": "Atlantic Canada's oldest park, home to the Cabot Trail."
+    },
+    {
+      "id": "elk-island",
+      "name": "Elk Island",
+      "province": "Alberta",
+      "park_type": "national_park",
+      "established": 1913,
+      "area_km2": 194,
+      "natural_region": "Southern boreal plains and plateaux",
+      "description": "A wildlife sanctuary known for its bison conservation program."
+    },
+    {
+      "id": "forillon",
+      "name": "Forillon",
+      "province": "Quebec",
+      "park_type": "national_park",
+      "established": 1970,
+      "area_km2": 240,
+      "natural_region": "Notre Dame and Megantic Mountains",
+      "description": "Coastal cliffs and forest at the tip of the Gaspe Peninsula."
+    },
+    {
+      "id": "fundy",
+      "name": "Fundy",
+      "province": "New Brunswick",
+      "park_type": "national_park",
+      "established": 1948,
+      "area_km2": 206,
+      "natural_region": "Maritime Acadian highlands",
+      "description": "Home to the highest tides in the world on the Bay of Fundy."
+    },
+    {
+      "id": "georgian-bay-islands",
+      "name": "Georgian Bay Islands",
+      "province": "Ontario",
+      "park_type": "national_park",
+      "established": 1930,
+      "area_km2": 14,
+      "natural_region": "Great Lakes-St. Lawrence precambrian region",
+      "description": "A scatter of small Canadian Shield islands in Georgian Bay."
+    },
+    {
+      "id": "glacier",
+      "name": "Glacier",
+      "province": "British Columbia",
+      "park_type": "national_park",
+      "established": 1886,
+      "area_km2": 1349,
+      "natural_region": "Columbia Mountains",
+      "description": "Rugged icefields and peaks including Rogers Pass and Mount Sir Donald."
+    },
+    {
+      "id": "grasslands",
+      "name": "Grasslands",
+      "province": "Saskatchewan",
+      "park_type": "national_park",
+      "established": 1981,
+      "area_km2": 730,
+      "natural_region": "Prairie grasslands",
+      "description": "Undisturbed mixed-grass prairie and badlands along the US border."
+    },
+    {
+      "id": "gros-morne",
+      "name": "Gros Morne",
+      "province": "Newfoundland and Labrador",
+      "park_type": "national_park",
+      "established": 2005,
+      "area_km2": 1805,
+      "natural_region": "Western Newfoundland highlands",
+      "description": "A UNESCO World Heritage fjord landscape exposing the earth's mantle."
+    },
+    {
+      "id": "gulf-islands",
+      "name": "Gulf Islands",
+      "province": "British Columbia",
+      "park_type": "reserve",
+      "established": 2003,
+      "area_km2": 37,
+      "natural_region": "Strait of Georgia lowlands",
+      "description": "A reserve spanning 15 islands in the Strait of Georgia."
+    },
+    {
+      "id": "gwaii-haanas",
+      "name": "Gwaii Haanas",
+      "province": "British Columbia",
+      "park_type": "reserve",
+      "established": 1988,
+      "area_km2": 1474,
+      "natural_region": "Pacific coast mountains",
+      "description": "138 islands at the southern end of Haida Gwaii."
+    },
+    {
+      "id": "ivvavik",
+      "name": "Ivvavik",
+      "province": "Yukon",
+      "park_type": "national_park",
+      "established": 1984,
+      "area_km2": 9750,
+      "natural_region": "Northern Yukon",
+      "description": "Unglaciated arctic tundra along the Firth River."
+    },
+    {
+      "id": "jasper",
+      "name": "Jasper",
+      "province": "Alberta",
+      "park_type": "national_park",
+      "established": 1907,
+      "area_km2": 11228,
+      "natural_region": "Rocky Mountains",
+      "description": "The largest Rocky Mountain park, home to the Columbia Icefield."
+    },
+    {
+      "id": "kejimkujik",
+      "name": "Kejimkujik",
+      "province": "Nova Scotia",
+      "park_type": "national_park",
+      "established": 1967,
+      "area_km2": 404,
+      "natural_region": "Atlantic coast plain",
+      "description": "Inland lakes, canoe routes, and a dark-sky preserve in southern Nova Scotia."
+    },
+    {
+      "id": "kluane",
+      "name": "Kluane",
+      "province": "Yukon",
+      "park_type": "national_park",
+      "established": 1993,
+      "area_km2": 5900,
+      "natural_region": "Northern coast mountains",
+      "description": "Home to Mount Logan, Canada's highest peak, and vast icefields."
+    },
+    {
+      "id": "kootenay",
+      "name": "Kootenay",
+      "province": "British Columbia",
+      "park_type": "national_park",
+      "established": 1920,
+      "area_km2": 1406,
+      "natural_region": "Rocky Mountains",
+      "description": "Radium Hot Springs, Numa Falls, and Floe Lake in the Rockies."
+    },
+    {
+      "id": "kouchibouguac",
+      "name": "Kouchibouguac",
+      "province": "New Brunswick",
+      "park_type": "national_park",
+      "established": 1969,
+      "area_km2": 239,
+      "natural_region": "Maritime plain",
+      "description": "Coastal dunes, lagoons, and salt marshes on the Northumberland Strait."
+    },
+    {
+      "id": "la-mauricie",
+      "name": "La Mauricie",
+      "province": "Quebec",
+      "park_type": "national_park",
+      "established": 1970,
+      "area_km2": 536,
+      "natural_region": "Great Lakes-St. Lawrence precambrian region",
+      "description": "A canoe-camping circuit of forested lakes north of Shawinigan."
+    },
+    {
+      "id": "mingan-archipelago",
+      "name": "Mingan Archipelago",
+      "province": "Quebec",
+      "park_type": "reserve",
+      "established": 1984,
+      "area_km2": 151,
+      "natural_region": "St. Lawrence lowlands",
+      "description": "Limestone sea stacks and puffin colonies along the Gulf of St. Lawrence."
+    },
+    {
+      "id": "mount-revelstoke",
+      "name": "Mount Revelstoke",
+      "province": "British Columbia",
+      "park_type": "national_park",
+      "established": 1914,
+      "area_km2": 262,
+      "natural_region": "Columbia Mountains",
+      "description": "Subalpine meadows reached by road above the city of Revelstoke."
+    },
+    {
+      "id": "naats-ihchoh",
+      "name": "Naats'ihch'oh",
+      "province": "Northwest Territories",
+      "park_type": "reserve",
+      "established": 2014,
+      "area_km2": 4850,
+      "natural_region": "Mackenzie Mountains",
+      "description": "Headwaters of the South Nahanni River watershed."
+    },
+    {
+      "id": "nahanni",
+      "name": "Nahanni",
+      "province": "Northwest Territories",
+      "park_type": "reserve",
+      "established": 1974,
+      "area_km2": 30000,
+      "natural_region": "Mackenzie Mountains",
+      "description": "Virginia Falls and a deep limestone canyon system on the South Nahanni River."
+    },
+    {
+      "id": "pacific-rim",
+      "name": "Pacific Rim",
+      "province": "British Columbia",
+      "park_type": "reserve",
+      "established": 1970,
+      "area_km2": 510,
+      "natural_region": "Pacific coast mountains",
+      "description": "Long Beach, the Broken Group Islands, and the West Coast Trail."
+    },
+    {
+      "id": "pituamkek",
+      "name": "Pituamkek",
+      "province": "Prince Edward Island",
+      "park_type": "reserve",
+      "established": 2024,
+      "area_km2": 30,
+      "natural_region": "Maritime plain",
+      "description": "A chain of barrier islands protecting PEI's northwest coast."
+    },
+    {
+      "id": "point-pelee",
+      "name": "Point Pelee",
+      "province": "Ontario",
+      "park_type": "national_park",
+      "established": 1918,
+      "area_km2": 15,
+      "natural_region": "St. Lawrence lowlands",
+      "description": "The southernmost point of mainland Canada and a migratory bird hotspot."
+    },
+    {
+      "id": "prince-albert",
+      "name": "Prince Albert",
+      "province": "Saskatchewan",
+      "park_type": "national_park",
+      "established": 1927,
+      "area_km2": 3875,
+      "natural_region": "Southern boreal plains and plateaux",
+      "description": "Fescue grassland, boreal forest, and Waskesiu Lake."
+    },
+    {
+      "id": "prince-edward-island",
+      "name": "Prince Edward Island",
+      "province": "Prince Edward Island",
+      "park_type": "national_park",
+      "established": 1937,
+      "area_km2": 27,
+      "natural_region": "Maritime plain",
+      "description": "Red sand beaches, dunes, and the setting for Anne of Green Gables."
+    },
+    {
+      "id": "pukaskwa",
+      "name": "Pukaskwa",
+      "province": "Ontario",
+      "park_type": "national_park",
+      "established": 1971,
+      "area_km2": 1878,
+      "natural_region": "Central boreal uplands",
+      "description": "The longest undeveloped Great Lakes shoreline, on Lake Superior."
+    },
+    {
+      "id": "qausuittuq",
+      "name": "Qausuittuq",
+      "province": "Nunavut",
+      "park_type": "national_park",
+      "established": 2015,
+      "area_km2": 11008,
+      "natural_region": "Western high Arctic",
+      "description": "Peary caribou and muskox habitat on Bathurst Island."
+    },
+    {
+      "id": "quttinirpaaq",
+      "name": "Quttinirpaaq",
+      "province": "Nunavut",
+      "park_type": "national_park",
+      "established": 1988,
+      "area_km2": 37775,
+      "natural_region": "Eastern high Arctic",
+      "description": "Polar desert at the northern tip of Ellesmere Island."
+    },
+    {
+      "id": "riding-mountain",
+      "name": "Riding Mountain",
+      "province": "Manitoba",
+      "park_type": "national_park",
+      "established": 1933,
+      "area_km2": 2968,
+      "natural_region": "Southern boreal plains and plateaux",
+      "description": "Boreal and aspen forest around the community of Wasagaming."
+    },
+    {
+      "id": "rouge",
+      "name": "Rouge",
+      "province": "Ontario",
+      "park_type": "urban_park",
+      "established": 2015,
+      "area_km2": 79,
+      "natural_region": "St. Lawrence lowlands",
+      "description": "An urban park along the Rouge River in the Greater Toronto Area."
+    },
+    {
+      "id": "sable-island",
+      "name": "Sable Island",
+      "province": "Nova Scotia",
+      "park_type": "reserve",
+      "established": 2013,
+      "area_km2": 30,
+      "natural_region": "Atlantic coast plain",
+      "description": "A remote sandbar known for its wild horses, off the Nova Scotia coast."
+    },
+    {
+      "id": "sirmilik",
+      "name": "Sirmilik",
+      "province": "Nunavut",
+      "park_type": "national_park",
+      "established": 2001,
+      "area_km2": 22200,
+      "natural_region": "Eastern Arctic lowlands",
+      "description": "Mountains and glaciers on Bylot Island and the Borden Peninsula."
+    },
+    {
+      "id": "terra-nova",
+      "name": "Terra Nova",
+      "province": "Newfoundland and Labrador",
+      "park_type": "national_park",
+      "established": 1957,
+      "area_km2": 399,
+      "natural_region": "Eastern Newfoundland Atlantic region",
+      "description": "Rounded hills and a rugged coastline along the Trans-Canada Highway."
+    },
+    {
+      "id": "thaidene-nene",
+      "name": "Thaidene N\u00ebn\u00e9",
+      "province": "Northwest Territories",
+      "park_type": "reserve",
+      "established": 2019,
+      "area_km2": 14305,
+      "natural_region": "Northwestern boreal uplands",
+      "description": "The East Arm of Great Slave Lake at the edge of the boreal forest."
+    },
+    {
+      "id": "thousand-islands",
+      "name": "Thousand Islands",
+      "province": "Ontario",
+      "park_type": "national_park",
+      "established": 1904,
+      "area_km2": 24,
+      "natural_region": "St. Lawrence lowlands",
+      "description": "Islands and islets scattered across the St. Lawrence River near Kingston."
+    },
+    {
+      "id": "torngat-mountains",
+      "name": "Torngat Mountains",
+      "province": "Newfoundland and Labrador",
+      "park_type": "national_park",
+      "established": 2008,
+      "area_km2": 9700,
+      "natural_region": "Northern Labrador mountains",
+      "description": "Remote coastal mountains at the northern tip of Labrador."
+    },
+    {
+      "id": "tuktut-nogait",
+      "name": "Tuktut Nogait",
+      "province": "Northwest Territories",
+      "park_type": "national_park",
+      "established": 1998,
+      "area_km2": 18181,
+      "natural_region": "Tundra hills",
+      "description": "Protects the calving grounds of the Bluenose-West caribou herd."
+    },
+    {
+      "id": "ukkusiksalik",
+      "name": "Ukkusiksalik",
+      "province": "Nunavut",
+      "park_type": "national_park",
+      "established": 2003,
+      "area_km2": 20880,
+      "natural_region": "Central tundra",
+      "description": "Surrounds Wager Bay, a polar bear denning area."
+    },
+    {
+      "id": "vuntut",
+      "name": "Vuntut",
+      "province": "Yukon",
+      "park_type": "national_park",
+      "established": 1993,
+      "area_km2": 4345,
+      "natural_region": "Northern Yukon",
+      "description": "Remote, unglaciated tundra co-managed with the Vuntut Gwitchin First Nation."
+    },
+    {
+      "id": "wapusk",
+      "name": "Wapusk",
+      "province": "Manitoba",
+      "park_type": "national_park",
+      "established": 1996,
+      "area_km2": 11475,
+      "natural_region": "Hudson-James lowlands",
+      "description": "Polar bear denning habitat near Churchill."
+    },
+    {
+      "id": "waterton-lakes",
+      "name": "Waterton Lakes",
+      "province": "Alberta",
+      "park_type": "national_park",
+      "established": 1895,
+      "area_km2": 505,
+      "natural_region": "Rocky Mountains",
+      "description": "Joined with Montana's Glacier National Park as an international peace park."
+    },
+    {
+      "id": "wood-buffalo",
+      "name": "Wood Buffalo",
+      "province": "Alberta/Northwest Territories",
+      "park_type": "national_park",
+      "established": 1922,
+      "area_km2": 44972,
+      "natural_region": "Northern boreal plains",
+      "description": "Canada's largest national park, home to wild bison herds."
+    },
+    {
+      "id": "yoho",
+      "name": "Yoho",
+      "province": "British Columbia",
+      "park_type": "national_park",
+      "established": 1886,
+      "area_km2": 1313,
+      "natural_region": "Rocky Mountains",
+      "description": "Emerald Lake, Takakkaw Falls, and the Burgess Shale fossil beds."
+    }
+  ],
+  "campgrounds": [
+    {
+      "id": 1,
+      "park_id": "banff",
+      "name": "Tunnel Mountain Village Campground",
+      "description": "A riverside campground in Banff with a mix of serviced and unserviced sites.",
+      "operating_season_start": "05-01",
+      "operating_season_end": "09-30",
+      "num_loops": 3
+    },
+    {
+      "id": 2,
+      "park_id": "banff",
+      "name": "Two Jack Lakeside Campground",
+      "description": "A open-meadow campground in Banff with a mix of serviced and unserviced sites.",
+      "operating_season_start": "05-15",
+      "operating_season_end": "10-08",
+      "num_loops": 2
+    },
+    {
+      "id": 3,
+      "park_id": "jasper",
+      "name": "Whistlers Campground",
+      "description": "A lakeside campground in Jasper with a mix of serviced and unserviced sites.",
+      "operating_season_start": "05-01",
+      "operating_season_end": "09-15",
+      "num_loops": 3
+    },
+    {
+      "id": 4,
+      "park_id": "jasper",
+      "name": "Wapiti Campground",
+      "description": "A forested campground in Jasper with a mix of serviced and unserviced sites.",
+      "operating_season_start": "05-01",
+      "operating_season_end": "10-08",
+      "num_loops": 2
+    },
+    {
+      "id": 5,
+      "park_id": "kootenay",
+      "name": "Redstreak Campground",
+      "description": "A forested campground in Kootenay with a mix of serviced and unserviced sites.",
+      "operating_season_start": "05-15",
+      "operating_season_end": "10-08",
+      "num_loops": 2
+    },
+    {
+      "id": 6,
+      "park_id": "kootenay",
+      "name": "McLeod Meadows Campground",
+      "description": "A riverside campground in Kootenay with a mix of serviced and unserviced sites.",
+      "operating_season_start": "06-01",
+      "operating_season_end": "10-08",
+      "num_loops": 3
+    },
+    {
+      "id": 7,
+      "park_id": "yoho",
+      "name": "Kicking Horse Campground",
+      "description": "A forested campground in Yoho with a mix of serviced and unserviced sites.",
+      "operating_season_start": "05-01",
+      "operating_season_end": "09-15",
+      "num_loops": 1
+    },
+    {
+      "id": 8,
+      "park_id": "yoho",
+      "name": "Monarch Campground",
+      "description": "A lakeside campground in Yoho with a mix of serviced and unserviced sites.",
+      "operating_season_start": "05-15",
+      "operating_season_end": "09-15",
+      "num_loops": 3
+    },
+    {
+      "id": 9,
+      "park_id": "waterton-lakes",
+      "name": "Townsite Campground",
+      "description": "A riverside campground in Waterton Lakes with a mix of serviced and unserviced sites.",
+      "operating_season_start": "06-01",
+      "operating_season_end": "10-08",
+      "num_loops": 3
+    },
+    {
+      "id": 10,
+      "park_id": "waterton-lakes",
+      "name": "Crandell Mountain Campground",
+      "description": "A forested campground in Waterton Lakes with a mix of serviced and unserviced sites.",
+      "operating_season_start": "05-15",
+      "operating_season_end": "09-15",
+      "num_loops": 2
+    },
+    {
+      "id": 11,
+      "park_id": "pacific-rim",
+      "name": "Green Point Campground",
+      "description": "A forested campground in Pacific Rim with a mix of serviced and unserviced sites.",
+      "operating_season_start": "06-01",
+      "operating_season_end": "09-30",
+      "num_loops": 2
+    },
+    {
+      "id": 12,
+      "park_id": "pacific-rim",
+      "name": "Long Beach Campground",
+      "description": "A open-meadow campground in Pacific Rim with a mix of serviced and unserviced sites.",
+      "operating_season_start": "06-01",
+      "operating_season_end": "09-15",
+      "num_loops": 2
+    },
+    {
+      "id": 13,
+      "park_id": "prince-edward-island",
+      "name": "Cavendish Campground",
+      "description": "A lakeside campground in Prince Edward Island with a mix of serviced and unserviced sites.",
+      "operating_season_start": "05-01",
+      "operating_season_end": "09-15",
+      "num_loops": 1
+    },
+    {
+      "id": 14,
+      "park_id": "prince-edward-island",
+      "name": "Stanhope Campground",
+      "description": "A riverside campground in Prince Edward Island with a mix of serviced and unserviced sites.",
+      "operating_season_start": "06-01",
+      "operating_season_end": "09-30",
+      "num_loops": 1
+    },
+    {
+      "id": 15,
+      "park_id": "cape-breton-highlands",
+      "name": "Broad Cove Campground",
+      "description": "A forested campground in Cape Breton Highlands with a mix of serviced and unserviced sites.",
+      "operating_season_start": "06-01",
+      "operating_season_end": "09-15",
+      "num_loops": 2
+    },
+    {
+      "id": 16,
+      "park_id": "cape-breton-highlands",
+      "name": "Ingonish Campground",
+      "description": "A lakeside campground in Cape Breton Highlands with a mix of serviced and unserviced sites.",
+      "operating_season_start": "06-01",
+      "operating_season_end": "09-15",
+      "num_loops": 2
+    },
+    {
+      "id": 17,
+      "park_id": "riding-mountain",
+      "name": "Wasagaming Campground",
+      "description": "A forested campground in Riding Mountain with a mix of serviced and unserviced sites.",
+      "operating_season_start": "05-15",
+      "operating_season_end": "09-15",
+      "num_loops": 1
+    },
+    {
+      "id": 18,
+      "park_id": "riding-mountain",
+      "name": "Lake Audy Campground",
+      "description": "A riverside campground in Riding Mountain with a mix of serviced and unserviced sites.",
+      "operating_season_start": "06-01",
+      "operating_season_end": "09-15",
+      "num_loops": 2
+    },
+    {
+      "id": 19,
+      "park_id": "gros-morne",
+      "name": "Berry Hill Campground",
+      "description": "A riverside campground in Gros Morne with a mix of serviced and unserviced sites.",
+      "operating_season_start": "06-01",
+      "operating_season_end": "09-15",
+      "num_loops": 2
+    },
+    {
+      "id": 20,
+      "park_id": "gros-morne",
+      "name": "Trout River Campground",
+      "description": "A open-meadow campground in Gros Morne with a mix of serviced and unserviced sites.",
+      "operating_season_start": "05-01",
+      "operating_season_end": "10-08",
+      "num_loops": 2
+    }
+  ],
+  "sites": [
+    {
+      "id": 1,
+      "campground_id": 1,
+      "site_number": "A59",
+      "site_type": "serviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": true,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": true,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 37.4
+    },
+    {
+      "id": 2,
+      "campground_id": 1,
+      "site_number": "C8",
+      "site_type": "serviced",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": true,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 36.93
+    },
+    {
+      "id": 3,
+      "campground_id": 1,
+      "site_number": "B10",
+      "site_type": "unserviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 28.06
+    },
+    {
+      "id": 4,
+      "campground_id": 1,
+      "site_number": "A36",
+      "site_type": "unserviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 30,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 39.61
+    },
+    {
+      "id": 5,
+      "campground_id": 2,
+      "site_number": "B10",
+      "site_type": "serviced",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": true,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": false,
+      "price_per_night_cad": 57.29
+    },
+    {
+      "id": 6,
+      "campground_id": 2,
+      "site_number": "C23",
+      "site_type": "pull-through",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 44.89
+    },
+    {
+      "id": 7,
+      "campground_id": 2,
+      "site_number": "A47",
+      "site_type": "walk-in",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 42.44
+    },
+    {
+      "id": 8,
+      "campground_id": 2,
+      "site_number": "C23",
+      "site_type": "pull-through",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 30,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 27.18
+    },
+    {
+      "id": 9,
+      "campground_id": 2,
+      "site_number": "C16",
+      "site_type": "pull-through",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 34.98
+    },
+    {
+      "id": 10,
+      "campground_id": 3,
+      "site_number": "B1",
+      "site_type": "serviced",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 25,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": false,
+      "price_per_night_cad": 61.06
+    },
+    {
+      "id": 11,
+      "campground_id": 3,
+      "site_number": "C52",
+      "site_type": "serviced",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 30,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": true,
+      "price_per_night_cad": 54.69
+    },
+    {
+      "id": 12,
+      "campground_id": 3,
+      "site_number": "A29",
+      "site_type": "serviced",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": true,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 47.34
+    },
+    {
+      "id": 13,
+      "campground_id": 3,
+      "site_number": "A40",
+      "site_type": "serviced",
+      "max_party_size": 6,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 35,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": false,
+      "price_per_night_cad": 49.28
+    },
+    {
+      "id": 14,
+      "campground_id": 4,
+      "site_number": "C55",
+      "site_type": "serviced",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": true,
+      "price_per_night_cad": 52.65
+    },
+    {
+      "id": 15,
+      "campground_id": 4,
+      "site_number": "C52",
+      "site_type": "pull-through",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 30.0
+    },
+    {
+      "id": 16,
+      "campground_id": 4,
+      "site_number": "C2",
+      "site_type": "walk-in",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 35,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 45.13
+    },
+    {
+      "id": 17,
+      "campground_id": 4,
+      "site_number": "B6",
+      "site_type": "walk-in",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 35.65
+    },
+    {
+      "id": 18,
+      "campground_id": 5,
+      "site_number": "A31",
+      "site_type": "serviced",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": true,
+      "price_per_night_cad": 58.02
+    },
+    {
+      "id": 19,
+      "campground_id": 5,
+      "site_number": "B48",
+      "site_type": "walk-in",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 37.82
+    },
+    {
+      "id": 20,
+      "campground_id": 5,
+      "site_number": "C53",
+      "site_type": "walk-in",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 35,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 36.97
+    },
+    {
+      "id": 21,
+      "campground_id": 5,
+      "site_number": "A34",
+      "site_type": "serviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": true,
+      "price_per_night_cad": 58.52
+    },
+    {
+      "id": 22,
+      "campground_id": 5,
+      "site_number": "B14",
+      "site_type": "unserviced",
+      "max_party_size": 6,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 36.89
+    },
+    {
+      "id": 23,
+      "campground_id": 5,
+      "site_number": "C23",
+      "site_type": "unserviced",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 28.62
+    },
+    {
+      "id": 24,
+      "campground_id": 6,
+      "site_number": "C4",
+      "site_type": "walk-in",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 36.15
+    },
+    {
+      "id": 25,
+      "campground_id": 6,
+      "site_number": "C39",
+      "site_type": "serviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": true,
+      "price_per_night_cad": 52.67
+    },
+    {
+      "id": 26,
+      "campground_id": 6,
+      "site_number": "C34",
+      "site_type": "walk-in",
+      "max_party_size": 6,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 33.85
+    },
+    {
+      "id": 27,
+      "campground_id": 6,
+      "site_number": "C16",
+      "site_type": "pull-through",
+      "max_party_size": 6,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 28.45
+    },
+    {
+      "id": 28,
+      "campground_id": 6,
+      "site_number": "A17",
+      "site_type": "unserviced",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 30,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 43.7
+    },
+    {
+      "id": 29,
+      "campground_id": 6,
+      "site_number": "A46",
+      "site_type": "unserviced",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 25,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 27.84
+    },
+    {
+      "id": 30,
+      "campground_id": 7,
+      "site_number": "A18",
+      "site_type": "pull-through",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 44.92
+    },
+    {
+      "id": 31,
+      "campground_id": 7,
+      "site_number": "C59",
+      "site_type": "walk-in",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 41.99
+    },
+    {
+      "id": 32,
+      "campground_id": 7,
+      "site_number": "A18",
+      "site_type": "unserviced",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 27.33
+    },
+    {
+      "id": 33,
+      "campground_id": 7,
+      "site_number": "C27",
+      "site_type": "serviced",
+      "max_party_size": 6,
+      "max_vehicles": 1,
+      "is_accessible": true,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": true,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 55.38
+    },
+    {
+      "id": 34,
+      "campground_id": 7,
+      "site_number": "A13",
+      "site_type": "pull-through",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 34.91
+    },
+    {
+      "id": 35,
+      "campground_id": 8,
+      "site_number": "C54",
+      "site_type": "walk-in",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 25,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 29.97
+    },
+    {
+      "id": 36,
+      "campground_id": 8,
+      "site_number": "B4",
+      "site_type": "unserviced",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": true,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 25,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 34.61
+    },
+    {
+      "id": 37,
+      "campground_id": 8,
+      "site_number": "C43",
+      "site_type": "serviced",
+      "max_party_size": 6,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": false,
+      "price_per_night_cad": 45.71
+    },
+    {
+      "id": 38,
+      "campground_id": 8,
+      "site_number": "A17",
+      "site_type": "pull-through",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 26.69
+    },
+    {
+      "id": 39,
+      "campground_id": 8,
+      "site_number": "B12",
+      "site_type": "pull-through",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 35,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 39.12
+    },
+    {
+      "id": 40,
+      "campground_id": 8,
+      "site_number": "A17",
+      "site_type": "unserviced",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 26.45
+    },
+    {
+      "id": 41,
+      "campground_id": 9,
+      "site_number": "A59",
+      "site_type": "serviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": true,
+      "price_per_night_cad": 43.7
+    },
+    {
+      "id": 42,
+      "campground_id": 9,
+      "site_number": "B54",
+      "site_type": "serviced",
+      "max_party_size": 6,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": true,
+      "price_per_night_cad": 51.79
+    },
+    {
+      "id": 43,
+      "campground_id": 9,
+      "site_number": "C58",
+      "site_type": "serviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 30,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": true,
+      "price_per_night_cad": 47.04
+    },
+    {
+      "id": 44,
+      "campground_id": 9,
+      "site_number": "A15",
+      "site_type": "serviced",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 30,
+      "electrical_hookup": true,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 54.21
+    },
+    {
+      "id": 45,
+      "campground_id": 10,
+      "site_number": "C19",
+      "site_type": "serviced",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 35,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": false,
+      "price_per_night_cad": 45.99
+    },
+    {
+      "id": 46,
+      "campground_id": 10,
+      "site_number": "B5",
+      "site_type": "serviced",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": true,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 37.49
+    },
+    {
+      "id": 47,
+      "campground_id": 10,
+      "site_number": "B9",
+      "site_type": "serviced",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": false,
+      "price_per_night_cad": 51.96
+    },
+    {
+      "id": 48,
+      "campground_id": 10,
+      "site_number": "A11",
+      "site_type": "walk-in",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 34.32
+    },
+    {
+      "id": 49,
+      "campground_id": 10,
+      "site_number": "A54",
+      "site_type": "walk-in",
+      "max_party_size": 6,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 30,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 28.4
+    },
+    {
+      "id": 50,
+      "campground_id": 11,
+      "site_number": "C5",
+      "site_type": "serviced",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 25,
+      "electrical_hookup": true,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 38.03
+    },
+    {
+      "id": 51,
+      "campground_id": 11,
+      "site_number": "A18",
+      "site_type": "pull-through",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 30,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 43.69
+    },
+    {
+      "id": 52,
+      "campground_id": 11,
+      "site_number": "C6",
+      "site_type": "walk-in",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 25,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 35.71
+    },
+    {
+      "id": 53,
+      "campground_id": 11,
+      "site_number": "B27",
+      "site_type": "unserviced",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 25,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 34.12
+    },
+    {
+      "id": 54,
+      "campground_id": 11,
+      "site_number": "B36",
+      "site_type": "unserviced",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": true,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 30.16
+    },
+    {
+      "id": 55,
+      "campground_id": 12,
+      "site_number": "A36",
+      "site_type": "walk-in",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": true,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 32.39
+    },
+    {
+      "id": 56,
+      "campground_id": 12,
+      "site_number": "C13",
+      "site_type": "pull-through",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 33.54
+    },
+    {
+      "id": 57,
+      "campground_id": 12,
+      "site_number": "B18",
+      "site_type": "pull-through",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": true,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 38.59
+    },
+    {
+      "id": 58,
+      "campground_id": 12,
+      "site_number": "B58",
+      "site_type": "unserviced",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 45.08
+    },
+    {
+      "id": 59,
+      "campground_id": 12,
+      "site_number": "C49",
+      "site_type": "serviced",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": true,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 35,
+      "electrical_hookup": true,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 53.11
+    },
+    {
+      "id": 60,
+      "campground_id": 13,
+      "site_number": "A1",
+      "site_type": "serviced",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 25,
+      "electrical_hookup": true,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 55.25
+    },
+    {
+      "id": 61,
+      "campground_id": 13,
+      "site_number": "C49",
+      "site_type": "pull-through",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": true,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 35,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 29.83
+    },
+    {
+      "id": 62,
+      "campground_id": 13,
+      "site_number": "C1",
+      "site_type": "pull-through",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 25,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 38.89
+    },
+    {
+      "id": 63,
+      "campground_id": 13,
+      "site_number": "C16",
+      "site_type": "unserviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": true,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 25,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 27.11
+    },
+    {
+      "id": 64,
+      "campground_id": 14,
+      "site_number": "A32",
+      "site_type": "pull-through",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 35.3
+    },
+    {
+      "id": 65,
+      "campground_id": 14,
+      "site_number": "A40",
+      "site_type": "pull-through",
+      "max_party_size": 6,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 44.98
+    },
+    {
+      "id": 66,
+      "campground_id": 14,
+      "site_number": "A14",
+      "site_type": "unserviced",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 33.87
+    },
+    {
+      "id": 67,
+      "campground_id": 14,
+      "site_number": "A60",
+      "site_type": "pull-through",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 36.5
+    },
+    {
+      "id": 68,
+      "campground_id": 15,
+      "site_number": "A4",
+      "site_type": "pull-through",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 30,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 29.86
+    },
+    {
+      "id": 69,
+      "campground_id": 15,
+      "site_number": "A41",
+      "site_type": "pull-through",
+      "max_party_size": 6,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 33.51
+    },
+    {
+      "id": 70,
+      "campground_id": 15,
+      "site_number": "A17",
+      "site_type": "walk-in",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 31.45
+    },
+    {
+      "id": 71,
+      "campground_id": 15,
+      "site_number": "B20",
+      "site_type": "serviced",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": true,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 30,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": true,
+      "price_per_night_cad": 56.31
+    },
+    {
+      "id": 72,
+      "campground_id": 15,
+      "site_number": "B59",
+      "site_type": "walk-in",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": true,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 42.05
+    },
+    {
+      "id": 73,
+      "campground_id": 16,
+      "site_number": "C6",
+      "site_type": "walk-in",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 30,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 27.29
+    },
+    {
+      "id": 74,
+      "campground_id": 16,
+      "site_number": "B57",
+      "site_type": "serviced",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": false,
+      "price_per_night_cad": 50.42
+    },
+    {
+      "id": 75,
+      "campground_id": 16,
+      "site_number": "A9",
+      "site_type": "walk-in",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 35,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 42.94
+    },
+    {
+      "id": 76,
+      "campground_id": 16,
+      "site_number": "C18",
+      "site_type": "serviced",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": true,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 39.71
+    },
+    {
+      "id": 77,
+      "campground_id": 16,
+      "site_number": "B57",
+      "site_type": "unserviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 36.15
+    },
+    {
+      "id": 78,
+      "campground_id": 17,
+      "site_number": "A24",
+      "site_type": "unserviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 28.12
+    },
+    {
+      "id": 79,
+      "campground_id": 17,
+      "site_number": "A24",
+      "site_type": "pull-through",
+      "max_party_size": 6,
+      "max_vehicles": 1,
+      "is_accessible": true,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 37.99
+    },
+    {
+      "id": 80,
+      "campground_id": 17,
+      "site_number": "B27",
+      "site_type": "unserviced",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 30.07
+    },
+    {
+      "id": 81,
+      "campground_id": 17,
+      "site_number": "A27",
+      "site_type": "walk-in",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 35,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 27.82
+    },
+    {
+      "id": 82,
+      "campground_id": 18,
+      "site_number": "A28",
+      "site_type": "walk-in",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": true,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 35,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 43.66
+    },
+    {
+      "id": 83,
+      "campground_id": 18,
+      "site_number": "A1",
+      "site_type": "walk-in",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 37.46
+    },
+    {
+      "id": 84,
+      "campground_id": 18,
+      "site_number": "A23",
+      "site_type": "pull-through",
+      "max_party_size": 6,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 33.67
+    },
+    {
+      "id": 85,
+      "campground_id": 18,
+      "site_number": "A54",
+      "site_type": "unserviced",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 30,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 27.73
+    },
+    {
+      "id": 86,
+      "campground_id": 18,
+      "site_number": "C26",
+      "site_type": "unserviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 26.83
+    },
+    {
+      "id": 87,
+      "campground_id": 18,
+      "site_number": "B8",
+      "site_type": "unserviced",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 26.82
+    },
+    {
+      "id": 88,
+      "campground_id": 19,
+      "site_number": "C29",
+      "site_type": "pull-through",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": true,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 30,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 30.71
+    },
+    {
+      "id": 89,
+      "campground_id": 19,
+      "site_number": "B26",
+      "site_type": "walk-in",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": true,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 42.05
+    },
+    {
+      "id": 90,
+      "campground_id": 19,
+      "site_number": "C21",
+      "site_type": "serviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": true,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": true,
+      "water_hookup": true,
+      "sewer_hookup": false,
+      "price_per_night_cad": 49.56
+    },
+    {
+      "id": 91,
+      "campground_id": 19,
+      "site_number": "A40",
+      "site_type": "unserviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 35.84
+    },
+    {
+      "id": 92,
+      "campground_id": 19,
+      "site_number": "A54",
+      "site_type": "unserviced",
+      "max_party_size": 6,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": 25,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 44.1
+    },
+    {
+      "id": 93,
+      "campground_id": 20,
+      "site_number": "A51",
+      "site_type": "pull-through",
+      "max_party_size": 6,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 25,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 45.32
+    },
+    {
+      "id": 94,
+      "campground_id": 20,
+      "site_number": "B35",
+      "site_type": "walk-in",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 33.51
+    },
+    {
+      "id": 95,
+      "campground_id": 20,
+      "site_number": "B22",
+      "site_type": "pull-through",
+      "max_party_size": 4,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "RV"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 31.93
+    },
+    {
+      "id": 96,
+      "campground_id": 20,
+      "site_number": "C56",
+      "site_type": "pull-through",
+      "max_party_size": 8,
+      "max_vehicles": 2,
+      "is_accessible": false,
+      "is_pet_friendly": false,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 28.99
+    },
+    {
+      "id": 97,
+      "campground_id": 20,
+      "site_number": "C24",
+      "site_type": "walk-in",
+      "max_party_size": 4,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "tent",
+        "trailer"
+      ],
+      "max_equipment_length_ft": null,
+      "electrical_hookup": false,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 26.45
+    },
+    {
+      "id": 98,
+      "campground_id": 20,
+      "site_number": "C23",
+      "site_type": "serviced",
+      "max_party_size": 8,
+      "max_vehicles": 1,
+      "is_accessible": false,
+      "is_pet_friendly": true,
+      "equipment_allowed": [
+        "RV",
+        "trailer"
+      ],
+      "max_equipment_length_ft": 20,
+      "electrical_hookup": true,
+      "water_hookup": false,
+      "sewer_hookup": false,
+      "price_per_night_cad": 40.08
+    }
+  ],
+  "accommodations": [
+    {
+      "id": 1,
+      "campground_id": 1,
+      "park_id": "banff",
+      "type": "cabin",
+      "name": "cabin at Tunnel Mountain Village",
+      "sleeps_min": 3,
+      "sleeps_max": 5,
+      "amenities": [
+        "screened windows",
+        "raised sleeping platforms",
+        "electric lighting",
+        "fire pit",
+        "under-bed storage"
+      ],
+      "is_pet_friendly": false,
+      "is_accessible": false,
+      "price_per_night_cad": 143.08,
+      "num_units": 12
+    },
+    {
+      "id": 2,
+      "campground_id": 2,
+      "park_id": "banff",
+      "type": "yurt",
+      "name": "yurt at Two Jack Lakeside",
+      "sleeps_min": 3,
+      "sleeps_max": 5,
+      "amenities": [
+        "under-bed storage",
+        "adirondack chairs",
+        "raised sleeping platforms",
+        "heater",
+        "electric lighting"
+      ],
+      "is_pet_friendly": false,
+      "is_accessible": false,
+      "price_per_night_cad": 117.31,
+      "num_units": 5
+    },
+    {
+      "id": 3,
+      "campground_id": 3,
+      "park_id": "jasper",
+      "type": "microcube",
+      "name": "microcube at Whistlers",
+      "sleeps_min": 3,
+      "sleeps_max": 5,
+      "amenities": [
+        "screened windows",
+        "under-bed storage",
+        "electric lighting",
+        "picnic table",
+        "fire pit"
+      ],
+      "is_pet_friendly": true,
+      "is_accessible": false,
+      "price_per_night_cad": 119.86,
+      "num_units": 6
+    },
+    {
+      "id": 4,
+      "campground_id": 5,
+      "park_id": "kootenay",
+      "type": "oTENTik",
+      "name": "oTENTik at Redstreak",
+      "sleeps_min": 3,
+      "sleeps_max": 5,
+      "amenities": [
+        "electric lighting",
+        "picnic table",
+        "BBQ",
+        "fire pit",
+        "raised sleeping platforms"
+      ],
+      "is_pet_friendly": true,
+      "is_accessible": false,
+      "price_per_night_cad": 109.03,
+      "num_units": 4
+    },
+    {
+      "id": 5,
+      "campground_id": 6,
+      "park_id": "kootenay",
+      "type": "cabin",
+      "name": "cabin at McLeod Meadows",
+      "sleeps_min": 4,
+      "sleeps_max": 6,
+      "amenities": [
+        "screened windows",
+        "under-bed storage",
+        "raised sleeping platforms",
+        "picnic table",
+        "heater"
+      ],
+      "is_pet_friendly": false,
+      "is_accessible": false,
+      "price_per_night_cad": 138.42,
+      "num_units": 5
+    },
+    {
+      "id": 6,
+      "campground_id": 7,
+      "park_id": "yoho",
+      "type": "cabin",
+      "name": "cabin at Kicking Horse",
+      "sleeps_min": 3,
+      "sleeps_max": 5,
+      "amenities": [
+        "picnic table",
+        "adirondack chairs",
+        "under-bed storage",
+        "BBQ",
+        "raised sleeping platforms"
+      ],
+      "is_pet_friendly": false,
+      "is_accessible": false,
+      "price_per_night_cad": 114.21,
+      "num_units": 11
+    },
+    {
+      "id": 7,
+      "campground_id": 8,
+      "park_id": "yoho",
+      "type": "yurt",
+      "name": "yurt at Monarch",
+      "sleeps_min": 2,
+      "sleeps_max": 4,
+      "amenities": [
+        "under-bed storage",
+        "electric lighting",
+        "raised sleeping platforms",
+        "BBQ",
+        "adirondack chairs"
+      ],
+      "is_pet_friendly": false,
+      "is_accessible": false,
+      "price_per_night_cad": 173.85,
+      "num_units": 6
+    },
+    {
+      "id": 8,
+      "campground_id": 9,
+      "park_id": "waterton-lakes",
+      "type": "oTENTik",
+      "name": "oTENTik at Townsite",
+      "sleeps_min": 4,
+      "sleeps_max": 6,
+      "amenities": [
+        "heater",
+        "fire pit",
+        "adirondack chairs",
+        "screened windows",
+        "electric lighting"
+      ],
+      "is_pet_friendly": true,
+      "is_accessible": false,
+      "price_per_night_cad": 122.83,
+      "num_units": 6
+    },
+    {
+      "id": 9,
+      "campground_id": 13,
+      "park_id": "prince-edward-island",
+      "type": "microcube",
+      "name": "microcube at Cavendish",
+      "sleeps_min": 2,
+      "sleeps_max": 4,
+      "amenities": [
+        "adirondack chairs",
+        "heater",
+        "raised sleeping platforms",
+        "screened windows",
+        "electric lighting"
+      ],
+      "is_pet_friendly": true,
+      "is_accessible": true,
+      "price_per_night_cad": 125.35,
+      "num_units": 10
+    },
+    {
+      "id": 10,
+      "campground_id": 14,
+      "park_id": "prince-edward-island",
+      "type": "cabin",
+      "name": "cabin at Stanhope",
+      "sleeps_min": 4,
+      "sleeps_max": 6,
+      "amenities": [
+        "BBQ",
+        "raised sleeping platforms",
+        "electric lighting",
+        "heater",
+        "fire pit"
+      ],
+      "is_pet_friendly": true,
+      "is_accessible": true,
+      "price_per_night_cad": 106.06,
+      "num_units": 10
+    },
+    {
+      "id": 11,
+      "campground_id": 16,
+      "park_id": "cape-breton-highlands",
+      "type": "oTENTik",
+      "name": "oTENTik at Ingonish",
+      "sleeps_min": 4,
+      "sleeps_max": 6,
+      "amenities": [
+        "screened windows",
+        "picnic table",
+        "under-bed storage",
+        "BBQ",
+        "heater"
+      ],
+      "is_pet_friendly": false,
+      "is_accessible": false,
+      "price_per_night_cad": 133.62,
+      "num_units": 9
+    },
+    {
+      "id": 12,
+      "campground_id": 17,
+      "park_id": "riding-mountain",
+      "type": "cabin",
+      "name": "cabin at Wasagaming",
+      "sleeps_min": 3,
+      "sleeps_max": 5,
+      "amenities": [
+        "adirondack chairs",
+        "under-bed storage",
+        "heater",
+        "picnic table",
+        "electric lighting"
+      ],
+      "is_pet_friendly": false,
+      "is_accessible": false,
+      "price_per_night_cad": 131.06,
+      "num_units": 4
+    },
+    {
+      "id": 13,
+      "campground_id": 18,
+      "park_id": "riding-mountain",
+      "type": "oTENTik",
+      "name": "oTENTik at Lake Audy",
+      "sleeps_min": 4,
+      "sleeps_max": 6,
+      "amenities": [
+        "raised sleeping platforms",
+        "fire pit",
+        "heater",
+        "adirondack chairs",
+        "BBQ"
+      ],
+      "is_pet_friendly": false,
+      "is_accessible": false,
+      "price_per_night_cad": 122.97,
+      "num_units": 10
+    },
+    {
+      "id": 14,
+      "campground_id": 19,
+      "park_id": "gros-morne",
+      "type": "cabin",
+      "name": "cabin at Berry Hill",
+      "sleeps_min": 4,
+      "sleeps_max": 6,
+      "amenities": [
+        "screened windows",
+        "heater",
+        "adirondack chairs",
+        "electric lighting",
+        "BBQ"
+      ],
+      "is_pet_friendly": false,
+      "is_accessible": false,
+      "price_per_night_cad": 102.76,
+      "num_units": 6
+    },
+    {
+      "id": 15,
+      "campground_id": 20,
+      "park_id": "gros-morne",
+      "type": "microcube",
+      "name": "microcube at Trout River",
+      "sleeps_min": 2,
+      "sleeps_max": 4,
+      "amenities": [
+        "electric lighting",
+        "picnic table",
+        "BBQ",
+        "fire pit",
+        "raised sleeping platforms"
+      ],
+      "is_pet_friendly": false,
+      "is_accessible": true,
+      "price_per_night_cad": 110.85,
+      "num_units": 8
+    }
+  ]
+}
