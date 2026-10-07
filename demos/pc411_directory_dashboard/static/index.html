@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PC411 | Organization Tree</title>
+  <style>
+    :root { --ink:#17324d; --blue:#1769aa; --green:#237a57; --cream:#f6f3eb; --panel:#fff; --line:#d8e0dc; --muted:#607284; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:linear-gradient(135deg,#eff7f5,#f8f5ee); color:var(--ink); font:16px/1.5 Inter,system-ui,sans-serif; }
+    header { background:var(--ink); color:#fff; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand { font-weight:800; font-size:1.15rem; letter-spacing:.02em; }
+    .badge { border:1px solid #6ca68f; color:#d9f2e5; padding:5px 10px; border-radius:999px; font-size:.8rem; }
+    main { max-width:1180px; margin:auto; padding:34px 22px 60px; }
+    .hero { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:24px; }
+    h1 { font-size:clamp(2rem,4vw,3.2rem); line-height:1.05; margin:0; }
+    p { color:var(--muted); max-width:680px; margin:12px 0 0; }
+    button { min-height:40px; border:1px solid var(--line); border-radius:9px; padding:8px 13px; font:inherit; font-weight:750; cursor:pointer; background:#edf3f5; color:var(--ink); }
+    button:hover { filter:brightness(.96); }
+    .tree-panel { background:rgba(255,255,255,.95); border:1px solid var(--line); border-radius:16px; box-shadow:0 12px 32px rgba(31,71,74,.08); padding:22px; overflow:auto; }
+    .tree { min-width:max-content; }
+    ul { list-style:none; padding-left:25px; margin:0; }
+    .tree > ul { padding-left:0; }
+    li { position:relative; padding:7px 0 0 19px; }
+    li::before { content:""; position:absolute; top:0; left:0; height:100%; border-left:1px solid #b8cbc3; }
+    li::after { content:""; position:absolute; top:23px; left:0; width:13px; border-top:1px solid #b8cbc3; }
+    .tree > ul > li::before, .tree > ul > li::after { display:none; }
+    details > summary { list-style:none; }
+    summary::-webkit-details-marker { display:none; }
+    .node { display:inline-flex; align-items:center; gap:9px; min-height:40px; border:1px solid var(--line); border-left:5px solid var(--green); border-radius:9px; padding:7px 11px; background:#fcfffd; cursor:pointer; }
+    .node:hover { border-color:#91b8a8; }
+    .node strong { font-size:.96rem; }
+    .count { background:#e6f5ed; color:#1d6848; padding:2px 7px; border-radius:99px; font-size:.75rem; font-weight:800; white-space:nowrap; }
+    .people { display:grid; gap:6px; margin:8px 0 4px; padding-left:4px; }
+    .person { border-left:3px solid var(--blue); padding:5px 9px; background:#f4f8fb; border-radius:4px; color:var(--ink); font-size:.88rem; }
+    .person span { color:var(--muted); }
+    .empty, .error { padding:28px; text-align:center; color:var(--muted); }
+    .error { color:#9d3526; }
+    @media(max-width:650px) { header { padding:15px; } main { padding:25px 14px; } .hero { display:block; } .hero button { margin-top:16px; } .tree-panel { padding:14px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Parks Canada <span style="font-weight:400;opacity:.7">| PC411</span></div>
+    <div class="badge">Synthetic directory data</div>
+  </header>
+  <main>
+    <div class="hero">
+      <div><h1>Organization tree</h1><p>Explore the PC411 organizational structure. Expand a branch to view its teams; each badge shows the synthetic directory contacts assigned directly to that organization.</p></div>
+      <button type="button" onclick="loadTree()">Refresh tree</button>
+    </div>
+    <section class="tree-panel"><div id="tree" class="empty">Loading organization tree…</div></section>
+  </main>
+  <script>
+    const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+    function renderNode(node) {
+      const people = Array.isArray(node.people) ? node.people : [];
+      const children = Array.isArray(node.children) ? node.children : [];
+      const label = `<span class="node"><strong>${escapeHtml(node.name)}</strong><span class="count">${node.people_count} contact${node.people_count === 1 ? '' : 's'}</span></span>`;
+      const peopleMarkup = people.length ? `<div class="people">${people.map(person => `<div class="person"><strong>${escapeHtml(person.name)}</strong> <span>— ${escapeHtml(person.title)}</span></div>`).join('')}</div>` : '';
+      if (!children.length && !people.length) return `<li>${label}</li>`;
+      return `<li><details open><summary>${label}</summary>${peopleMarkup}${children.length ? `<ul>${children.map(renderNode).join('')}</ul>` : ''}</details></li>`;
+    }
+    async function loadTree() {
+      const root = document.getElementById('tree');
+      root.className = 'empty';
+      root.textContent = 'Loading organization tree…';
+      try {
+        const response = await fetch('/api/organization-tree');
+        if (!response.ok) throw new Error('Unable to load the organization tree.');
+        const data = await response.json();
+        root.className = 'tree';
+        root.innerHTML = data.roots.length ? `<ul>${data.roots.map(renderNode).join('')}</ul>` : '<div class="empty">No PC411 organization data has been imported yet.</div>';
+      } catch (error) {
+        root.className = 'error';
+        root.textContent = error.message;
+      }
+    }
+    loadTree();
+  </script>
+</body>
+</html>

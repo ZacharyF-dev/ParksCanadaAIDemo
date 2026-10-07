@@ -10,14 +10,17 @@ from app.config import PROJECT_ROOT
 
 DASHBOARD_DIR = PROJECT_ROOT / "dashboard_static"
 SERVICES = [
-    {"name": "Jira Board", "description": "Local ticket-management dashboard", "url": "http://127.0.0.1:8001", "health": "http://127.0.0.1:8000/health"},
-    {"name": "JiraLite Agent", "description": "Chainlit agent with Jira MCP tools", "url": "http://127.0.0.1:8002", "health": "http://127.0.0.1:8002"},
-    {"name": "Knowledge Base Agent", "description": "Chainlit agent using only the Markdown RAG MCP tool", "url": "http://127.0.0.1:8007", "health": "http://127.0.0.1:8007"},
-    {"name": "Workspace Agent", "description": "Chainlit agent using Jira, RAG, and synthetic directory MCP tools", "url": "http://127.0.0.1:8005", "health": "http://127.0.0.1:8005"},
-    {"name": "Parks Canada Booking Agent", "description": "Persistent-chat booking demo using the local Parks Canada MCP", "url": "http://127.0.0.1:8009", "health": "http://127.0.0.1:8009"},
-    {"name": "Parks Booking Dashboard", "description": "Availability explorer and live bookings display for the Parks Canada demo", "url": "http://127.0.0.1:8010", "health": "http://127.0.0.1:8010"},
-    {"name": "Markdown RAG MCP", "description": "Local vector search over Markdown knowledge", "url": "http://127.0.0.1:8003/mcp", "health": "http://127.0.0.1:8003/health"},
-    {"name": "Synthetic PC411 Directory MCP", "description": "Fictional organization and people directory", "url": "http://127.0.0.1:8004/mcp", "health": "http://127.0.0.1:8004/health"},
+    {"name": "Jira Board", "description": "Local ticket-management dashboard", "url": "http://127.0.0.1:8001", "health": "http://127.0.0.1:8000/health", "category": "application"},
+    {"name": "Jira Chat", "description": "Chat interface for Jira tickets and updates", "url": "http://127.0.0.1:8002", "health": "http://127.0.0.1:8002", "category": "chatbot"},
+    {"name": "Knowledge Chat", "description": "Chat interface for the Markdown knowledge base", "url": "http://127.0.0.1:8007", "health": "http://127.0.0.1:8007", "category": "chatbot"},
+    {"name": "Workspace Chat", "description": "Chat interface for Jira, knowledge, and directory tasks", "url": "http://127.0.0.1:8005", "health": "http://127.0.0.1:8005", "category": "chatbot"},
+    {"name": "Parks Booking Chat", "description": "Chat interface for searching and reserving demo sites", "url": "http://127.0.0.1:8009", "health": "http://127.0.0.1:8009", "category": "chatbot"},
+    {"name": "Parks Booking Dashboard", "description": "Availability explorer and live booking display", "url": "http://127.0.0.1:8010", "health": "http://127.0.0.1:8010", "category": "application"},
+    {"name": "PC411 Organization Dashboard", "description": "Expandable synthetic organization tree with names and titles", "url": "http://127.0.0.1:8011", "health": "http://127.0.0.1:8011", "category": "application"},
+    {"name": "Jira MCP", "description": "Ticket-management tools for local clients", "url": "http://127.0.0.1:8000/mcp", "health": "http://127.0.0.1:8000/health", "category": "mcp"},
+    {"name": "Markdown Knowledge MCP", "description": "Search tools for local Markdown knowledge", "url": "http://127.0.0.1:8003/mcp", "health": "http://127.0.0.1:8003/health", "category": "mcp"},
+    {"name": "PC411 Directory MCP", "description": "Tools for the synthetic organization directory", "url": "http://127.0.0.1:8004/mcp", "health": "http://127.0.0.1:8004/health", "category": "mcp"},
+    {"name": "Parks Booking MCP", "description": "Search and booking tools for the local demo", "url": "http://127.0.0.1:8008/mcp", "health": "http://127.0.0.1:8008/health", "category": "mcp"},
 ]
 
 

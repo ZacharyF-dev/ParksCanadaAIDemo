@@ -3,10 +3,11 @@ from __future__ import annotations
 from collections.abc import Awaitable, Callable
 from typing import Any, Mapping, cast
 
-from agent_framework import Agent, AgentSession, FunctionInvocationContext, FunctionMiddleware, MCPStreamableHTTPTool
+from agent_framework import Agent, AgentSession, FunctionInvocationContext, FunctionMiddleware, FunctionTool, MCPStreamableHTTPTool
 from agent_framework.openai import OpenAIChatClient
 from azure.identity.aio import DefaultAzureCredential
 
+from app.time_tools import get_current_local_time
 from knowledge_agent.settings import settings
 
 INSTRUCTIONS = """
@@ -14,6 +15,7 @@ You are an internal IT Helpdesk assistant for Parks Canada staff.
 
 Scope:
 - This assistant supports Parks Canada work devices only.
+- Use the current-time tool when asked for the current date or time. State that its result is the server's local time, including its UTC offset.
 - Never ask whether a device is personal or work-owned, and never offer "personal device" as an option in any clarifying question — assume every device in scope is a Parks Canada work device.
 
 Language:
@@ -136,5 +138,10 @@ async def run_agent(
                 middleware=middleware,
             ) as agent:
                 active_session = session or agent.create_session()
-                result = await agent.run(message, session=active_session, tools=rag_tools)
+                current_time_tool = FunctionTool(
+                    name="get_current_local_time",
+                    description="Get the server's current local date and time with its UTC offset.",
+                    func=get_current_local_time,
+                )
+                result = await agent.run(message, session=active_session, tools=[rag_tools, current_time_tool])
                 return str(result), active_session

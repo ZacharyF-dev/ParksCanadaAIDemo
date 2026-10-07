@@ -39,7 +39,7 @@ Future MCP implementations should be added under `servers/` or `packages/`, whil
 
 ## Parks Canada booking MCP demo
 
-`servers/parks_canada_booking_mcp/` is a standalone, local-only booking demo based on a simplified Parks Canada reservation flow. It includes 49 seeded parks, 20 campgrounds, 98 campsites, and 15 roofed accommodations. It is demo data only; it has no connection to the real Parks Canada Reservation Service.
+`servers/parks_canada_booking_mcp/` is a standalone, local-only booking demo based on a simplified Parks Canada reservation flow. It includes 10 seeded parks, 20 campgrounds, 98 campsites, and 15 roofed accommodations. Campgrounds are available year-round in the demo seed data, so every month has campsite availability. It is demo data only; it has no connection to the real Parks Canada Reservation Service.
 
 The source data is stored in `data/parks_canada_seed_data.json`. Initialize or reset the local booking database with:
 
@@ -86,6 +86,10 @@ Open `http://127.0.0.1:8009`. Example flow:
 
 The agent searches before recommending units and requests explicit confirmation before it creates or cancels a reservation.
 
+### Current time in the AI demos
+
+All four Agent Framework chat demos (JiraLite, Knowledge Base, Local Workspace, and Parks Canada booking) can answer current-date and current-time questions. They retrieve the value at request time from the host server and present it as the server's local time with its UTC offset.
+
 ### Parks Canada booking dashboard
 
 `demos/parks_booking_dashboard/` is a presenter-friendly companion website for the booking chat. It is available at `http://127.0.0.1:8010` when running `python run.py`, and can be started independently with:
@@ -95,6 +99,16 @@ parks-booking-dashboard
 ```
 
 It provides a visual availability explorer that shows open date ranges by site/accommodation, along with a live reservation board that updates as bookings are created in the agent chat. This makes the search and booking state easy to demonstrate to a non-technical audience.
+
+### PC411 organization dashboard
+
+`demos/pc411_directory_dashboard/` provides a simple, local-only visualization of the imported synthetic PC411 organization hierarchy. It is available at `http://127.0.0.1:8011` when running `python run.py`, or can be started independently with:
+
+```powershell
+pc411-directory-dashboard
+```
+
+Initialize the PC411 directory before opening the dashboard. The tree can be expanded or collapsed by organization and displays the number of synthetic contacts assigned directly to each team.
 
 ## Markdown RAG MCP server
 
@@ -246,7 +260,7 @@ source .venv/bin/activate
 Install the project:
 
 ```bash
-pip install -e .
+python.exe -m pip install -e .
 ```
 
 ### Azure AI Foundry configuration

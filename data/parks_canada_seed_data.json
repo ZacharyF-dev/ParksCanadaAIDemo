@@ -1,36 +1,6 @@
 {
   "parks": [
     {
-      "id": "akami-uapishku-kakkasuak-mealy-mountains",
-      "name": "Akami-Uapishk\u1d58-KakKasuak-Mealy Mountains",
-      "province": "Newfoundland and Labrador",
-      "park_type": "reserve",
-      "established": 2015,
-      "area_km2": 10700,
-      "natural_region": "East coast boreal",
-      "description": "Glacially rounded highlands and coastal beaches along the Labrador Sea."
-    },
-    {
-      "id": "aulavik",
-      "name": "Aulavik",
-      "province": "Northwest Territories",
-      "park_type": "national_park",
-      "established": 1992,
-      "area_km2": 12200,
-      "natural_region": "Western arctic lowlands",
-      "description": "Treeless polar desert on Banks Island, home to large muskox herds."
-    },
-    {
-      "id": "auyuittuq",
-      "name": "Auyuittuq",
-      "province": "Nunavut",
-      "park_type": "national_park",
-      "established": 2001,
-      "area_km2": 19089,
-      "natural_region": "Northern Davis region",
-      "description": "Rugged Arctic peaks on Baffin Island, mostly within the Arctic Circle."
-    },
-    {
       "id": "banff",
       "name": "Banff",
       "province": "Alberta",
@@ -39,16 +9,6 @@
       "area_km2": 6641,
       "natural_region": "Rocky Mountains",
       "description": "Canada's first national park, home to Lake Louise and the Icefields Parkway."
-    },
-    {
-      "id": "bruce-peninsula",
-      "name": "Bruce Peninsula",
-      "province": "Ontario",
-      "park_type": "national_park",
-      "established": 1987,
-      "area_km2": 125,
-      "natural_region": "St. Lawrence lowlands",
-      "description": "Niagara Escarpment shoreline with turquoise waters and the Bruce Trail."
     },
     {
       "id": "cape-breton-highlands",
@@ -61,66 +21,6 @@
       "description": "Atlantic Canada's oldest park, home to the Cabot Trail."
     },
     {
-      "id": "elk-island",
-      "name": "Elk Island",
-      "province": "Alberta",
-      "park_type": "national_park",
-      "established": 1913,
-      "area_km2": 194,
-      "natural_region": "Southern boreal plains and plateaux",
-      "description": "A wildlife sanctuary known for its bison conservation program."
-    },
-    {
-      "id": "forillon",
-      "name": "Forillon",
-      "province": "Quebec",
-      "park_type": "national_park",
-      "established": 1970,
-      "area_km2": 240,
-      "natural_region": "Notre Dame and Megantic Mountains",
-      "description": "Coastal cliffs and forest at the tip of the Gaspe Peninsula."
-    },
-    {
-      "id": "fundy",
-      "name": "Fundy",
-      "province": "New Brunswick",
-      "park_type": "national_park",
-      "established": 1948,
-      "area_km2": 206,
-      "natural_region": "Maritime Acadian highlands",
-      "description": "Home to the highest tides in the world on the Bay of Fundy."
-    },
-    {
-      "id": "georgian-bay-islands",
-      "name": "Georgian Bay Islands",
-      "province": "Ontario",
-      "park_type": "national_park",
-      "established": 1930,
-      "area_km2": 14,
-      "natural_region": "Great Lakes-St. Lawrence precambrian region",
-      "description": "A scatter of small Canadian Shield islands in Georgian Bay."
-    },
-    {
-      "id": "glacier",
-      "name": "Glacier",
-      "province": "British Columbia",
-      "park_type": "national_park",
-      "established": 1886,
-      "area_km2": 1349,
-      "natural_region": "Columbia Mountains",
-      "description": "Rugged icefields and peaks including Rogers Pass and Mount Sir Donald."
-    },
-    {
-      "id": "grasslands",
-      "name": "Grasslands",
-      "province": "Saskatchewan",
-      "park_type": "national_park",
-      "established": 1981,
-      "area_km2": 730,
-      "natural_region": "Prairie grasslands",
-      "description": "Undisturbed mixed-grass prairie and badlands along the US border."
-    },
-    {
       "id": "gros-morne",
       "name": "Gros Morne",
       "province": "Newfoundland and Labrador",
@@ -129,36 +29,6 @@
       "area_km2": 1805,
       "natural_region": "Western Newfoundland highlands",
       "description": "A UNESCO World Heritage fjord landscape exposing the earth's mantle."
-    },
-    {
-      "id": "gulf-islands",
-      "name": "Gulf Islands",
-      "province": "British Columbia",
-      "park_type": "reserve",
-      "established": 2003,
-      "area_km2": 37,
-      "natural_region": "Strait of Georgia lowlands",
-      "description": "A reserve spanning 15 islands in the Strait of Georgia."
-    },
-    {
-      "id": "gwaii-haanas",
-      "name": "Gwaii Haanas",
-      "province": "British Columbia",
-      "park_type": "reserve",
-      "established": 1988,
-      "area_km2": 1474,
-      "natural_region": "Pacific coast mountains",
-      "description": "138 islands at the southern end of Haida Gwaii."
-    },
-    {
-      "id": "ivvavik",
-      "name": "Ivvavik",
-      "province": "Yukon",
-      "park_type": "national_park",
-      "established": 1984,
-      "area_km2": 9750,
-      "natural_region": "Northern Yukon",
-      "description": "Unglaciated arctic tundra along the Firth River."
     },
     {
       "id": "jasper",
@@ -171,26 +41,6 @@
       "description": "The largest Rocky Mountain park, home to the Columbia Icefield."
     },
     {
-      "id": "kejimkujik",
-      "name": "Kejimkujik",
-      "province": "Nova Scotia",
-      "park_type": "national_park",
-      "established": 1967,
-      "area_km2": 404,
-      "natural_region": "Atlantic coast plain",
-      "description": "Inland lakes, canoe routes, and a dark-sky preserve in southern Nova Scotia."
-    },
-    {
-      "id": "kluane",
-      "name": "Kluane",
-      "province": "Yukon",
-      "park_type": "national_park",
-      "established": 1993,
-      "area_km2": 5900,
-      "natural_region": "Northern coast mountains",
-      "description": "Home to Mount Logan, Canada's highest peak, and vast icefields."
-    },
-    {
       "id": "kootenay",
       "name": "Kootenay",
       "province": "British Columbia",
@@ -199,66 +49,6 @@
       "area_km2": 1406,
       "natural_region": "Rocky Mountains",
       "description": "Radium Hot Springs, Numa Falls, and Floe Lake in the Rockies."
-    },
-    {
-      "id": "kouchibouguac",
-      "name": "Kouchibouguac",
-      "province": "New Brunswick",
-      "park_type": "national_park",
-      "established": 1969,
-      "area_km2": 239,
-      "natural_region": "Maritime plain",
-      "description": "Coastal dunes, lagoons, and salt marshes on the Northumberland Strait."
-    },
-    {
-      "id": "la-mauricie",
-      "name": "La Mauricie",
-      "province": "Quebec",
-      "park_type": "national_park",
-      "established": 1970,
-      "area_km2": 536,
-      "natural_region": "Great Lakes-St. Lawrence precambrian region",
-      "description": "A canoe-camping circuit of forested lakes north of Shawinigan."
-    },
-    {
-      "id": "mingan-archipelago",
-      "name": "Mingan Archipelago",
-      "province": "Quebec",
-      "park_type": "reserve",
-      "established": 1984,
-      "area_km2": 151,
-      "natural_region": "St. Lawrence lowlands",
-      "description": "Limestone sea stacks and puffin colonies along the Gulf of St. Lawrence."
-    },
-    {
-      "id": "mount-revelstoke",
-      "name": "Mount Revelstoke",
-      "province": "British Columbia",
-      "park_type": "national_park",
-      "established": 1914,
-      "area_km2": 262,
-      "natural_region": "Columbia Mountains",
-      "description": "Subalpine meadows reached by road above the city of Revelstoke."
-    },
-    {
-      "id": "naats-ihchoh",
-      "name": "Naats'ihch'oh",
-      "province": "Northwest Territories",
-      "park_type": "reserve",
-      "established": 2014,
-      "area_km2": 4850,
-      "natural_region": "Mackenzie Mountains",
-      "description": "Headwaters of the South Nahanni River watershed."
-    },
-    {
-      "id": "nahanni",
-      "name": "Nahanni",
-      "province": "Northwest Territories",
-      "park_type": "reserve",
-      "established": 1974,
-      "area_km2": 30000,
-      "natural_region": "Mackenzie Mountains",
-      "description": "Virginia Falls and a deep limestone canyon system on the South Nahanni River."
     },
     {
       "id": "pacific-rim",
@@ -271,36 +61,6 @@
       "description": "Long Beach, the Broken Group Islands, and the West Coast Trail."
     },
     {
-      "id": "pituamkek",
-      "name": "Pituamkek",
-      "province": "Prince Edward Island",
-      "park_type": "reserve",
-      "established": 2024,
-      "area_km2": 30,
-      "natural_region": "Maritime plain",
-      "description": "A chain of barrier islands protecting PEI's northwest coast."
-    },
-    {
-      "id": "point-pelee",
-      "name": "Point Pelee",
-      "province": "Ontario",
-      "park_type": "national_park",
-      "established": 1918,
-      "area_km2": 15,
-      "natural_region": "St. Lawrence lowlands",
-      "description": "The southernmost point of mainland Canada and a migratory bird hotspot."
-    },
-    {
-      "id": "prince-albert",
-      "name": "Prince Albert",
-      "province": "Saskatchewan",
-      "park_type": "national_park",
-      "established": 1927,
-      "area_km2": 3875,
-      "natural_region": "Southern boreal plains and plateaux",
-      "description": "Fescue grassland, boreal forest, and Waskesiu Lake."
-    },
-    {
       "id": "prince-edward-island",
       "name": "Prince Edward Island",
       "province": "Prince Edward Island",
@@ -309,36 +69,6 @@
       "area_km2": 27,
       "natural_region": "Maritime plain",
       "description": "Red sand beaches, dunes, and the setting for Anne of Green Gables."
-    },
-    {
-      "id": "pukaskwa",
-      "name": "Pukaskwa",
-      "province": "Ontario",
-      "park_type": "national_park",
-      "established": 1971,
-      "area_km2": 1878,
-      "natural_region": "Central boreal uplands",
-      "description": "The longest undeveloped Great Lakes shoreline, on Lake Superior."
-    },
-    {
-      "id": "qausuittuq",
-      "name": "Qausuittuq",
-      "province": "Nunavut",
-      "park_type": "national_park",
-      "established": 2015,
-      "area_km2": 11008,
-      "natural_region": "Western high Arctic",
-      "description": "Peary caribou and muskox habitat on Bathurst Island."
-    },
-    {
-      "id": "quttinirpaaq",
-      "name": "Quttinirpaaq",
-      "province": "Nunavut",
-      "park_type": "national_park",
-      "established": 1988,
-      "area_km2": 37775,
-      "natural_region": "Eastern high Arctic",
-      "description": "Polar desert at the northern tip of Ellesmere Island."
     },
     {
       "id": "riding-mountain",
@@ -351,116 +81,6 @@
       "description": "Boreal and aspen forest around the community of Wasagaming."
     },
     {
-      "id": "rouge",
-      "name": "Rouge",
-      "province": "Ontario",
-      "park_type": "urban_park",
-      "established": 2015,
-      "area_km2": 79,
-      "natural_region": "St. Lawrence lowlands",
-      "description": "An urban park along the Rouge River in the Greater Toronto Area."
-    },
-    {
-      "id": "sable-island",
-      "name": "Sable Island",
-      "province": "Nova Scotia",
-      "park_type": "reserve",
-      "established": 2013,
-      "area_km2": 30,
-      "natural_region": "Atlantic coast plain",
-      "description": "A remote sandbar known for its wild horses, off the Nova Scotia coast."
-    },
-    {
-      "id": "sirmilik",
-      "name": "Sirmilik",
-      "province": "Nunavut",
-      "park_type": "national_park",
-      "established": 2001,
-      "area_km2": 22200,
-      "natural_region": "Eastern Arctic lowlands",
-      "description": "Mountains and glaciers on Bylot Island and the Borden Peninsula."
-    },
-    {
-      "id": "terra-nova",
-      "name": "Terra Nova",
-      "province": "Newfoundland and Labrador",
-      "park_type": "national_park",
-      "established": 1957,
-      "area_km2": 399,
-      "natural_region": "Eastern Newfoundland Atlantic region",
-      "description": "Rounded hills and a rugged coastline along the Trans-Canada Highway."
-    },
-    {
-      "id": "thaidene-nene",
-      "name": "Thaidene N\u00ebn\u00e9",
-      "province": "Northwest Territories",
-      "park_type": "reserve",
-      "established": 2019,
-      "area_km2": 14305,
-      "natural_region": "Northwestern boreal uplands",
-      "description": "The East Arm of Great Slave Lake at the edge of the boreal forest."
-    },
-    {
-      "id": "thousand-islands",
-      "name": "Thousand Islands",
-      "province": "Ontario",
-      "park_type": "national_park",
-      "established": 1904,
-      "area_km2": 24,
-      "natural_region": "St. Lawrence lowlands",
-      "description": "Islands and islets scattered across the St. Lawrence River near Kingston."
-    },
-    {
-      "id": "torngat-mountains",
-      "name": "Torngat Mountains",
-      "province": "Newfoundland and Labrador",
-      "park_type": "national_park",
-      "established": 2008,
-      "area_km2": 9700,
-      "natural_region": "Northern Labrador mountains",
-      "description": "Remote coastal mountains at the northern tip of Labrador."
-    },
-    {
-      "id": "tuktut-nogait",
-      "name": "Tuktut Nogait",
-      "province": "Northwest Territories",
-      "park_type": "national_park",
-      "established": 1998,
-      "area_km2": 18181,
-      "natural_region": "Tundra hills",
-      "description": "Protects the calving grounds of the Bluenose-West caribou herd."
-    },
-    {
-      "id": "ukkusiksalik",
-      "name": "Ukkusiksalik",
-      "province": "Nunavut",
-      "park_type": "national_park",
-      "established": 2003,
-      "area_km2": 20880,
-      "natural_region": "Central tundra",
-      "description": "Surrounds Wager Bay, a polar bear denning area."
-    },
-    {
-      "id": "vuntut",
-      "name": "Vuntut",
-      "province": "Yukon",
-      "park_type": "national_park",
-      "established": 1993,
-      "area_km2": 4345,
-      "natural_region": "Northern Yukon",
-      "description": "Remote, unglaciated tundra co-managed with the Vuntut Gwitchin First Nation."
-    },
-    {
-      "id": "wapusk",
-      "name": "Wapusk",
-      "province": "Manitoba",
-      "park_type": "national_park",
-      "established": 1996,
-      "area_km2": 11475,
-      "natural_region": "Hudson-James lowlands",
-      "description": "Polar bear denning habitat near Churchill."
-    },
-    {
       "id": "waterton-lakes",
       "name": "Waterton Lakes",
       "province": "Alberta",
@@ -469,16 +89,6 @@
       "area_km2": 505,
       "natural_region": "Rocky Mountains",
       "description": "Joined with Montana's Glacier National Park as an international peace park."
-    },
-    {
-      "id": "wood-buffalo",
-      "name": "Wood Buffalo",
-      "province": "Alberta/Northwest Territories",
-      "park_type": "national_park",
-      "established": 1922,
-      "area_km2": 44972,
-      "natural_region": "Northern boreal plains",
-      "description": "Canada's largest national park, home to wild bison herds."
     },
     {
       "id": "yoho",
@@ -497,8 +107,8 @@
       "park_id": "banff",
       "name": "Tunnel Mountain Village Campground",
       "description": "A riverside campground in Banff with a mix of serviced and unserviced sites.",
-      "operating_season_start": "05-01",
-      "operating_season_end": "09-30",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 3
     },
     {
@@ -506,8 +116,8 @@
       "park_id": "banff",
       "name": "Two Jack Lakeside Campground",
       "description": "A open-meadow campground in Banff with a mix of serviced and unserviced sites.",
-      "operating_season_start": "05-15",
-      "operating_season_end": "10-08",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 2
     },
     {
@@ -515,8 +125,8 @@
       "park_id": "jasper",
       "name": "Whistlers Campground",
       "description": "A lakeside campground in Jasper with a mix of serviced and unserviced sites.",
-      "operating_season_start": "05-01",
-      "operating_season_end": "09-15",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 3
     },
     {
@@ -524,8 +134,8 @@
       "park_id": "jasper",
       "name": "Wapiti Campground",
       "description": "A forested campground in Jasper with a mix of serviced and unserviced sites.",
-      "operating_season_start": "05-01",
-      "operating_season_end": "10-08",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 2
     },
     {
@@ -533,8 +143,8 @@
       "park_id": "kootenay",
       "name": "Redstreak Campground",
       "description": "A forested campground in Kootenay with a mix of serviced and unserviced sites.",
-      "operating_season_start": "05-15",
-      "operating_season_end": "10-08",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 2
     },
     {
@@ -542,8 +152,8 @@
       "park_id": "kootenay",
       "name": "McLeod Meadows Campground",
       "description": "A riverside campground in Kootenay with a mix of serviced and unserviced sites.",
-      "operating_season_start": "06-01",
-      "operating_season_end": "10-08",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 3
     },
     {
@@ -551,8 +161,8 @@
       "park_id": "yoho",
       "name": "Kicking Horse Campground",
       "description": "A forested campground in Yoho with a mix of serviced and unserviced sites.",
-      "operating_season_start": "05-01",
-      "operating_season_end": "09-15",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 1
     },
     {
@@ -560,8 +170,8 @@
       "park_id": "yoho",
       "name": "Monarch Campground",
       "description": "A lakeside campground in Yoho with a mix of serviced and unserviced sites.",
-      "operating_season_start": "05-15",
-      "operating_season_end": "09-15",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 3
     },
     {
@@ -569,8 +179,8 @@
       "park_id": "waterton-lakes",
       "name": "Townsite Campground",
       "description": "A riverside campground in Waterton Lakes with a mix of serviced and unserviced sites.",
-      "operating_season_start": "06-01",
-      "operating_season_end": "10-08",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 3
     },
     {
@@ -578,8 +188,8 @@
       "park_id": "waterton-lakes",
       "name": "Crandell Mountain Campground",
       "description": "A forested campground in Waterton Lakes with a mix of serviced and unserviced sites.",
-      "operating_season_start": "05-15",
-      "operating_season_end": "09-15",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 2
     },
     {
@@ -587,8 +197,8 @@
       "park_id": "pacific-rim",
       "name": "Green Point Campground",
       "description": "A forested campground in Pacific Rim with a mix of serviced and unserviced sites.",
-      "operating_season_start": "06-01",
-      "operating_season_end": "09-30",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 2
     },
     {
@@ -596,8 +206,8 @@
       "park_id": "pacific-rim",
       "name": "Long Beach Campground",
       "description": "A open-meadow campground in Pacific Rim with a mix of serviced and unserviced sites.",
-      "operating_season_start": "06-01",
-      "operating_season_end": "09-15",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 2
     },
     {
@@ -605,8 +215,8 @@
       "park_id": "prince-edward-island",
       "name": "Cavendish Campground",
       "description": "A lakeside campground in Prince Edward Island with a mix of serviced and unserviced sites.",
-      "operating_season_start": "05-01",
-      "operating_season_end": "09-15",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 1
     },
     {
@@ -614,8 +224,8 @@
       "park_id": "prince-edward-island",
       "name": "Stanhope Campground",
       "description": "A riverside campground in Prince Edward Island with a mix of serviced and unserviced sites.",
-      "operating_season_start": "06-01",
-      "operating_season_end": "09-30",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 1
     },
     {
@@ -623,8 +233,8 @@
       "park_id": "cape-breton-highlands",
       "name": "Broad Cove Campground",
       "description": "A forested campground in Cape Breton Highlands with a mix of serviced and unserviced sites.",
-      "operating_season_start": "06-01",
-      "operating_season_end": "09-15",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 2
     },
     {
@@ -632,8 +242,8 @@
       "park_id": "cape-breton-highlands",
       "name": "Ingonish Campground",
       "description": "A lakeside campground in Cape Breton Highlands with a mix of serviced and unserviced sites.",
-      "operating_season_start": "06-01",
-      "operating_season_end": "09-15",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 2
     },
     {
@@ -641,8 +251,8 @@
       "park_id": "riding-mountain",
       "name": "Wasagaming Campground",
       "description": "A forested campground in Riding Mountain with a mix of serviced and unserviced sites.",
-      "operating_season_start": "05-15",
-      "operating_season_end": "09-15",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 1
     },
     {
@@ -650,8 +260,8 @@
       "park_id": "riding-mountain",
       "name": "Lake Audy Campground",
       "description": "A riverside campground in Riding Mountain with a mix of serviced and unserviced sites.",
-      "operating_season_start": "06-01",
-      "operating_season_end": "09-15",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 2
     },
     {
@@ -659,8 +269,8 @@
       "park_id": "gros-morne",
       "name": "Berry Hill Campground",
       "description": "A riverside campground in Gros Morne with a mix of serviced and unserviced sites.",
-      "operating_season_start": "06-01",
-      "operating_season_end": "09-15",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 2
     },
     {
@@ -668,8 +278,8 @@
       "park_id": "gros-morne",
       "name": "Trout River Campground",
       "description": "A open-meadow campground in Gros Morne with a mix of serviced and unserviced sites.",
-      "operating_season_start": "05-01",
-      "operating_season_end": "10-08",
+      "operating_season_start": "01-01",
+      "operating_season_end": "12-31",
       "num_loops": 2
     }
   ],

@@ -19,8 +19,8 @@ dependencies = [
 ]
 
 [tool.setuptools]
-package-dir = {jira_foundry_agent = "demos/jira_foundry_agent/src/jira_foundry_agent", knowledge_agent = "demos/knowledge_agent/src/knowledge_agent", workspace_agent = "demos/workspace_agent/src/workspace_agent", parks_booking_agent = "demos/parks_booking_agent/src/parks_booking_agent", parks_booking_dashboard = "demos/parks_booking_dashboard", markdown_rag_mcp = "servers/markdown_rag_mcp/src/markdown_rag_mcp", pc411_directory_mcp = "servers/pc411_directory_mcp/src/pc411_directory_mcp", parks_canada_booking_mcp = "servers/parks_canada_booking_mcp/src/parks_canada_booking_mcp"}
-packages = ["app", "jira_foundry_agent", "knowledge_agent", "workspace_agent", "parks_booking_agent", "parks_booking_dashboard", "markdown_rag_mcp", "pc411_directory_mcp", "parks_canada_booking_mcp"]
+package-dir = {jira_foundry_agent = "demos/jira_foundry_agent/src/jira_foundry_agent", knowledge_agent = "demos/knowledge_agent/src/knowledge_agent", workspace_agent = "demos/workspace_agent/src/workspace_agent", parks_booking_agent = "demos/parks_booking_agent/src/parks_booking_agent", parks_booking_dashboard = "demos/parks_booking_dashboard", pc411_directory_dashboard = "demos/pc411_directory_dashboard", markdown_rag_mcp = "servers/markdown_rag_mcp/src/markdown_rag_mcp", pc411_directory_mcp = "servers/pc411_directory_mcp/src/pc411_directory_mcp", parks_canada_booking_mcp = "servers/parks_canada_booking_mcp/src/parks_canada_booking_mcp"}
+packages = ["app", "jira_foundry_agent", "knowledge_agent", "workspace_agent", "parks_booking_agent", "parks_booking_dashboard", "pc411_directory_dashboard", "markdown_rag_mcp", "pc411_directory_mcp", "parks_canada_booking_mcp"]
 
 [project.scripts]
 jiralite = "run:main"
@@ -29,6 +29,7 @@ knowledge-agent = "knowledge_agent.chainlit_app:main"
 workspace-agent = "workspace_agent.chainlit_app:main"
 parks-booking-agent = "parks_booking_agent.chainlit_app:main"
 parks-booking-dashboard = "parks_booking_dashboard.app:main"
+pc411-directory-dashboard = "pc411_directory_dashboard.app:main"
 markdown-rag-index = "markdown_rag_mcp.indexer:main"
 markdown-rag-mcp = "markdown_rag_mcp.server:main"
 pc411-directory-import = "pc411_directory_mcp.import_structure:main"

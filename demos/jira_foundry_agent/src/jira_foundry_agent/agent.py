@@ -3,15 +3,16 @@ from __future__ import annotations
 from collections.abc import Awaitable, Callable
 from typing import Any, Mapping, cast
 
-from agent_framework import Agent, FunctionInvocationContext, FunctionMiddleware, MCPStreamableHTTPTool
+from agent_framework import Agent, FunctionInvocationContext, FunctionMiddleware, FunctionTool, MCPStreamableHTTPTool
 from agent_framework.openai import OpenAIChatClient
 from azure.identity.aio import DefaultAzureCredential
 
+from app.time_tools import get_current_local_time
 from jira_foundry_agent.settings import settings
 
 INSTRUCTIONS = """
 You are the JiraLite assistant. JiraLite tools are available through a local MCP server.
-Use those tools for Jira facts and changes; never invent ticket data. Before any mutation,
+Use those tools for Jira facts and changes; never invent ticket data. Use the current-time tool when asked for the current date or time, and state that it reports the server's local time including its UTC offset. Before any mutation,
 archive, escalation, or bulk operation, ask the user for explicit confirmation and do not
 call a mutating tool until they confirm. For successful tool actions, state what changed.
 Keep answers concise and identify ticket IDs or keys when available.
@@ -61,5 +62,10 @@ async def run_agent(message: str, report_tool_activity: ToolActivityCallback | N
                 instructions=INSTRUCTIONS,
                 middleware=middleware,
             ) as agent:
-                result = await agent.run(message, tools=jira_tools)
+                current_time_tool = FunctionTool(
+                    name="get_current_local_time",
+                    description="Get the server's current local date and time with its UTC offset.",
+                    func=get_current_local_time,
+                )
+                result = await agent.run(message, tools=[jira_tools, current_time_tool])
                 return str(result)

@@ -42,6 +42,12 @@ def run_parks_booking_dashboard() -> None:
     uvicorn.run(create_app(), host="127.0.0.1", port=8010, log_level="info")
 
 
+def run_pc411_directory_dashboard() -> None:
+    from pc411_directory_dashboard.app import create_app
+
+    uvicorn.run(create_app(), host="127.0.0.1", port=8011, log_level="info")
+
+
 def main() -> None:
     seed_if_empty()
 
@@ -49,10 +55,12 @@ def main() -> None:
     frontend_thread = threading.Thread(target=run_frontend, daemon=True)
     dashboard_thread = threading.Thread(target=run_dashboard, daemon=True)
     parks_dashboard_thread = threading.Thread(target=run_parks_booking_dashboard, daemon=True)
+    pc411_dashboard_thread = threading.Thread(target=run_pc411_directory_dashboard, daemon=True)
     backend_thread.start()
     frontend_thread.start()
     dashboard_thread.start()
     parks_dashboard_thread.start()
+    pc411_dashboard_thread.start()
     processes = [
         subprocess.Popen([sys.executable, "-m", "chainlit", "run", "demos/jira_foundry_agent/src/jira_foundry_agent/chainlit_app.py", "--host", "127.0.0.1", "--port", "8002"]),
         subprocess.Popen([sys.executable, "-m", "markdown_rag_mcp.server"]),
@@ -72,6 +80,7 @@ def main() -> None:
     print("Parks Canada MCP:  http://127.0.0.1:8008/mcp")
     print("Parks booking UI:  http://127.0.0.1:8009")
     print("Parks dashboard:   http://127.0.0.1:8010")
+    print("PC411 dashboard:   http://127.0.0.1:8011")
     print("Workspace agent:   http://127.0.0.1:8005")
     print("MCP dashboard:     http://127.0.0.1:8006")
 

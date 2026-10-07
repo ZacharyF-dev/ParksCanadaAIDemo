@@ -3,10 +3,11 @@ from __future__ import annotations
 from collections.abc import Awaitable, Callable
 from typing import Any, Mapping, cast
 
-from agent_framework import Agent, AgentSession, FunctionInvocationContext, FunctionMiddleware, MCPStreamableHTTPTool
+from agent_framework import Agent, AgentSession, FunctionInvocationContext, FunctionMiddleware, FunctionTool, MCPStreamableHTTPTool
 from agent_framework.openai import OpenAIChatClient
 from azure.identity.aio import DefaultAzureCredential
 
+from app.time_tools import get_current_local_time
 from workspace_agent.settings import settings
 
 INSTRUCTIONS = """
@@ -14,8 +15,9 @@ You are the Local Workspace Assistant. You can use three local MCP services:
 - JiraLite: ticket information and ticket operations.
 - Markdown Knowledge: semantic search across locally indexed Markdown documents.
 - Synthetic PC411 Directory: fictional organization and contact data only.
+- Current local time: the server's current local date and time, including its UTC offset.
 
-Use the relevant tool instead of inventing facts. Cite ticket IDs/keys, Markdown source paths,
+Use the relevant tool instead of inventing facts. Use the current-time tool when asked for the current date or time. Cite ticket IDs/keys, Markdown source paths,
 and synthetic directory emails when available. Never represent the directory's synthetic people
 as real employees. Before Jira mutations, archiving, escalation, or bulk updates, request explicit
 user confirmation and do not invoke the mutation until confirmed.
@@ -66,9 +68,14 @@ async def run_agent(
                 middleware=middleware,
             ) as agent:
                 active_session = session or agent.create_session()
+                current_time_tool = FunctionTool(
+                    name="get_current_local_time",
+                    description="Get the server's current local date and time with its UTC offset.",
+                    func=get_current_local_time,
+                )
                 result = await agent.run(
                     message,
                     session=active_session,
-                    tools=[jira_tools, rag_tools, directory_tools],
+                    tools=[jira_tools, rag_tools, directory_tools, current_time_tool],
                 )
                 return str(result), active_session
